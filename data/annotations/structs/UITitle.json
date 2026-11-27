@@ -1,6 +1,159 @@
 {
  "name": "UITitle",
  "known_members": {
+  "0x4c": {
+   "name": "m_rcWindow",
+   "type": "tagRECT",
+   "source": "normalize_key: 0x4C -> 76 | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
+   "evidence_level": "unverified"
+  },
+  "0x5c": {
+   "name": "m_rcWidgetRect",
+   "type": "tagRECT",
+   "source": "normalize_key: 0x5C -> 92 | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
+   "evidence_level": "unverified"
+  },
+  "0x6c": {
+   "name": "m_nTodo_06C",
+   "type": "int",
+   "source": "normalize_key: 0x6C -> 108 | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
+   "evidence_level": "unverified"
+  },
+  "0x70": {
+   "name": "m_nTodo_070",
+   "type": "int",
+   "source": "normalize_key: 0x70 -> 112 | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
+   "evidence_level": "unverified"
+  },
+  "0x74": {
+   "name": "m_unk_0x74",
+   "type": "int",
+   "evidence_level": "B",
+   "source": "ctor asm:116354 mov dword [esi+74h],5Ah；本类方法无读点，语义待补（#143 §4）"
+  },
+  "0x78": {
+   "name": "m_unk_0x78",
+   "type": "int",
+   "evidence_level": "B",
+   "source": "ctor asm:116355 mov dword [esi+78h],18h；语义待补（#143 §4）"
+  },
+  "0x7c": {
+   "name": "m_nTodo_07C",
+   "type": "UIFrameContainer",
+   "evidence_level": "A-",
+   "source": "ctor asm:116309 call sub_4422E0（写表 0x56ADD0=UIFrameContainer，size 152）；写界 asm:116314；0x7C+152=0x114 相接（既有名 m_nTodo_07C 为过渡态，本轮只修类型不改名，防语料契约断）"
+  },
+  "0x114": {
+   "name": "m_nInitRoles",
+   "type": "UIFrameContainer",
+   "evidence_level": "A-",
+   "source": "ctor asm:116313 call sub_4422E0；写界 asm:116315；0x114+152=0x1AC 相接（过渡名保留）"
+  },
+  "0x1ac": {
+   "name": "m_subObjA",
+   "type": "UIFrameContainer[3]",
+   "evidence_level": "A-",
+   "source": "ctor asm:116323–116325 ??_L(0x98,3,sub_4422E0)；0x1AC+3*152=0x374 相接（过渡名保留）"
+  },
+  "0x374": {
+   "name": "m_RoleDataA",
+   "type": {
+    "struct": [
+     {
+      "offset": 0,
+      "name": "_gap_374_0",
+      "type": "char[104]"
+     },
+     {
+      "offset": 104,
+      "name": "m_nTodo_3DC",
+      "type": "int"
+     },
+     {
+      "offset": 108,
+      "name": "m_nTodo_3E0",
+      "type": "int"
+     },
+     {
+      "offset": 112,
+      "name": "_gap_374_112",
+      "type": "char[232]"
+     }
+    ]
+   },
+   "evidence_level": "C",
+   "source": "ctor asm:116333 call sub_43A770（写表 0x56AC70，344B 元素族；该表未注册任何类 ⇒ 按字节落，不套 UIButton/UICaption） | 344B 按钮族内嵌旧 int 字段(m_nTodo_3DC/m_nTodo_3E0)改 union 视图保留语料名(#143 §4 第 3/4 行) | 344B 按钮族内嵌旧 int 字段按 inline struct 逐位移落位（#143 §4 第 3/4 行）"
+  },
+  "0x4cc": {
+   "name": "m_RoleDataB",
+   "type": {
+    "struct": [
+     {
+      "offset": 0,
+      "name": "_gap_4cc_0",
+      "type": "char[104]"
+     },
+     {
+      "offset": 104,
+      "name": "m_nTodo_534",
+      "type": "int"
+     },
+     {
+      "offset": 108,
+      "name": "m_nTodo_538",
+      "type": "int"
+     },
+     {
+      "offset": 112,
+      "name": "_gap_4cc_112",
+      "type": "char[232]"
+     }
+    ]
+   },
+   "evidence_level": "C",
+   "source": "ctor asm:116338 call sub_43A770；同上 | 344B 按钮族内嵌旧 int 字段(m_nTodo_534/m_nTodo_538)改 union 视图保留语料名(#143 §4 第 3/4 行) | 344B 按钮族内嵌旧 int 字段按 inline struct 逐位移落位（#143 §4 第 3/4 行）"
+  },
+  "0x624": {
+   "name": "m_RoleDataC",
+   "type": {
+    "struct": [
+     {
+      "offset": 0,
+      "name": "_gap_624_0",
+      "type": "char[104]"
+     },
+     {
+      "offset": 104,
+      "name": "m_nTodo_68C",
+      "type": "int"
+     },
+     {
+      "offset": 108,
+      "name": "m_nTodo_690",
+      "type": "int"
+     },
+     {
+      "offset": 112,
+      "name": "_gap_624_112",
+      "type": "char[232]"
+     }
+    ]
+   },
+   "evidence_level": "C",
+   "source": "ctor asm:116343 call sub_43A770；同上 | 344B 按钮族内嵌旧 int 字段(m_nTodo_68C/m_nTodo_690)改 union 视图保留语料名(#143 §4 第 3/4 行) | 344B 按钮族内嵌旧 int 字段按 inline struct 逐位移落位（#143 §4 第 3/4 行）"
+  },
+  "0x77c": {
+   "name": "m_ItemSlotA",
+   "type": "UIRoleDialog",
+   "evidence_level": "A-",
+   "source": "ctor asm:116348 call sub_4A12F0（写表 0x56E190=UIRoleDialog，size 1368）"
+  },
+  "0xcd4": {
+   "name": "m_bInitRoles",
+   "type": "unsigned char",
+   "source": "binary:raw_batch | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
+   "evidence_level": "unverified"
+  },
   "0xcd8": {
    "name": "m_hEffect",
    "type": "int",
@@ -37,142 +190,28 @@
    "source": "binary:UITitle::RunFrame | 合并20261120: CGameData 错标别名 'm_nTodo_CE9' (InitRoles 清零/写访问) 同址归并",
    "evidence_level": "unverified"
   },
+  "0xcec": {
+   "name": "m_ItemSlotB",
+   "type": "UIRoleDialog",
+   "evidence_level": "A-",
+   "source": "ctor asm:116356 call sub_4A12F0；同上"
+  },
+  "0x1244": {
+   "name": "m_ItemSlotC",
+   "type": "UIRoleDialog",
+   "evidence_level": "A-",
+   "source": "ctor asm:116361 call sub_4A12F0；同上"
+  },
+  "0x179c": {
+   "name": "m_ItemSlotD",
+   "type": "UIRoleDialog",
+   "evidence_level": "A-",
+   "source": "ctor asm:116366 call sub_4A12F0；同上"
+  },
   "0x1cf4": {
    "name": "m_nTitleStage",
    "type": "int",
    "source": "binary:UITitle::RunFrame | 合并20261120: CGameData 错标别名 'm_nScriptResult' (InitRoles 清零/写访问) 同址归并",
-   "evidence_level": "unverified"
-  },
-  "0x210c": {
-   "name": "m_nTitleScript",
-   "type": "int",
-   "source": "binary:UITitle::RunFrame",
-   "evidence_level": "unverified"
-  },
-  "0x4c": {
-   "name": "m_rcWindow",
-   "type": "tagRECT",
-   "source": "normalize_key: 0x4C -> 76 | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x5c": {
-   "name": "m_rcWidgetRect",
-   "type": "tagRECT",
-   "source": "normalize_key: 0x5C -> 92 | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x6c": {
-   "name": "m_nTodo_06C",
-   "type": "int",
-   "source": "normalize_key: 0x6C -> 108 | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x70": {
-   "name": "m_nTodo_070",
-   "type": "int",
-   "source": "normalize_key: 0x70 -> 112 | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x7c": {
-   "name": "m_nTodo_07C",
-   "type": "UIWnd *",
-   "source": "normalize_key: 0x7C -> 124 | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x114": {
-   "name": "m_nInitRoles",
-   "type": "UIWnd *",
-   "source": "gen_headers_9.2+codegen_infer | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x1ac": {
-   "name": "m_subObjA",
-   "type": "UIStatic",
-   "source": "normalize_key: 0x1AC -> 428 | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x374": {
-   "name": "m_RoleDataA",
-   "type": "CScreenMode *",
-   "source": "ida_decomp:InitRoles vtable+28 call, &this passed, 4 refs+codegen_infer | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x3dc": {
-   "name": "m_nTodo_3DC",
-   "type": "int",
-   "source": "normalize_key: 0x3DC -> 988 | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x3e0": {
-   "name": "m_nTodo_3E0",
-   "type": "int",
-   "source": "normalize_key: 0x3E0 -> 992 | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x4cc": {
-   "name": "m_RoleDataB",
-   "type": "CScreenMode *",
-   "source": "ida_decomp:InitRoles vtable+28 call, same pattern, 4 refs+codegen_infer | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x534": {
-   "name": "m_nTodo_534",
-   "type": "int",
-   "source": "normalize_key: 0x534 -> 1332 | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x538": {
-   "name": "m_nTodo_538",
-   "type": "int",
-   "source": "normalize_key: 0x538 -> 1336 | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x624": {
-   "name": "m_RoleDataC",
-   "type": "CScreenMode *",
-   "source": "ida_decomp:InitRoles vtable+28 call, same pattern, 4 refs+codegen_infer | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x68c": {
-   "name": "m_nTodo_68C",
-   "type": "int",
-   "source": "normalize_key: 0x68C -> 1676 | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x690": {
-   "name": "m_nTodo_690",
-   "type": "int",
-   "source": "normalize_key: 0x690 -> 1680 | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x77c": {
-   "name": "m_ItemSlotA",
-   "type": "UIItem",
-   "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0xcd4": {
-   "name": "m_bInitRoles",
-   "type": "unsigned char",
-   "source": "binary:raw_batch | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0xcec": {
-   "name": "m_ItemSlotB",
-   "type": "UIItem",
-   "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x1244": {
-   "name": "m_ItemSlotC",
-   "type": "UIItem",
-   "source": "ida_decomp:InitRoles UIItem::Create+SetData(18), 2 refs+codegen_infer | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
-   "evidence_level": "unverified"
-  },
-  "0x179c": {
-   "name": "m_ItemSlotD",
-   "type": "UIItem",
-   "source": "ida_decomp:InitRoles UIItem::Create+SetData(31), 2 refs+codegen_infer | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
    "evidence_level": "unverified"
   },
   "0x1cf8": {
@@ -180,6 +219,24 @@
    "type": "unsigned char",
    "source": "reverted_auto_semantic_r3:1x(InitRoles) | 分家迁移20261120: InitRoles(this=+0x1394) 访问族——13方法this普查定谳(调用链0x44f38c直证), 原 CGameData 顶层错标",
    "evidence_level": "unverified"
+  },
+  "0x1cfc": {
+   "name": "m_unk_0x1cfc",
+   "type": "unsigned char[1040]",
+   "evidence_level": "C",
+   "source": "ctor asm:116370 call sub_44B850（内嵌对象 0x814，先 sub_431870 524B）；段止于 0x210C m_nTitleScript；类型待补证，按字节落"
+  },
+  "0x210c": {
+   "name": "m_nTitleScript",
+   "type": "int",
+   "source": "binary:UITitle::RunFrame",
+   "evidence_level": "unverified"
+  },
+  "0x2110": {
+   "name": "m_unk_0x2110",
+   "type": "unsigned char[1024]",
+   "evidence_level": "C",
+   "source": "同一内嵌对象后半，止于 0x2510 m_nScriptHandleA；按字节落"
   },
   "0x2510": {
    "name": "m_nScriptHandleA",
@@ -225,7 +282,7 @@
   }
  },
  "binary_size": 9520,
- "base_size": 72,
+ "base_size": 68,
  "methods": {
   "0x0044ace0": {
    "name": "~UITitle",
@@ -418,9 +475,10 @@
  ],
  "bases": [
   {
-   "name": "UIFrameWnd",
-   "offset": 0
+   "name": "UIWnd",
+   "offset": 0,
+   "source": "ctor asm:116307 call sub_445AA0（写表 0x56AEC8=UIWnd，size 68）；未调用 UIFrameWnd ctor sub_43BB70 ⇒ 真基类 UIWnd（#143 §2.4/§6.2）"
   }
  ],
- "note": "| binary_size 9236→9520 20261120: 分家迁入成员末端 0x2528+1=9513 下界 + CGameData 下一锚 0x38C4 窗口上界 0x2530=9520 双证"
+ "note": "| binary_size 9236→9520 20261120: 分家迁入成员末端 0x2528+1=9513 下界 + CGameData 下一锚 0x38C4 窗口上界 0x2530=9520 双证 | R8-T5（#145）按 #143 六列清单落位：bases UIFrameWnd→UIWnd（base_size 72→68）；0x74/0x78 新增 m_unk_；共用层 UIFrameContainer×5 / UIRoleDialog×4 修类型（过渡名保留防语料契约断）；344B 族与 0x1CFC 内嵌对象按字节落（C 级）；0x48/0xCE5/0x252C 留洞不落。"
 }

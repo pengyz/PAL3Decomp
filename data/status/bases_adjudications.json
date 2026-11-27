@@ -1,177 +1,240 @@
 {
-    "CCBRoleState": {
-        "bases": [
-            "UIListBox"
-        ],
-        "date": "2026-11-17",
-        "ctor_evidence": "0x456AB0 call 0x43DCD0(UIListBox ctor)@0x456ACE + 存表0x56B364@0x456B36",
-        "dtor_evidence": "0x456B80→0x43DD10→0x445B40链",
-        "verdict_by": "复核agent_34c483be+本机capstone验证"
-    },
-    "CCBStage": {
-        "bases": [
-            "UIListBox"
-        ],
-        "date": "2026-11-17",
-        "ctor_evidence": "0x51D710 call 0x43DCD0@0x51D732 + 存表0x5705D0@0x51DD45",
-        "dtor_evidence": "0x51DDA0 call 0x43DD10@0x51DFB4",
-        "verdict_by": "复核agent_34c483be"
-    },
-    "UIListBox": {
-        "bases": [
-            "UIWnd"
-        ],
-        "date": "2026-11-17",
-        "ctor_evidence": "0x43DCD0 call 0x445AA0(UIWnd ctor) + 存表0x56AD20(本机capstone)",
-        "dtor_evidence": "0x43DD10 存表→0x43DE40→0x445B40",
-        "verdict_by": "本机capstone验证"
-    },
-    "RoleCameraCtrl": {
-        "bases": [
-            "UIFrameWnd"
-        ],
-        "date": "2026-11-16",
-        "ctor_evidence": "0x450A60 call 0x43BB70(UIFrameWnd ctor)@0x450A7D + 存表0x56B120@0x450A96",
-        "dtor_evidence": "~RoleCameraCtrl 0x450AD0→0x43BBB0基dtor",
-        "verdict_by": "复核agent_34c483be"
-    },
-    "CScreenMode": {
-        "bases": [
-            "UIListBox"
-        ],
-        "date": "2026-11-17",
-        "ctor_evidence": "ctor 0x523F30 call UIListBox ctor+存己表0x570630@+0; dtor 0x524130: UIFrameContainer~×6(嵌入成员)后UIListBox~尾调 → 真基UIListBox; 声明UIWnd错",
-        "verdict_by": "base_chain_tracer+存表律"
-    },
-    "SaleUI": {
-        "bases": [
-            "UIListBox"
-        ],
-        "date": "2026-11-17",
-        "ctor_evidence": "ctor 0x45A7B0 UIListBox ctor首调; dtor 0x45AE60: UIFrameContainer~×16后UIListBox~尾调 → 真基UIListBox; 声明UIFrameWnd错",
-        "verdict_by": "base_chain_tracer+存表律"
-    },
-    "StateUI": {
-        "bases": [
-            "UIListBox"
-        ],
-        "date": "2026-11-17",
-        "ctor_evidence": "ctor 0x482ED0 UIListBox ctor首调; dtor 0x483380 UIListBox~尾调 → 真基UIListBox",
-        "verdict_by": "base_chain_tracer+存表律"
-    },
-    "EquipUI": {
-        "bases": [
-            "UIListBox"
-        ],
-        "date": "2026-11-17",
-        "ctor_evidence": "ctor 0x498820 UIListBox ctor首调; dtor 0x499030 UIListBox~尾调 → 真基UIListBox",
-        "verdict_by": "base_chain_tracer+存表律"
-    },
-    "CCBUI": {
-        "bases": [
-            "UIListBox"
-        ],
-        "date": "2026-11-21",
-        "ctor_evidence": "ctor 0x5160a0 call UIListBox族构造 + 写表0x5704A8@0x51613d(完全dtor内同址复证)",
-        "dtor_evidence": "删除式0x516100(slot5)→完全dtor 0x516120 call ??1UIListBox@0x51615a + operator delete",
-        "verdict_by": "本机idalib探针21(probe_ccbui_identity系列)"
-    },
-    "UIRoleDialog": {
-        "bases": [
-            "UIFrameWnd"
-        ],
-        "date": "2026-11-17",
-        "ctor_evidence": "0x4A12F0 call 0x43BB70(UIFrameWnd ctor)首调+存表0x56E190@+0",
-        "verdict_by": "base_chain_tracer"
-    },
-    "UIAnimateCtrlEX": {
-        "bases": [
-            "UIWnd"
-        ],
-        "date": "2026-11-17",
-        "ctor_evidence": "0x452790 call 0x445AA0(UIWnd ctor)直调+存表0x56B1DC@+0",
-        "verdict_by": "base_chain_tracer"
-    },
-    "TextureLib_Data": {
-        "bases": [],
-        "date": "2026-11-17",
-        "ctor_evidence": "幻影摘除: 无表/无语料/基类TextureLibDataBase方法机器访问实证成员归属",
-        "verdict_by": "census碎片归并(方法访问密集实证)"
-    },
-    "RoleStatePanel": {
-        "bases": [
-            "UIListBox@0"
-        ],
-        "evidence": "表0x56F040 slot0=0x445e70/slot4=0x445b90 与 UIWnd 表(0x56AEC8)逐址相同(继承指纹) + slot5=~RoleStatePanel own dtor override + slot1/2/3/6 派生覆盖; [C11链定谳20261126 uilistbox_chain_adjudication_20261126.json] InitUI 0x4A1E40 首调 0x43DCD0(UIListBox 72B类 ctor)@this+0 → 0x43DCD0 体 call UIWnd ctor 0x445AA0 + 存表0x56AD20; 表0x56F040 七槽对 UIListBox 表0x56AD20: slot0/4 同址继承(0x445E70/0x445B90), slot1/2/3/6 派生覆盖, slot5 own deleting dtor——全槽吻合; 布局定谳: +0 基子对象=UIListBox(72B, [0,0x48)), +0x44 dword=m_selcolor 属基子对象, RoleStatePanel own 区自 0x48 起(首own写 [esi+0x58]=0x320; binary_size 0x2B080)。[0x44,0x4B8) 段归属裁决: 0x44 属基类 m_selcolor; [0x48,0x4B8) 属 RoleStatePanel own——1208B 基类假说(cls_43dfc0)被 caller 链证伪(RoleStatePanel 构造链只经 0x43DCD0)",
-        "at": "2026-11-26",
-        "ctor_evidence": "首调 0x43DCD0@this+0 链: InitUI 0x4A1E40 mov esi,ecx 后首 call 0x43DCD0(this+0=基子对象@偏移0) → 0x43DCD0 call 0x445AA0(UIWnd ctor)直调+存表0x56AD20@+0 → UIWnd 子对象内嵌 [0,0x44); RoleStatePanel 表0x56F040 由 InitUI 安装(slot0/4 坐 UIListBox/0x56AD20 slot0/4 原址=0x445E70/0x445B90 继承指纹)",
-        "verdict_by": "base_chain_tracer + uilistbox_chain_adjudication_20261126(本机capstone探针)",
-        "dtor_evidence": "~RoleStatePanel deleting 0x4A2150(slot5)→0x4A2450 全形→基链待 cls_43dcd0 链目建立后复核(0x43DD10 现有127 xrefs 含 RoleStatePanel 簇 0x45B1E9/0x46D750 属 InitState 系, 非本类)",
-        "landing_note": "RoleStatePanel.json structs 侧 bases 字段今日契约外未改(仍 [UIWnd@0]); 本台账为裁决权威记录, struct 侧落地=债务账#3(与 #1 cls_43dcd0 JSON 联动后 bases 直挂 UIListBox@0 即可, 无需新类名)"
-    },
-    "UIGameFrm": {
-        "bases": [
-            "UIWnd@0"
-        ],
-        "evidence": "dtor 0x44f050 call UIWnd dtor(0x445b40) + 表0x56B094 slot0 指纹; 幻影壳原 bases PalScriptWaitObj@68 无证据弃置(类改名裁定 8a222b5ab)",
-        "at": "2026-11-20"
-    },
-    "SkillUI": {
-        "bases": [
-            "UIListBox"
-        ],
-        "date": "2026-11-21",
-        "ctor_evidence": "ctor1 0x525120 (new(0x18E34)@0x527b68直调) 体含UIListBox族构造链; 完全dtor 0x525540 体尾 call ??1UIListBox@@QAE@XZ@0x52578e(基析构直证) + 序言写表0x5706CC@0x52555D",
-        "dtor_evidence": "删除式 sub_525520(slot5)→call 0x525540+operator delete@0x525530; 0x525540→~UIListBox@0x52578e",
-        "verdict_by": "本机idalib探针15/16/17(probe_ccbui系列)"
-    },
-    "CCBUICtrl": {
-        "bases": [
-            "UIListBox"
-        ],
-        "date": "2026-11-21",
-        "ctor_evidence": "ctor 0x519310 call ??0UIListBox@0x43dcd0@0x51932d + 写表0x5704C8@0x51933c",
-        "dtor_evidence": "删除式0x519360(slot5)→完全dtor 0x519380 call ??1UIListBox@0x43dd10@0x5193ba",
-        "verdict_by": "本机idalib探针(probe_ccbui_identity系列)"
-    },
-    "UIEmote": {
-        "bases": [
-            "scScriptInstance",
-            "GameObject"
-        ],
-        "date": "2026-11-21",
-        "ctor_evidence": "ctor 0x44e530写表链: [esi]←scScriptInstance表@0x56b050(slot3起: ShowClipped/Render/OnVisible/HideAll/Create/dtor/OnMessage) @0x44e58f + [esi+44h]←off_56B044(slot0起: Reset/GetType/UpdateFrame) @0x44e595; 组合表10槽逐槽吻合二进制(T3 probe44)",
-        "dtor_evidence": "删除式0x44e5c0(次表slot8): call ??1scScriptInstance@0x44e5e0(基dtor)+flags&1+operator delete",
-        "verdict_by": "本机idalib探针31-44(UIEmote专项系列) + T4对抗复核七组声明全验证"
-    },
-    "CUtil": {
-        "bases": [
-            "UIListBox"
-        ],
-        "date": "2026-11-22",
-        "ctor_evidence": "0x52314E call 0x43DCD0(UIListBox ctor, identity ann_class=UIListBox kind=ctor 实锤)——CUtil::CUtil@0x523130 首指令基构造直调, this 直传",
-        "dtor_evidence": "~CUtil 语料单元@0x5230F0 错位(hexrays thunk 语义跟随渲染为 CUtil::Create(this); 0x5230F0..0x523130 区域=4 个 3 指令 init thunk 全挂 CUtil 名族=语料名漂移区, 新挂账待真 dtor 定位)——ctor 侧单证据先行, dtor 侧随真 dtor 定位补强",
-        "verdict_by": "本机capstone验证+identity join",
-        "note": "CUtil=管理中心类(继承 UIListBox+内嵌 UIRoleDialog@m_uiItemSlot); bases 缺失导致 guard 继承闭包/member 索引断链(C11 补齐联动归属考证)"
-    },
-    "ScreenEffectRingNode": {
-        "bases": [
-            "PAL3VisNode"
-        ],
-        "date": "2026-11-26",
-        "ctor_evidence": "0x4BEE60 call 0x4B6F70(PAL3VisNode ctor：内含 call [0x56A3B0] 基构造 + 存表 0x56F37C@0x4B6F79 + [esi+0x58]=0)@0x4BEE7F；存表 0x56F580@0x4BEF01",
-        "dtor_evidence": "0x4BEF30 删除式(??_G) → 0x4BEF50 complete(??1)：写 vptr 0x56F580 + 调 CleanupTextures/ParticleEffect dtor/PAL3VisNode dtor 链",
-        "verdict_by": "#19 施工图 #16 §0-3/§4 + 本机反汇编核对"
-    },
-    "LineupUI": {
-        "bases": [
-            "UIListBox"
-        ],
-        "date": "2026-11-27",
-        "ctor_evidence": "ctor sub_47E5C0 首调 sub_43DCD0（UIListBox ctor，体内 L96584 写 off_56AD20）@sub_47E5C0+3（asm L187098）；存己表 off_56B90C @sub_47E5C0+0x2FC（asm L187243，DATA XREF: sub_47E5C0+2FC↑o）",
-        "dtor_evidence": "sub_47E910 SEH 拆除（尾调 UIListBox 族 dtor）；表 off_56B90C 无基类表混入 ⇒ 单继承 UIListBox",
-        "verdict_by": "#63 C2 裁决 + #42 oracle + 本卡 asm 复读（L187098/L187243）",
-        "card": "tsk_01M8CZFQK991E7G4NFCBYQ (#83)",
-        "note": "旧注解 bases=UIFrameWnd@0 无 ctor 证据（#63 C2 判为错声明）；UIListBox=72B 与本类 base_size 一致"
-    }
+ "CCBRoleState": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "0x456AB0 call 0x43DCD0(UIListBox ctor)@0x456ACE + 存表0x56B364@0x456B36",
+  "dtor_evidence": "0x456B80→0x43DD10→0x445B40链",
+  "verdict_by": "复核agent_34c483be+本机capstone验证"
+ },
+ "CCBStage": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "0x51D710 call 0x43DCD0@0x51D732 + 存表0x5705D0@0x51DD45",
+  "dtor_evidence": "0x51DDA0 call 0x43DD10@0x51DFB4",
+  "verdict_by": "复核agent_34c483be"
+ },
+ "UIListBox": {
+  "bases": [
+   "UIWnd"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "0x43DCD0 call 0x445AA0(UIWnd ctor) + 存表0x56AD20(本机capstone)",
+  "dtor_evidence": "0x43DD10 存表→0x43DE40→0x445B40",
+  "verdict_by": "本机capstone验证"
+ },
+ "RoleCameraCtrl": {
+  "bases": [
+   "UIFrameWnd"
+  ],
+  "date": "2026-11-16",
+  "ctor_evidence": "0x450A60 call 0x43BB70(UIFrameWnd ctor)@0x450A7D + 存表0x56B120@0x450A96",
+  "dtor_evidence": "~RoleCameraCtrl 0x450AD0→0x43BBB0基dtor",
+  "verdict_by": "复核agent_34c483be"
+ },
+ "CScreenMode": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "ctor 0x523F30 call UIListBox ctor+存己表0x570630@+0; dtor 0x524130: UIFrameContainer~×6(嵌入成员)后UIListBox~尾调 → 真基UIListBox; 声明UIWnd错",
+  "verdict_by": "base_chain_tracer+存表律"
+ },
+ "SaleUI": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "ctor 0x45A7B0 UIListBox ctor首调; dtor 0x45AE60: UIFrameContainer~×16后UIListBox~尾调 → 真基UIListBox; 声明UIFrameWnd错",
+  "verdict_by": "base_chain_tracer+存表律"
+ },
+ "StateUI": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "ctor 0x482ED0 UIListBox ctor首调; dtor 0x483380 UIListBox~尾调 → 真基UIListBox",
+  "verdict_by": "base_chain_tracer+存表律"
+ },
+ "EquipUI": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "ctor 0x498820 UIListBox ctor首调; dtor 0x499030 UIListBox~尾调 → 真基UIListBox",
+  "verdict_by": "base_chain_tracer+存表律"
+ },
+ "CCBUI": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-21",
+  "ctor_evidence": "ctor 0x5160a0 call UIListBox族构造 + 写表0x5704A8@0x51613d(完全dtor内同址复证)",
+  "dtor_evidence": "删除式0x516100(slot5)→完全dtor 0x516120 call ??1UIListBox@0x51615a + operator delete",
+  "verdict_by": "本机idalib探针21(probe_ccbui_identity系列)"
+ },
+ "UIRoleDialog": {
+  "bases": [
+   "UIFrameWnd"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "0x4A12F0 call 0x43BB70(UIFrameWnd ctor)首调+存表0x56E190@+0",
+  "verdict_by": "base_chain_tracer"
+ },
+ "UIAnimateCtrlEX": {
+  "bases": [
+   "UIWnd"
+  ],
+  "date": "2026-11-17",
+  "ctor_evidence": "0x452790 call 0x445AA0(UIWnd ctor)直调+存表0x56B1DC@+0",
+  "verdict_by": "base_chain_tracer"
+ },
+ "TextureLib_Data": {
+  "bases": [],
+  "date": "2026-11-17",
+  "ctor_evidence": "幻影摘除: 无表/无语料/基类TextureLibDataBase方法机器访问实证成员归属",
+  "verdict_by": "census碎片归并(方法访问密集实证)"
+ },
+ "RoleStatePanel": {
+  "bases": [
+   "UIListBox@0"
+  ],
+  "evidence": "表0x56F040 slot0=0x445e70/slot4=0x445b90 与 UIWnd 表(0x56AEC8)逐址相同(继承指纹) + slot5=~RoleStatePanel own dtor override + slot1/2/3/6 派生覆盖; [C11链定谳20261126 uilistbox_chain_adjudication_20261126.json] InitUI 0x4A1E40 首调 0x43DCD0(UIListBox 72B类 ctor)@this+0 → 0x43DCD0 体 call UIWnd ctor 0x445AA0 + 存表0x56AD20; 表0x56F040 七槽对 UIListBox 表0x56AD20: slot0/4 同址继承(0x445E70/0x445B90), slot1/2/3/6 派生覆盖, slot5 own deleting dtor——全槽吻合; 布局定谳: +0 基子对象=UIListBox(72B, [0,0x48)), +0x44 dword=m_selcolor 属基子对象, RoleStatePanel own 区自 0x48 起(首own写 [esi+0x58]=0x320; binary_size 0x2B080)。[0x44,0x4B8) 段归属裁决: 0x44 属基类 m_selcolor; [0x48,0x4B8) 属 RoleStatePanel own——1208B 基类假说(cls_43dfc0)被 caller 链证伪(RoleStatePanel 构造链只经 0x43DCD0)",
+  "at": "2026-11-26",
+  "ctor_evidence": "首调 0x43DCD0@this+0 链: InitUI 0x4A1E40 mov esi,ecx 后首 call 0x43DCD0(this+0=基子对象@偏移0) → 0x43DCD0 call 0x445AA0(UIWnd ctor)直调+存表0x56AD20@+0 → UIWnd 子对象内嵌 [0,0x44); RoleStatePanel 表0x56F040 由 InitUI 安装(slot0/4 坐 UIListBox/0x56AD20 slot0/4 原址=0x445E70/0x445B90 继承指纹)",
+  "verdict_by": "base_chain_tracer + uilistbox_chain_adjudication_20261126(本机capstone探针)",
+  "dtor_evidence": "~RoleStatePanel deleting 0x4A2150(slot5)→0x4A2450 全形→基链待 cls_43dcd0 链目建立后复核(0x43DD10 现有127 xrefs 含 RoleStatePanel 簇 0x45B1E9/0x46D750 属 InitState 系, 非本类)",
+  "landing_note": "RoleStatePanel.json structs 侧 bases 字段今日契约外未改(仍 [UIWnd@0]); 本台账为裁决权威记录, struct 侧落地=债务账#3(与 #1 cls_43dcd0 JSON 联动后 bases 直挂 UIListBox@0 即可, 无需新类名)"
+ },
+ "UIGameFrm": {
+  "bases": [
+   "UIWnd@0"
+  ],
+  "evidence": "dtor 0x44f050 call UIWnd dtor(0x445b40) + 表0x56B094 slot0 指纹; 幻影壳原 bases PalScriptWaitObj@68 无证据弃置(类改名裁定 8a222b5ab)",
+  "at": "2026-11-20"
+ },
+ "SkillUI": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-21",
+  "ctor_evidence": "ctor1 0x525120 (new(0x18E34)@0x527b68直调) 体含UIListBox族构造链; 完全dtor 0x525540 体尾 call ??1UIListBox@@QAE@XZ@0x52578e(基析构直证) + 序言写表0x5706CC@0x52555D",
+  "dtor_evidence": "删除式 sub_525520(slot5)→call 0x525540+operator delete@0x525530; 0x525540→~UIListBox@0x52578e",
+  "verdict_by": "本机idalib探针15/16/17(probe_ccbui系列)"
+ },
+ "CCBUICtrl": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-21",
+  "ctor_evidence": "ctor 0x519310 call ??0UIListBox@0x43dcd0@0x51932d + 写表0x5704C8@0x51933c",
+  "dtor_evidence": "删除式0x519360(slot5)→完全dtor 0x519380 call ??1UIListBox@0x43dd10@0x5193ba",
+  "verdict_by": "本机idalib探针(probe_ccbui_identity系列)"
+ },
+ "UIEmote": {
+  "bases": [
+   "scScriptInstance",
+   "GameObject"
+  ],
+  "date": "2026-11-21",
+  "ctor_evidence": "ctor 0x44e530写表链: [esi]←scScriptInstance表@0x56b050(slot3起: ShowClipped/Render/OnVisible/HideAll/Create/dtor/OnMessage) @0x44e58f + [esi+44h]←off_56B044(slot0起: Reset/GetType/UpdateFrame) @0x44e595; 组合表10槽逐槽吻合二进制(T3 probe44)",
+  "dtor_evidence": "删除式0x44e5c0(次表slot8): call ??1scScriptInstance@0x44e5e0(基dtor)+flags&1+operator delete",
+  "verdict_by": "本机idalib探针31-44(UIEmote专项系列) + T4对抗复核七组声明全验证"
+ },
+ "CUtil": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-22",
+  "ctor_evidence": "0x52314E call 0x43DCD0(UIListBox ctor, identity ann_class=UIListBox kind=ctor 实锤)——CUtil::CUtil@0x523130 首指令基构造直调, this 直传",
+  "dtor_evidence": "~CUtil 语料单元@0x5230F0 错位(hexrays thunk 语义跟随渲染为 CUtil::Create(this); 0x5230F0..0x523130 区域=4 个 3 指令 init thunk 全挂 CUtil 名族=语料名漂移区, 新挂账待真 dtor 定位)——ctor 侧单证据先行, dtor 侧随真 dtor 定位补强",
+  "verdict_by": "本机capstone验证+identity join",
+  "note": "CUtil=管理中心类(继承 UIListBox+内嵌 UIRoleDialog@m_uiItemSlot); bases 缺失导致 guard 继承闭包/member 索引断链(C11 补齐联动归属考证)"
+ },
+ "ScreenEffectRingNode": {
+  "bases": [
+   "PAL3VisNode"
+  ],
+  "date": "2026-11-26",
+  "ctor_evidence": "0x4BEE60 call 0x4B6F70(PAL3VisNode ctor：内含 call [0x56A3B0] 基构造 + 存表 0x56F37C@0x4B6F79 + [esi+0x58]=0)@0x4BEE7F；存表 0x56F580@0x4BEF01",
+  "dtor_evidence": "0x4BEF30 删除式(??_G) → 0x4BEF50 complete(??1)：写 vptr 0x56F580 + 调 CleanupTextures/ParticleEffect dtor/PAL3VisNode dtor 链",
+  "verdict_by": "#19 施工图 #16 §0-3/§4 + 本机反汇编核对"
+ },
+ "LineupUI": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-27",
+  "ctor_evidence": "ctor sub_47E5C0 首调 sub_43DCD0（UIListBox ctor，体内 L96584 写 off_56AD20）@sub_47E5C0+3（asm L187098）；存己表 off_56B90C @sub_47E5C0+0x2FC（asm L187243，DATA XREF: sub_47E5C0+2FC↑o）",
+  "dtor_evidence": "sub_47E910 SEH 拆除（尾调 UIListBox 族 dtor）；表 off_56B90C 无基类表混入 ⇒ 单继承 UIListBox",
+  "verdict_by": "#63 C2 裁决 + #42 oracle + 本卡 asm 复读（L187098/L187243）",
+  "card": "tsk_01M8CZFQK991E7G4NFCBYQ (#83)",
+  "note": "旧注解 bases=UIFrameWnd@0 无 ctor 证据（#63 C2 判为错声明）；UIListBox=72B 与本类 base_size 一致"
+ },
+ "PropUI": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-27",
+  "ctor_evidence": "sub_46D140 首调 0x46D162 call 0x43DCD0(UIListBox ctor，存表 0x56AD20)；自表 0x56B688 槽1/3=0x43DDF0/0x43DE40(UIListBox)，UIWnd 表同槽=0x445CD0/0x445C10",
+  "dtor_evidence": "0x46D4C0(自表槽5/删除式) call 0x46D4E0；0x56B688 槽0=0x445E70 同 UIListBox 子表",
+  "verdict_by": "玄策 2026-11-27 objdump 复核（#110 第1项，依据 #71 ② 二选一取证路径）"
+ },
+ "SwordUI": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-27",
+  "evidence": "structs/SwordUI.json bases_note: 原 bases=[UIFrameWnd@0]、vtables=null 均被二进制否定：ctor sub_4A6F10 首调 0x43DCD0=UIListBox ctor（表 0x56AD20，size72），且自有表 0x56F29C slot3=0x43DE40 与 UIListBox 的 HideAll 相同（UIFrameWnd 是 0x445C10）⇒ 直接基类 UIListBox@0（#69 §2.2/§3/§5）。",
+  "ctor_evidence": "ctor sub_4A6F10 首调 0x43DCD0=UIListBox ctor（表 0x56AD20，size72）; 自有表 0x56F29C slot3=0x43DE40 与 UIListBox 同槽（UIFrameWnd=0x445C10）",
+  "verdict_by": "structs/SwordUI.json bases_note(#69 出处) + ev_0030/ev_0033"
+ },
+ "MainPropUI": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-27",
+  "evidence": "structs/MainPropUI.json bases_note: 原 bases=[UIFrameWnd@0] 与 vtables[0].base=UIBigMap 均被 ctor 否定：MainPropUI ctor 首调 0x43DCD0=UIListBox ctor（表0x56AD20，size72）且表 0x56D618 slot3=0x43DE40 与 UIListBox 相同；UIFrameWnd ctor=0x43BB70/表0x56ACB8。2026-11-27 独立复核更正为 UIListBox@0（base_size 72 不变）",
+  "ctor_evidence": "MainPropUI ctor 首调 0x43DCD0=UIListBox ctor（表0x56AD20，size72）; 表 0x56D618 slot3=0x43DE40 与 UIListBox 相同（UIFrameWnd ctor=0x43BB70/表0x56ACB8）",
+  "verdict_by": "structs/MainPropUI.json bases_note(2026-11-27 独立复核)"
+ },
+ "UIScenePanel": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-27",
+  "ctor_evidence": "sub_44BA60 首调 asm:117665 call sub_43DCD0（UIListBox ctor，存表 0x56AD20 @asm:96584）；本类自表 0x56AFFC（ctor 尾 asm:117811 mov [esi],offset off_56AFFC），槽=0x445E70/0x44DAC0/0x44DB70/0x44C910/0x445B90/0x44BE40/0x44DFC0",
+  "dtor_evidence": "0x56AFFC 槽5=0x44BE40（删除式 dtor）；0x44BE80 为 complete 直调侧，两产物同源（CLAUDE.md 编译器产物命名规约）",
+  "verdict_by": "玄策 2026-11-27 asm 复核（#120，依据 #117 §2 bases 行 + ctor 首调链）"
+ },
+ "CCBUIPanel": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-27",
+  "ctor_evidence": "sub_4460D0 首调 asm:111091 call sub_43DCD0（UIListBox ctor，存表 0x56AD20 @asm:96584）；本类自表 0x56AF80（ctor 尾 asm:111118 mov [esi],offset off_56AF80），槽=0x445E70/0x445D10/0x445CD0? 见 #124 §2.2",
+  "dtor_evidence": "dtor asm:111196 调基类 dtor；0x56AF80 槽 0 为删除式 dtor（#124 §2.2 建链镜像）",
+  "verdict_by": "玄策 2026-11-27 asm 复核（#128，依据 #124 §0 基类行 + ctor 首调链）"
+ },
+ "MainEquipUI": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-27",
+  "ctor_evidence": "sub_479300 首调 asm:179531 call sub_43DCD0（UIListBox ctor，存表 0x56AD20 @asm:96584）；本类自表 0x56B820（ctor 尾 asm:179685 mov [esi],offset off_56B820），槽=0x445E70/0x47B200/0x47B3B0/0x43DE40/0x445B90/0x479660/0x47B6C0，槽1/3 与 UIListBox 表同槽 0x43DDF0/0x43DE40 一致",
+  "dtor_evidence": "0x56B820 槽0=0x445E70（与 UIListBox 子表一致）；dtor 侧见 #132 §2 建链镜像",
+  "verdict_by": "玄策 2026-11-27 asm 复核（#133，依据 #132 §3 bases 行 + ctor 首调链）"
+ },
+ "UITitle": {
+  "bases": [
+   "UIWnd"
+  ],
+  "date": "2026-11-27",
+  "ctor_evidence": "ctor sub_44AB90 首调 sub_445AA0(UIWnd ctor)@asm:116307，体写表 off_56AEC8@asm:110231；UIFrameWnd 的 ctor sub_43BB70 在本类 0 调用、[esi+44h] 0 写",
+  "dtor_evidence": "dtor 经 UIFrameWnd/UIWnd 链（#143 §6.2，#144/#148 独立复核一致）",
+  "verdict_by": "青岚(#145 落位) + 知微#148 独立取证一致"
+ }
 }
