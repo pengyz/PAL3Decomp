@@ -32,5 +32,924 @@
       "verdict": "resolved",
       "note": "T146 度量校正定谳（2026-10-15）；此条为规则引用示例，正文以 gotcha 文档为准"
     }
+  },
+  {
+    "id": "ev_0003",
+    "subject": "0x4A2150 ??_GRoleStatePanel 30B LOST 归因",
+    "claim": "LOST 非该函数字节退化：R3 ac9c67673 新增 0x25B78 unsigned char[8] 后语料重渲，OnMessage 被 Hex-Rays 局部类型化 _DWORD*（asm dword 清零），生成源 line777 裸赋值 char[8]→_DWORD* 触发 C2440，整单元编译失败 ⇒ 该单元 22 个 COMDAT 函数退出可比域（17 partial+1 L1+2 synth+2 unmatched），被棘轮报成 LOST。只补一个 (_DWORD*) cast 后 30/30 字节全同（COFF reloc 2 处 don't-care 且目标名核对一致），单元恢复。修复层=codegen stage5 _fix_line_plain_var_assign（_path_is_pointer 不认数组成员衰减为指针）；禁止 rebaseline。",
+    "evidence_refs": [
+      "data/status/archive/s4_lost_0x4a2150_repro_20261126.json",
+      "data/status/archive/s4_lost_0x4a2150_repro_20261126.py",
+      "docs/handoff/2026-11-26-r4-attribution-0x4a2150-lost.md",
+      "data/status/probe_census.json#pal3/src/Misc/RoleStatePanel.cpp:777",
+      "asm/pal3/decomp/RoleStatePanel_OnMessageint_uint_int_004a6120.json"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-26",
+    "resolved": null
+  },
+  {
+    "id": "ev_0004",
+    "subject": "RoleStatePanel 0x25B78 m_bRtVisible 类型判定",
+    "claim": "0x25B78 语义为 unsigned char[8] 字节数组：InitUI 两处 dword 清零（*(_DWORD*)this->m_bRtVisible / [4]）、Update 逐字节判定 m_bRtVisible[0..7] 与 m_nRtIndex 0..7 一一对应 ⇒ 不可改 unsigned int[2]；C2440 只能由赋值处 cast 解决（Hex-Rays 局部为 _DWORD*，asm 是 dword 清零）。",
+    "evidence_refs": [
+      "data/annotations/structs/RoleStatePanel.json#0x25b78",
+      "pal3/src/Misc/RoleStatePanel.cpp#L99-L101",
+      "pal3/src/Misc/RoleStatePanel.cpp#L485",
+      "pal3/src/Misc/RoleStatePanel.cpp#L858-L879",
+      "data/status/archive/s4_lost_0x4a2150_repro_20261126.json"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-26",
+    "resolved": null
+  },
+  {
+    "id": "ev_0005",
+    "subject": "ScreenEffectMgr 0x58DC0 对象 355KB 洞分解",
+    "claim": "ScreenEffectMgr binary_size=363968（工厂0x4B7121 push0x58DC0 + 0x4B7144 call ??0ScreenEffectMgr；堆普查同值；ctor 0x4BEEF2 lea 0x454 + call ??0ParticleEffect，0x454+362860=0x58DC0）。census v3 该类 2 洞共363820B：大洞0x98-0x58DC0=363816B 中 363800B 可A级落位（0xA4 int 状态位、0xA8 gbRenderEffect*、0xB0/0x248 gbGeomQuad[6] 各408B（stride 0x44×6）、0x3E0 gbGeomQuad 68B、0x424-0x454 动画状态48B、0x454 内嵌 ParticleEffect 362860B），余16B（0x98-0xA4 12B、0xAC 4B）零读写=无证据；小洞0x90-0x94 4B 仅0x4BE032 构造零写、无消费点=无证据。",
+    "evidence_refs": [
+      "data/status/struct_holes_20261125.json",
+      "data/status/probe_heap_alloc_census_20261126.json",
+      "docs/specs/2026-11-26-r4-screen-effect-mgr-hole-diagnosis.md",
+      "pal3/src/Effect/ScreenEffectMgr.cpp:636-1000",
+      "asm/pal3/decomp/ScreenEffectMgr_ScreenEffectMgrvoid_004bee60.json"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-26",
+    "resolved": null
+  },
+  {
+    "id": "ev_0006",
+    "subject": "ScreenEffectMgr 头区(0x4-0x94)归属/基链矛盾",
+    "claim": "未决：ScreenEffectMgr ctor 0x4BEE60 在 0x4BEE7F call 0x4b6f70(PAL3VisNode ctor，内部 0x4B6F79 写 vtable 0x56F37C)，末尾 0x4BEF01 才改回自有 vtable 0x56F580；而注解 bases 为空、vtable base=UIRoleDialog，且把 0x4/0x20/0x38/0x50 标为 ScreenFadeIn/Out/White/White2 —— 若基类确为 PAL3VisNode(88B) 则这些成员落在基区内，归属或偏移至少一处错。另：0x4BDFB0（IDA 名 ??0ScreenEffect，被 GetInstance 0x4BE590 用于初始化单例 0xDE7DF8）构造体写到 0x90/0x94，与 ScreenEffect.binary_size=24 矛盾。故头区成员不得据现有注解命名，需 IDA UDT readback+构造链定谳；尾区 ParticleEffect@0x454 落位不受影响。",
+    "evidence_refs": [
+      "data/annotations/structs/ScreenEffectMgr.json",
+      "data/annotations/structs/ScreenEffect.json",
+      "data/annotations/structs/PAL3VisNode.json",
+      "docs/specs/2026-11-26-r4-screen-effect-mgr-hole-diagnosis.md"
+    ],
+    "authority": "B",
+    "status": "open",
+    "created": "2026-11-26",
+    "resolved": null
+  },
+  {
+    "id": "ev_0007",
+    "subject": "MagicUI 267300 无实例身份",
+    "claim": "PAL3.exe 中 MagicUI 无 ctor/无 operator new 站点/无 267300 立即数/无函数指针表；binary_size=0x41424 由末成员 0x413d4(tagRECT[5],80B) 推导而非分配点；PDB 的 ??0MagicUI@0x551314 在 PAL3.exe 落在 MMX memset 体中段不可对齐(PDB=PAL3A 仅参考)。裁决=合成类，应删条目。",
+    "evidence_refs": [
+      "docs/specs/2026-11-26-r5-magicui-identity-verdict.md",
+      "data/annotations/structs/MagicUI.json",
+      "data/pdb/pdb_export.json",
+      "data/status/struct_holes_20261125.json"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-26",
+    "resolved": null
+  },
+  {
+    "id": "ev_0008",
+    "subject": "MagicUI methods 名字嫁接归属",
+    "claim": "注解 MagicUI 名下 14 方法实为多个真实类的方法：SelectTab3/4←RoleStatePanel 槽0x2afb8(171244B,ctor0x482ed0,vtable0x56ba30=StateUI家族)；SelectSubTab3/4←槽0x2afbc(353840B,未名类)；SelectBigMapTab3/4←槽0x2afc0(MainPropUI 219984B)；SelectXJTMTab3/4←槽0x2afc4(EquipUI 266260B)；ProcessInput←MainPropUI::OnMessage@0x4974fa；RefreshAndLayout←UITitle_XJTM::UpdateNPCAnims2@0x48f3ee。均无一槽尺寸=267300。",
+    "evidence_refs": [
+      "docs/specs/2026-11-26-r5-magicui-identity-verdict.md",
+      "data/annotations/structs/StateUI.json",
+      "data/annotations/structs/RoleStatePanel.json"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-26",
+    "resolved": null
+  },
+  {
+    "id": "ev_0009",
+    "subject": "UIGameFrm 27,916B 洞区身份",
+    "claim": "第二视图成立：该区间是静态全局 g_gamefrm(0xDB9FD0,28268B) 存储的内部视图，不是独立对象。A级判据：①全 .text 无 push $0x6e6c（0 命中）、UIGameFrm ctor 0x44f130 仅启动初始化 0x404b22/0x404b7f 调用 2 次，无 operator new 分配点；②dtor 0x44f050 用 lea this+off 析构内嵌子对象 UICaption@0x104(UICaption 96B 恰满)、RoleCameraCtrl@0x164(vtable 0x56b120)、UIListBox区@0x290、UISceneMap区@0xF40、UITitle@0x1394(vtable 0x56afd4,9520B 落 0x38c4) 与数组 5x0x160@0x860、6x0x8e0@0x38d0(push $0x5/$0x160,$0x6/$0x8e0)；③17/29/1 处引用地址 0xDBA260/0xDBaf10/0xDBB364 = 0xDB9FD0+0x290/+0xF40/+0x1394 精确相等，写点样例 0x436a2d mov %eax,0xdba240(=+0x270)。处置=保留 UIGameFrm 成员作视图，删除清单为空；members_note(line619) 的独立对象结论与证据冲突，由实施卡更正",
+    "evidence_refs": [
+      "docs/specs/2026-11-26-r5-uigamefrm-second-view-verdict.md",
+      "data/status/struct_holes_20261125.json",
+      "data/status/s4_baseline.json",
+      "original/PAL3.exe"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-26",
+    "resolved": null
+  },
+  {
+    "id": "ev_0010",
+    "subject": "UIGameFrm 洞区归属分级",
+    "claim": "UIGameFrm 37 洞/27,916B 中 25,997B(93.1%) 有 A 级 owner（UICaption@0x104 96B 恰满、RoleCameraCtrl@0x164 76B、UIListBox区@0x290 72B、UISceneMap@0xF40 1012B、UITitle@0x1394 9520B、array5x0x160@0x860、array6x0x8e0@0x38d0），余 1,919B 明确无证据：0x4c-0x100(172B)、0x19c-0x270 尾部 192B、0x2dc-0x300(32B)、0x304/0x404/0x504/0x604 四个 252B 块与其 4B 间隔、0x6d8-0x730(87B)、0x734-0x860(300B)、0x1334-0x1394(96B)、0x38c4-0x38d0(12B)、0x6e1c-0x6e6c(80B)。无证据段不编造命名/类型",
+    "evidence_refs": [
+      "docs/specs/2026-11-26-r5-uigamefrm-second-view-verdict.md",
+      "data/status/struct_holes_20261125.json"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-26",
+    "resolved": null
+  },
+  {
+    "id": "ev_0011",
+    "subject": "ScreenEffectMgr 0x454-0x58DC0 + 0xB0-0x454 落位（#15 首版）",
+    "claim": "10 成员落位全部 A 级指令证据：0xa4 状态位三态、0xa8 gbRenderEffect*、0xb0/0x248 gbGeomQuad[6] 各408B（6×68=0x198）、0x3e0 gbGeomQuad 68B、0x424/0x428 float、0x42c float[6]、0x444 int[4]、0x454 ParticleEffect 362860B；census hole_bytes 363820→20（−363800 与段和值精确相等），members16→26，size363968 不变",
+    "evidence_refs": [
+      "data/annotations/structs/ScreenEffectMgr.json",
+      "docs/specs/2026-11-26-r4-sefmgr-placement-report.md",
+      "data/status/archive/r4_screen_effect_placement_20261126.py"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-26",
+    "resolved": null
+  },
+  {
+    "id": "ev_0012",
+    "subject": "ScreenEffectMgr 落位后 loop 门禁读数（#15）",
+    "claim": "apply rc=0/15.6s、export rc=0/149s、codegen rc=1 已知恒红(TOLERATED)、probe rc=1 外部归因(SaleUI.cpp 真新增6条 C2107x4+C2102x2，新失败0，S2 158/229)、match 单独 rc=0 L1 189 与 population 1152/1262 均未变、ScreenEffectMgr.cpp 42函数 30matched L1=2；未执行 rebaseline",
+    "evidence_refs": [
+      "data/status/archive/r4_sefmgr_loop_after16_20261126.log",
+      "docs/specs/2026-11-26-r4-sefmgr-placement-report.md"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-26",
+    "resolved": null
+  },
+  {
+    "id": "ev_0013",
+    "subject": "UITitle_JDHY 类尺寸",
+    "claim": "UITitle_JDHY 实例尺寸=0x46EB8(290,488)，注解旧值 377,700(0x5C364) 无二进制支撑：push 0x46EB8 全 .text 唯一分配点（0x4A46B5，NEW 0x4A46DE call 0x4B01D0），ctor 链末端 0x46960+0x558=0x46EB8，Note_Item[36] 向量 0x262C8+36*0xDE8=0x45768；5c364/377700 全 disasm 命中 0。",
+    "evidence_refs": [
+      "original/PAL3.exe.asm:240584",
+      "docs/specs/2026-11-27-r6-t1-uititle-jdhy-placement.md",
+      "data/annotations/structs/UITitle_JDHY.json"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0014",
+    "subject": "UITitle_JDHY 43 员落位",
+    "claim": "UITitle_JDHY 43 员落位闭合到 0x46EB8（含 ctor/dtor 双链、vtable 定性 0x56ADD0/56AC70/56AD88/56ACD8/56E190）；独立对抗复核更正的四处假洞 0x11B0(int[4])/0x25AF4-0x25B6C(int[8]+int[6][4])/0x45B38(int[2])/0x45EAC(uchar) 均有写指令；UIScene 本体实测 272B 与 UIScene.json 344B 冲突，本类不引用该尺寸。census 19,396B→8B。",
+    "evidence_refs": [
+      "data/status/archive/r6_t1_uititle_jdhy_placement_20261126.py",
+      "docs/specs/2026-11-27-r6-t1-uititle-jdhy-placement.md",
+      "data/status/struct_holes_20261125.json"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0015",
+    "subject": "UIGameFrm 27,916B 洞区落位（R6-T2 #31）",
+    "claim": "UIGameFrm binary_size 28268 无分配点证据（push 6E6Ch 命中0，最后访问+0x6E18，可证区间 [0x6E1C,0x712C)）；7 个 span 按 ctor/dtor lea this+off 落位：0x104 UICaption96、0x164 RoleCameraCtrl264（UIFrameWnd72+UITextArea192@+0x48，纠正 oracle 76B）、0x290 复合体1488、0x860 5×352、0xF40 1108（类未定，不写 UISceneMap）、0x1394 UITitle9520、0x38D0 UIEmote[6]13632、0x6E10/0x6E14/0x6E18 三指针；census 27,916B→256B（5 段）、check 0 new PASS；match previous 1138/1246 L1 189 → current 1154/1265 L1 192，逐单元 diff 证明 +3 全在 #19 拆出的 Misc/ScreenEffectRingNode.cpp（funcs17/matched13/L1 3），本卡 L1 贡献 0，match 日志已标『可比总体已变化 ⇒ 两次 L1 不可直接比较』（未 rebaseline）",
+    "evidence_refs": [
+      "docs/specs/2026-11-27-r6-t2-uigamefrm-placement.md",
+      "data/annotations/structs/UIGameFrm.json",
+      "data/status/archive/r6_t2_uigamefrm_loop5_20261127.log",
+      "data/status/archive/r6_t2_uigamefrm_match4_20261127.log",
+      "data/status/struct_holes_20261125.json"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0016",
+    "subject": "R6⑥ CCCTData身份反证（430,000池union vs 402,824类Y）",
+    "claim": "PDB定义 CCCTData=430,000池union（池408,000+在位表2,000+索引20,000）；本exe 402,824类是未名UIListBox派生（ctor 0x4A6F10、vptr 0x56F29C、存RoleStatePanel+0x2AFC8），CCBCamControl=430,256；现有注解CCCTData 430,256/0是chimera，D-1未裁前不改。",
+    "evidence_refs": [
+      "docs/specs/2026-11-26-ccctdata-recast-plan.md:9-30",
+      "docs/specs/2026-11-26-ccctdata-recast-plan.md:241-249",
+      "data/status/_disasm_cache.txt:104997-104998",
+      "data/status/_disasm_cache.txt:207285",
+      "data/annotations/structs/CCCTData.json",
+      "cmd: python3 tools/evidence_ledger.py query --subject CCCTData"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0017",
+    "subject": "R6③ CCBStage真尺寸672,040",
+    "claim": "唯一ctor分配点 push0xa4128（0x5233BE）→0x5233CD call0x55353B→0x5233E7 call0x51D710，ctor末端0xA3BD0+0x558=0xA4128与分配闭合，vptr0x5705D0认类；673,988是673,968+20B幻影。",
+    "evidence_refs": [
+      "docs/specs/2026-11-27-ccbstage-size-three-numbers-evidence.md:6-14",
+      "data/status/_disasm_cache.txt:377261",
+      "data/status/_disasm_cache.txt:377272",
+      "data/annotations/structs/CCBStage.json",
+      "cmd: grep -n \"push   0xa4128\" data/status/_disasm_cache.txt"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0018",
+    "subject": "R6③ CCBStage第二对象673,968归属",
+    "claim": "0x512851 push0xa48b0独立分配、256槽循环末槽到0xA48A4（余12B）、全对象清零；offset0写描述符指针而非vptr，20个注解成员与该对象吻合，归属暂定另一类、类名未定。",
+    "evidence_refs": [
+      "docs/specs/2026-11-27-ccbstage-size-three-numbers-evidence.md:6-14",
+      "docs/specs/2026-11-27-ccbstage-size-three-numbers-evidence.md:120-132",
+      "data/status/_disasm_cache.txt:355269",
+      "data/status/_disasm_cache.txt:355279",
+      "data/status/struct_holes_20261125.json",
+      "cmd: grep -n \"push   0xa48b0\" data/status/_disasm_cache.txt"
+    ],
+    "authority": "B",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0019",
+    "subject": "R6⑤ CCBRoleState20,568与22,224混装",
+    "claim": "唯一分配push0x5058（0x44C5F3）→0x44C5F8 call0x55353B→0x44C60E call0x456AB0，ctor最远写[esi+0x5054]+4=0x5058、vptr0x56B364；22,224是混装，尾部15+4+3+1=23员分属20,644B类、零访问、CCBUIPanel、PropUI。",
+    "evidence_refs": [
+      "docs/specs/2026-11-26-ccbrolestate-ctor-boundary-evidence.md:6-13",
+      "docs/specs/2026-11-26-ccbrolestate-ctor-boundary-evidence.md:111-120",
+      "data/status/_disasm_cache.txt:101376",
+      "data/status/_disasm_cache.txt:101384",
+      "data/status/_disasm_cache.txt:115561",
+      "cmd: grep -n \"push   0x5058\" data/status/_disasm_cache.txt"
+    ],
+    "authority": "B",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0020",
+    "subject": "R6② C2DSpark22,640 / tagSpark44",
+    "claim": "唯一operator new立即数push0x5870、ctor清零常量0x161C×4与最大写[esi+0x586C]+4三链闭合；tagSpark三处步长0x2C、512元素、整元素11 dword拷贝，512×44=0x5800与尾部成员起点对齐。",
+    "evidence_refs": [
+      "docs/specs/2026-11-27-c2dspark-tagspark-48b-evidence.md:8-11",
+      "data/status/_disasm_cache.txt:355455",
+      "data/status/_disasm_cache.txt:355458",
+      "data/status/_disasm_cache.txt:355470",
+      "data/annotations/structs/C2DSpark.json",
+      "data/annotations/structs/C2DSpark_tagSpark.json",
+      "cmd: grep -n \"push   0x5870\" data/status/_disasm_cache.txt"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0021",
+    "subject": "R6④ PropUI28,892（0x70DC）",
+    "claim": "两处operator new立即数0x70DC相同、同一ctor0x46D140、最大写[esi+0x70D8]+4=0x70DC、0x70DC以上零访问；164=52+16+96，尺寸与尾部重排必须成对。",
+    "evidence_refs": [
+      "docs/specs/2026-11-27-propui-size-164-evidence.md:9-26",
+      "data/status/_disasm_cache.txt:119071",
+      "data/status/_disasm_cache.txt:119082",
+      "data/status/_disasm_cache.txt:377289",
+      "data/status/_disasm_cache.txt:140523",
+      "data/annotations/structs/PropUI.json",
+      "data/status/struct_holes_20261125.json",
+      "cmd: grep -n \"push   0x70dc\" data/status/_disasm_cache.txt"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0022",
+    "subject": "#35 SaleUI 残留三段落位",
+    "claim": "0x10564=int 索引（3 引用点无解引用，sub_4623A0 将其当 [0x3e08+4*idx] 下标）；0xf574/0x10658 各 tagRECT[240]（16B步进、i<5/j<6/k<8、0xf574+0xF00=0x10474 精确），0x10658 由 0xf574 派生（VA0x460507→0x460511）。五段 0xf574/0x10474/0x10564/0x10568/0x10658 首尾相接至 0x11558，58 员零重叠、链尾0x19DB8=binary_size。check 0 new PASS；loop apply/export rc0、codegen 恒红、probe rc1(SaleUI 既有)；match RC0 L1 192（基数189）无 LOST 未 rebaseline；census 改动前后均无 SaleUI 条目。",
+    "evidence_refs": [
+      "data/annotations/structs/SaleUI.json",
+      "docs/specs/2026-11-27-r5-saleui-tail-placement.md",
+      "data/status/archive/r5_saleui_tail_match_20261127.log",
+      "data/status/archive/r5_saleui_tail_loop_20261127.log",
+      "data/status/archive/r5_saleui_tail_check_20261127.log"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0023",
+    "subject": "PropUI 真 sizeof 与落位",
+    "claim": "PropUI 真 sizeof=0x70DC(28892)：push 0x70DC 全镜像仅 2 处(VA 0x45974f/0x523422，均 push;call 0x55353b 分配后 call 0x46D140)；ctor 0x46D140 最大写位移 0x70D8(0x46d49f mov BYTE[esi+0x70D8],1 后 ret)；旧 29056 无立即数支持且尾 mb_OK/mb_OKRc 越界。按 #48 落位后 members 95→50、holes 18652B/45段→292B/12段（全部为对齐间隙与 0x4D68/0x70D0 有写读未建模区，逐段性质见报告 §3）；check 0 new PASS、S2 159/230、match L1 192→192 无 LOST 未 rebaseline",
+    "evidence_refs": [
+      "docs/specs/2026-11-27-r7-t1-propui-placement.md",
+      "data/status/archive/r7_t1_propui_placement_20261127.py",
+      "data/status/archive/struct_holes_after_propui_20261127.json",
+      "data/status/archive/r7_t1_propui_match_20261127.log"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0024",
+    "subject": "PropUI 0x58 块容量视图",
+    "claim": "PropUI +0x58 块必须用 unsigned char[17504] 容量视图：ctor 0x46d407 mov ecx,0x1118(0x4460/4)+0x46d44a rep stos 整块零填、UpdateItemList 0x46dd41 rep movs 同尺寸拷贝；st_Manager 注解仅 244B 不足以覆盖；union{st_Manager;char[17504]} 会让生成头 include pal3/gen/_ns_udts.h，与 class tagRECT; 前向声明冲突导致 _ns_udts.h C2501/C2146 新增 6 条（实测）。改字节视图后 PropUI.h 不 include _ns_udts.h，该 6 条消失",
+    "evidence_refs": [
+      "docs/specs/2026-11-27-r7-t1-propui-placement.md",
+      "data/annotations/structs/PropUI.json",
+      "data/status/archive/r7_t1_propui_probe_20261127.log"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0025",
+    "subject": "MainPropUI 尺寸与落位（#61）",
+    "claim": "binary_size=219984(0x35B50)：push 35B50h 全库唯一(asm240512)+call sub_4909F0 唯一(asm240522)+ctor 建链求和 0x35A1C+308 三证一致；80 员→36 员逐段闭合：0x48 rc/0x58-5C 宽高/0x168 页标志/0x180-2B0 三容器/0x348-11D0 共用层整块/0x1300+0x13700 两池 128×584/0x25B8C 5×0x26FC+16B tail/0x31E88 5×152/0x32190 5×852/0x33234 UIRoleDialog/0x3378C+0x341E4 各5×344/0x33E44 6×152/0x348A0 84B/0x3498C 12×152/0x35144 1208B/0x35610-358C0 三按钮/0x35A1C 308B；census 16,896B→0B（802,176→785,280）",
+    "evidence_refs": [
+      "data/annotations/structs/MainPropUI.json",
+      "data/status/archive/r7_t2_mainpropui_placement_20261127.py",
+      "data/status/archive/struct_holes_before_mainpropui_20261127.json",
+      "data/status/archive/struct_holes_after_mainpropui_20261127.json",
+      "docs/specs/2026-11-27-r7-t2-mainpropui-placement.md"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0026",
+    "subject": "MainPropUI 基类归属（#61）",
+    "claim": "直接基类=UIListBox@0（原注 UIFrameWnd 错、vtables[0].base UIBigMap 错）：ctor0x4909F0 @0x490A12 call0x43DCD0(UIListBox ctor:0x43DCD3 call0x445AA0 UIWnd+0x43DCD8 存表0x56AD20)首调；@0x490E2A 存己表0x56D618；槽位3=0x43DE40 与 UIListBox 表相同(UIFrameWnd slot3=0x445C10)；完整析构 0x4912D0 @0x491614 call0x43DD10(~UIListBox)→0x43DD3B 0x43DE40→0x43DD4A 0x445B40(UIWnd)",
+    "evidence_refs": [
+      "data/annotations/structs/MainPropUI.json",
+      "data/status/bases_adjudications.json",
+      "docs/specs/2026-11-27-r7-t2-mainpropui-placement.md"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0027",
+    "subject": "MainPropUI 落位 rev4：命名留白与显式零洞",
+    "claim": "rev3 的 11 个数字后缀成员（m_frame152_0/1/2/3、m_frame152_grp2/3/4、m_btn344_grp3/grp4、m_btn344_5/6/7）对应偏移在 asm/pal3/decomp/MainPropUI_*.json 零语义访问（逐个 grep -l 0 命中），按卡面口径改 m_unk_<offset> 留白形，类型与证据等级不变；改名后须 apply→export 再 check（否则报 10 条 N13a 字段契约断），实测 check 0 new PASS。MainPropUI 洞=0，census_class 对零洞类返回 None，故以同 v3 口径内存重算落显式快照 holes:[] hole_bytes:0 total_holes:0；match rev4 L1 192（previous 190→192，semantic 15→13，L1+sem 205→205，population 1154/1265 稳定，无 LOST，未 rebaseline）。",
+    "evidence_refs": [
+      "data/annotations/structs/MainPropUI.json",
+      "data/status/archive/struct_holes_after_mainpropui_explicit_20261127.json",
+      "data/status/archive/r7_t2_mainpropui_match_rev4_20261127.log",
+      "data/status/archive/r7_t2_mainpropui_check_rev4_20261127.log"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0028",
+    "subject": "MainPropUI 落位 rev5：命名留白扩至 16 员",
+    "claim": "除 rev4 的 11 员外，m_topFrame0/1/2、m_frame152_grp2、m_ctrl84 也含数字后缀/尺寸编码，且对应偏移在语料中零语义访问（0x180/0x218/0x2B0/0x31E88/0x348A0），一并改 m_unk_<offset>；类型与证据不变。改名后 apply→export→check 0 new PASS；rev5 match L1 192（previous 192→192、semantic 13→13、L1+sem 205→205、population 1154/1265 稳定、无 LOST、未 rebaseline）；census 仍显式 0 洞。日志 data/status/archive/r7_t2_mainpropui_{check,loop,match,regression}_rev5_20261127.log。",
+    "evidence_refs": [
+      "data/annotations/structs/MainPropUI.json",
+      "data/status/archive/r7_t2_mainpropui_match_rev5_20261127.log",
+      "data/status/archive/r7_t2_mainpropui_check_rev5_20261127.log",
+      "docs/specs/2026-11-27-r7-t2-mainpropui-placement.md"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0029",
+    "subject": "SwordUI 尺寸=402824 三证",
+    "claim": "SwordUI 真 sizeof=402,824=0x62588：①全镜像 push 0x62588 仅 1 处 VA0x4A4651(asm240548)→operator new→call sub_4A6F10(0x4A467A)→store RoleStatePanel+0x2AFC8(0x4A468C)；②ctor 39 段建链，末对象 m_Msg(0x62028+0x558) 止 0x62580；③尾段 0x62580 int + 0x62584 一字节 + 3B 对齐 = 0x62588。旧值 388952 无分配证据。",
+    "evidence_refs": [
+      "data/annotations/structs/SwordUI.json",
+      "docs/specs/2026-11-27-r7-t3-swordui-placement.md",
+      "data/status/archive/r7_t3_swordui_match_rev2_20261127.log"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0030",
+    "subject": "SwordUI 基类=UIListBox",
+    "claim": "SwordUI 直接基类 UIListBox@0：ctor sub_4A6F10 首调 0x43DCD0(VA0x4A6F32)；该 ctor 体 0x43DCD3 call 0x445AA0(UIWnd ctor)、0x43DCD8 movl bashx56AD20,(%esi)；己表 0x56F29C slot3=0x43DE40 与 UIListBox 相同（UIFrameWnd slot3=0x445C10）；bases_adjudications.json 有裁决条目。",
+    "evidence_refs": [
+      "data/annotations/structs/SwordUI.json",
+      "data/status/bases_adjudications.json",
+      "docs/specs/2026-11-27-r7-t3-swordui-placement.md"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0031",
+    "subject": "SwordUI 洞面 12700→536B",
+    "claim": "SwordUI census v3 洞面：before 388952/134员/12,700B/46段（git HEAD 注解+同口径内存重算）→ after 402824/106员/536B/8段；全库 785,280→773,116B/968段。无构造归属 204B 留白（零访问）。",
+    "evidence_refs": [
+      "data/status/archive/struct_holes_before_swordui_20261127.json",
+      "data/status/archive/struct_holes_after_swordui_rev2_20261127.json",
+      "data/status/struct_holes_20261125.json"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0032",
+    "subject": "ctor 0x4A6F10 归属冲突(CCCTData 误登记)",
+    "claim": "0x004A6F10 是 SwordUI ctor（写表0x56F29C，CCCTData 自身 ctor 在0x5058F0），但 data/annotations/structs/CCCTData.json:228 仍登记为 CCCTData_6F10、:326 把402824 映射类Y；SwordUI 侧不得重复认领（CLAIM_GATE/N17），须删 CCCTData 条目后补 SwordUI.methods ctor。",
+    "evidence_refs": [
+      "data/annotations/structs/CCCTData.json",
+      "data/annotations/structs/SwordUI.json",
+      "docs/specs/2026-11-27-r7-t3-swordui-placement.md"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0033",
+    "subject": "SwordUI 基类=UIListBox(订正 ev_0030 文本)",
+    "claim": "SwordUI 直接基类 UIListBox@0：ctor sub_4A6F10 首调 0x43DCD0(VA0x4A6F32)；该 ctor 体 0x43DCD3 call 0x445AA0(UIWnd ctor)、0x43DCD8 movl 0x56AD20,(%esi) 存表；己表 0x56F29C slot3=0x43DE40 与 UIListBox 相同(UIFrameWnd slot3=0x445C10)；bases_adjudications.json 有裁决条目。取代 ev_0030（其文本被 shell 展开污染）。",
+    "evidence_refs": [
+      "data/annotations/structs/SwordUI.json",
+      "data/status/bases_adjudications.json",
+      "docs/specs/2026-11-27-r7-t3-swordui-placement.md"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0034",
+    "subject": "R7-T4 EquipUI 落位（266,260B）",
+    "claim": "EquipUI 尺寸 266260=0x41014 三证一致（push 41014h 全库唯一@asm240530；工厂 L240540 call sub_498820 + L240550 store [2AFC4h]；ctor 建链至 0x40FC4 + 尾 RECT[5] 80B）；成员 23→55 按 ctor 39 段重建，共用层 0x45C–0x12E4 整块 3720B（#63 C8）；census 洞面 15,960B/7 段→0B/0 段，全库 773116→757156B（差精确）；check 0 new PASS；match L1 193 无 LOST 未 rebaseline",
+    "evidence_refs": [
+      "docs/specs/2026-11-27-r7-t4-equipui-placement.md",
+      "data/status/archive/r7_t4_equipui_placement_20261127.py",
+      "data/status/archive/struct_holes_before_equipui_20261127.json",
+      "data/status/archive/r7_t4_equipui_match_20261127.log"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0035",
+    "subject": "EquipUI 方法与基类归属（#63 C3/C4）",
+    "claim": "EquipUI.methods 删 5 条错归属：InitEquipUI@0x4AB6B0（ecx=[2AFC8h]=SwordUI, 资产 SwordRemark.tga）、ShowPage@0x484D20（XREF 于 sub_485DF0/0x56BA48 槽）、SelectTab0@0x484E70（[2AFB8h]）、SetSubTab@0x48A2F0（[2AFBCh]）、SelectBigMapTab0@0x4945C0（[2AFC0h]=MainPropUI）；保留 setSubTab2@0x49E840（[2AFC4h]）；基类=UIListBox@0（ctor 首调 sub_43DCD0 写 off_56AD20；己表 0x56E170 槽0/3/4 同）",
+    "evidence_refs": [
+      "docs/specs/2026-11-27-r7-t4-equipui-placement.md",
+      "docs/ui-inventory/2026-11-27-r7-conflict-adjudication.md",
+      "data/annotations/structs/EquipUI.json"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0036",
+    "subject": "EquipUI 独立复核四项 P1 类型修正",
+    "claim": "只读复核 pass_with_fixes 四项 P1 全部修正：0x48→tagRECT rc（L233245–233266 写 0/0/800/600 传 sub_43DD60）；0x60→int m_nCurPage +0x64 4B（L234645 页索引/L234826 写）；0x40FC4→tagRECT[5]（L225875–225881 写、L233970–233983 读）；0x2F864→tagRECT[5]+0x2F8B4 16B（L225994–226002 写、L234652–234665 读）",
+    "evidence_refs": [
+      "docs/specs/2026-11-27-r7-t4-equipui-placement.md",
+      "data/annotations/structs/EquipUI.json"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0037",
+    "subject": "CCCTData 跨类占位清理（#89）",
+    "claim": "删 methods[0x004a6f10]（旧名 CCCTData_6F10）与 binary_size_contested.candidates[402824]（类Y），SwordUI.methods 补 ctor 0x4A6F10（thiscall 0 参，0x4A4651 push 0x62588 / 0x4A467A call / 0x4A468C store[esi+0x2AFC8]）；check 0 new/34 frozen/111 warnings PASS，SwordUI 402824/536B 不变。N13a CCCTData::_tail_000(475 引用) 经 A/B 实测为存量缺口（HEAD 注解复跑同样报），按 94 类先例补 interim char[430256] 尾数组；副作用=CCCTData census 洞 430256→0（未名，非建模）。",
+    "evidence_refs": [
+      "data/annotations/structs/CCCTData.json",
+      "data/annotations/structs/SwordUI.json",
+      "data/status/r89_ccctdata_cleanup_report_20261127.md",
+      "data/status/archive/r89_ccctdata_check_20261127.log",
+      "data/status/archive/r89_ccctdata_AB_check_before_20261127.log"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0038",
+    "subject": "CCCTData N13a 与 apply 前置闸死锁（#89 rev2）",
+    "claim": "CCCTData 语料引用 this->_tail_000 475 次（data_members=0），删除 0x4a6f10 占位后 apply 前置闸 rc=1 且仅此一条 N13a；补 interim char[430256] 尾数组后同一命令 rc=0/0 ERROR、check 0 new。A/B 另证该 N13a 在 HEAD 注解下同样存在（非 #89 引入）。故 interim 成员是解锁 apply 的必要条件，不是顺手扩范围。",
+    "evidence_refs": [
+      "data/status/archive/r89_ccctdata_apply_without_filler_20261127.log",
+      "data/status/archive/r89_ccctdata_apply_rev2_20261127.log",
+      "data/status/archive/r89_ccctdata_check_rev2_20261127.log",
+      "data/status/r89_ccctdata_cleanup_report_20261127.md"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0039",
+    "subject": "SkillUI 落位（#84）",
+    "claim": "尺寸 101,940=0x18E34 三证（push@asm:445068/ctor sub_525120/建链末 0x18384+2×0x558）；39 员重建首尾相接 sum=0x18E34；census 99,428B→0（显式零洞快照）；check 0 new/34 frozen/111 warn PASS；复核 8 项修正（0x60 sprintf buffer/0x3ABC/0x3ABE/0x3AC0-3AC8/0x1818/0x1835C/0x1B3C 命名）",
+    "evidence_refs": [
+      "docs/specs/2026-11-27-r7-t6-skillui-placement.md",
+      "data/status/archive/r7_t6_skillui_placement_20261127.py",
+      "data/status/archive/r7_t6_skillui_check_final_20261127.log",
+      "data/status/archive/struct_holes_after_skillui_explicit_20261127.json"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0040",
+    "subject": "SkillUI 0x3AA0 归属冲突与外部门禁红（#84）",
+    "claim": "0x3AA0 在 m_aEntrySlots[5][1608] 末槽 8B 尾部（ctor 分别清零）与 #59 E2『类级槽索引』冲突，两解均缺更多证据；本轮 S2 158/230 的新失败是 ScreenEffectMgr.cpp C2273/C2274，match 6 个 LOST 全在 CCBUIPanel/UIPushButton 失败单元，均非本卡",
+    "evidence_refs": [
+      "docs/specs/2026-11-27-r7-t6-skillui-placement.md",
+      "data/status/archive/r7_t6_skillui_match_final_20261127.log",
+      "data/status/archive/r7_t6_skillui_regression_final_20261127.log"
+    ],
+    "authority": "B",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0041",
+    "subject": "PropUI bases=UIListBox",
+    "claim": "PropUI ctor sub_46D140 首调 0x46D162 call 0x43DCD0(UIListBox ctor，存表 0x56AD20)；自表 0x56B688 槽1/3=0x43DDF0/0x43DE40 属 UIListBox，UIWnd 表同槽=0x445CD0/0x445C10 ⇒ bases=[UIListBox@0]，vtable.base=UIListBox",
+    "evidence_refs": [
+      "data/status/bases_adjudications.json",
+      "original/PAL3.exe.asm:163347-163363"
+    ],
+    "authority": "A",
+    "status": "resolved",
+    "created": "2026-11-27",
+    "resolved": {
+      "date": "2026-11-27",
+      "verdict": "resolved",
+      "note": "#110 落位：apply rc0/export rc0/check 0 new，见 data/status/r110_type_debt_20261127.md §1"
+    }
+  },
+  {
+    "id": "ev_0042",
+    "subject": "PropUI 0x4D68 槽位区类型",
+    "claim": "0x4D68 起 5 个 setter 公共循环 i<5+shl edi,4 写 [4D68+i*16..4D74+i*16] ⇒ tagRECT[5]；0x4DB8=0x44/0x4DBC=sar eax,2/0x4DC0=0x41/0x4DC4=0x56 为 4 int；0x4DC8..0x4DCC 各一 setter 写并逐槽读 ⇒ unsigned char[5]；0x4DCD..0x4DCF 零访问留白",
+    "evidence_refs": [
+      "original/PAL3.exe.asm:163600-163655",
+      "original/PAL3.exe.asm:163371-163379",
+      "data/annotations/structs/PropUI.json"
+    ],
+    "authority": "A",
+    "status": "resolved",
+    "created": "2026-11-27",
+    "resolved": {
+      "date": "2026-11-27",
+      "verdict": "resolved",
+      "note": "#110 第2项，check 0 new，报告 data/status/r110_type_debt_20261127.md §2"
+    }
+  },
+  {
+    "id": "ev_0043",
+    "subject": "SaleUI 6x168B 段与 UIFrameContainer 152",
+    "claim": "六段构造点均 sub_4422E0(UIFrameContainer ctor)，其体最高写 [esi+94h] ⇒ 0x98=152 与 UIFrameContainer.json 一致；段尾四 dword 有独立写并被 lea 作 RECT* 传参 ⇒ 16B 是 tagRECT 不是 padding；容器尺寸没错",
+    "evidence_refs": [
+      "original/PAL3.exe.asm:141174-141230",
+      "original/PAL3.exe.asm:104044-104062",
+      "original/PAL3.exe.asm:142748-142777"
+    ],
+    "authority": "A",
+    "status": "resolved",
+    "created": "2026-11-27",
+    "resolved": {
+      "date": "2026-11-27",
+      "verdict": "resolved",
+      "note": "#110 第4/5项，check 0 new，报告 §4"
+    }
+  },
+  {
+    "id": "ev_0044",
+    "subject": "CCBRoleState 真对象尺寸 20568",
+    "claim": "push 5058h 唯一(asm:118489)、grep 56D0h=0、ctor sub_456AB0 建链求和 72+288+152+19552+344+152+8=20568、写界最高 [5054h](asm:134654) ⇒ binary_size 22224→20568，对象外 23 员迁出",
+    "evidence_refs": [
+      "original/PAL3.exe.asm:118489",
+      "original/PAL3.exe.asm:134615-134667",
+      "data/annotations/structs/CCBRoleState.json"
+    ],
+    "authority": "A",
+    "status": "resolved",
+    "created": "2026-11-27",
+    "resolved": {
+      "date": "2026-11-27",
+      "verdict": "resolved",
+      "note": "#116 落位：check 0 new PASS，报告 data/status/r116_r8t1_ccbrolestate_20261127.md §1"
+    }
+  },
+  {
+    "id": "ev_0045",
+    "subject": "CCBRoleState 0x168/0x4E60/0x4FB8 类型",
+    "claim": "0x168 与 0x4FB8 是 UIFrameContainer(152B，ctor sub_4422E0，asm 134638/134652)；0x4E60 是 344B 对象(ctor sub_43A770，表 0x56AC70 未登记类，0x4E60+0x158=0x4FB8) ⇒ 按既有口径留白 unsigned char[344]，不造 UIImageButton 类名",
+    "evidence_refs": [
+      "original/PAL3.exe.asm:134636-134652",
+      "data/annotations/structs/CCBRoleState.json",
+      "data/annotations/structs/EquipUI.json:243"
+    ],
+    "authority": "A",
+    "status": "resolved",
+    "created": "2026-11-27",
+    "resolved": {
+      "date": "2026-11-27",
+      "verdict": "resolved",
+      "note": "#116 第3项，报告 §2/§4，EquipUI/LineupUI 同类口径"
+    }
+  },
+  {
+    "id": "ev_0046",
+    "subject": "UIScenePanel.size",
+    "claim": "UIScenePanel 真尺寸 14236（分配 379Ch 唯一、ctor 建链 14232、Init 写 [3798h] 写界）：注解 14232→14236，尾部补 m_unk_0x3798 uchar + m_gap_0x3799[3]",
+    "evidence_refs": [
+      "original/PAL3.exe.asm:123205",
+      "original/PAL3.exe.asm:117643-117818",
+      "original/PAL3.exe.asm:118316"
+    ],
+    "authority": "A",
+    "status": "resolved",
+    "created": "2026-11-27",
+    "resolved": {
+      "date": "2026-11-27",
+      "verdict": "resolved",
+      "note": "#120；报告 data/status/r120_r8t2_uiscenepanel_20261127.md §1"
+    }
+  },
+  {
+    "id": "ev_0047",
+    "subject": "UIScenePanel.bases",
+    "claim": "UIScenePanel 基类是 UIListBox@0：ctor sub_44BA60 首调 sub_43DCD0(UIListBox ctor 存表 0x56AD20)，本类自表 0x56AFFC；原注解 bases=UIScene@0 错误",
+    "evidence_refs": [
+      "original/PAL3.exe.asm:117665",
+      "original/PAL3.exe.asm:96584",
+      "original/PAL3.exe.asm:117811",
+      "original/PAL3.exe.asm:535889"
+    ],
+    "authority": "A",
+    "status": "resolved",
+    "created": "2026-11-27",
+    "resolved": {
+      "date": "2026-11-27",
+      "verdict": "resolved",
+      "note": "#120；裁决条目 data/status/bases_adjudications.json[UIScenePanel]"
+    }
+  },
+  {
+    "id": "ev_0048",
+    "subject": "UIScenePanel.element-class-methods",
+    "claim": "vtable 0x56B018 是 0x2CEC 起六组 344B 按钮族元素的表（ctor 对每元素 mov [edi],off_56B018）；Render 0x43AD40/Update 0x43B1E0/CreateLabelWidget 0x43B570/ProcessMessage 0x43B900/dtor 0x43B4D0/sdtor 0x44BE00 属该元素类，不属 UIScenePanel（本类表 0x56AFFC）",
+    "evidence_refs": [
+      "original/PAL3.exe.asm:117725",
+      "original/PAL3.exe.asm:535897-535906",
+      "original/PAL3.exe.asm:535889-535896"
+    ],
+    "authority": "A",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0049",
+    "subject": "CCBUIPanel.structure",
+    "claim": "CCBUIPanel 真结构 22112 不变但注解模型错位：bases 应为 UIListBox@0(72)、0x200 起 CCBPanelSlot[38](476B/元素,18088B)、0x168 UIStatic(152)、0x48B8 224B、0x4998/0x4EF0 两个 UIRoleDialog(1368)、0x5448 524B 数据对象；原 58 员中 51 员落在这些对象内部属假成员",
+    "evidence_refs": [
+      "original/PAL3.exe.asm:123627",
+      "original/PAL3.exe.asm:111072-111127",
+      "original/PAL3.exe.asm:111161-111211",
+      "docs/audit/2026-11-27-r8-batch1-oracle-3.md"
+    ],
+    "authority": "A",
+    "status": "resolved",
+    "created": "2026-11-27",
+    "resolved": {
+      "date": "2026-11-27",
+      "verdict": "resolved",
+      "note": "#128；报告 data/status/r128_r8t3_ccbuipanel_20261127.md"
+    }
+  },
+  {
+    "id": "ev_0050",
+    "subject": "CCBUIPanel.0x48A8",
+    "claim": "CCBUIPanel 0x48A8 是 int 成员（非对齐空隙）：InitPanel asm:114306 lea ebp,[esi+48A8h]、114310 mov [ebp+0]=0、114326 fild dword [ebp+0] 转 float 写 [495Ch]；不落该成员会让语料产生 C2440 CCBPanelSlot->float",
+    "evidence_refs": [
+      "original/PAL3.exe.asm:114306-114329"
+    ],
+    "authority": "A",
+    "status": "resolved",
+    "created": "2026-11-27",
+    "resolved": {
+      "date": "2026-11-27",
+      "verdict": "resolved",
+      "note": "#128 对 #124 的 C 级判定升级"
+    }
+  },
+  {
+    "id": "ev_0051",
+    "subject": "MainEquipUI bases",
+    "claim": "MainEquipUI 真基类为 UIListBox@0（注解 UIFrameWnd 错）；证据：ctor sub_479300 首调 asm:179531 call sub_43DCD0(UIListBox ctor 存表 0x56AD20 @asm:96584)，自表 0x56B820 槽3=0x43DE40 与 UIListBox 表同槽同值，#132 oracle §3 同结论",
+    "evidence_refs": [
+      "original/PAL3.exe.asm:179531",
+      "original/PAL3.exe.asm:96584",
+      "data/annotations/structs/MainEquipUI.json",
+      "docs/audit/2026-11-27-r8-batch1-oracle-4.md"
+    ],
+    "authority": "A",
+    "status": "resolved",
+    "created": "2026-11-27",
+    "resolved": {
+      "date": "2026-11-27",
+      "verdict": "resolved",
+      "note": "#133"
+    }
+  },
+  {
+    "id": "ev_0052",
+    "subject": "MainEquipUI 0x168-0x13F8",
+    "claim": "ctor 用 4×99×12B 记录表写满 0x168–0x13F8，注解在该区间的 152B UIStatic 成员（m_IsMsg@0x168/m_TimeMoney@0x220/m_Frame@0x180/…）与之冲突；census 的 26 个 8B 洞来自该铺排，正确建模需 12B 记录类型（另卡）",
+    "evidence_refs": [
+      "original/PAL3.exe.asm:179532-179576",
+      "original/PAL3.exe.asm:179558-179576",
+      "data/status/r133_r8t4_maineqipui_20261127.md"
+    ],
+    "authority": "B",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0053",
+    "subject": "MainEquipUI bases/门禁独立复跑(#134)",
+    "claim": "MainEquipUI bases=UIListBox@0 按 ctor 首调 sub_43DCD0 与自表 0x56B820 槽0/3/4 同值；#134 独立重跑 apply0/export0/check 0new/loop S2 158-229/match L1 192 与 #133 一致；40 段洞 10,148B 按 oracle §5 全 C 不落",
+    "evidence_refs": [
+      "original/PAL3.exe.asm:179531",
+      "original/PAL3.exe.asm:96584",
+      "data/status/r134_r8t4_maineqipui_20261127.md",
+      "data/status/archive/r8_t4_match_r134_20261127.log"
+    ],
+    "authority": "A",
+    "status": "resolved",
+    "created": "2026-11-27",
+    "resolved": {
+      "date": "2026-11-27",
+      "verdict": "resolved",
+      "note": "裁决出处：check 日志 data/status/archive/r8_t4_check_r134_20261127.log 第148行 0 new；match 日志第162-198行 L1 192 棘轮192→192"
+    }
+  },
+  {
+    "id": "ev_0054",
+    "subject": "StateUI 真尺寸 0x29CEC=171244",
+    "claim": "StateUI binary_size 由 162000 改为 171244：asm:240476 push 29CECh 分配、ctor sub_482ED0 尾 asm:193686 写 [esi+29CE8h]、vtable off_56BA30(asm:193688)",
+    "evidence_refs": [
+      "original/PAL3.exe.asm:240476",
+      "original/PAL3.exe.asm:240485",
+      "original/PAL3.exe.asm:193686",
+      "original/PAL3.exe.asm:193688"
+    ],
+    "authority": "A",
+    "status": "resolved",
+    "created": "2026-11-27",
+    "resolved": {
+      "date": "2026-11-27",
+      "verdict": "resolved",
+      "note": "#141 落位；census 因此新增单段洞 0x278d0-0x29cec 9244B"
+    }
+  },
+  {
+    "id": "ev_0055",
+    "subject": "0x48xxxx 方法归属 6 条搬移",
+    "claim": "0x480070/0x480450/0x482C90 → LineupUI；0x483650/0x484360/0x484810 → StateUI；依据调用点 this + 尺寸相容（max 0x29CE8 只容于 171244）",
+    "evidence_refs": [
+      "original/PAL3.exe.asm:188816",
+      "original/PAL3.exe.asm:189947",
+      "original/PAL3.exe.asm:240606",
+      "original/PAL3.exe.asm:194242"
+    ],
+    "authority": "A",
+    "status": "resolved",
+    "created": "2026-11-27",
+    "resolved": {
+      "date": "2026-11-27",
+      "verdict": "resolved",
+      "note": "#141 落位；写面外仍有 11 条在 MainEquipUI/LineupComp"
+    }
+  },
+  {
+    "id": "ev_0056",
+    "subject": "0x005052C0",
+    "claim": "现注解 CCBStageCam::IsCamValid 挂错类：函数体扫 2000 字节 m_bPoolInUse 取首个空位、满则返回 -1，与 PDB CCCTData::GetFreeSpaceInPool(void) int 的形态一致；CCBStageCam size 6272B 不可能含 +0x639c0 成员。裁决暂记 CCCTData::GetFreeSpaceInPool（待一处交叉证据）",
+    "evidence_refs": [
+      "data/status/_disasm_cache.txt 0x5052c0 体（5052c6: mov bl,BYTE PTR [ecx+eax*1+0x639c0] 循环 2000）",
+      "asm/pal3/decomp/CCBStageCam_IsCamValidvoid_005052c0.json decompiled_c",
+      "data/pdb/pdb_export.json CCCTData::GetFreeSpaceInPool(void) int"
+    ],
+    "authority": "B",
+    "status": "open",
+    "created": "2026-11-27",
+    "resolved": null
+  },
+  {
+    "id": "ev_0057",
+    "subject": "0x005058F0",
+    "claim": "现注解 CCCTData(ctor) 挂错：函数写 [ecx+0x69094..0x6909C] 与 [ecx+0x690A0..0x690A8]（m_vecCircleCenter/m_vecCircleEnd 两个 vec3）后 ret 8，即 PDB CCBCamControl::SetCircle(gbVec3D*,gbVec3D*)",
+    "evidence_refs": [
+      "data/status/_disasm_cache.txt 0x5058f0 体（写 0x69094/98/9C + 0x690A0/A4/A8，ret 8）",
+      "data/pdb/pdb_export.json CCBCamControl::SetCircle(gbVec3D *,gbVec3D *)"
+    ],
+    "authority": "A",
+    "status": "resolved",
+    "created": "2026-11-27",
+    "resolved": {
+      "date": "2026-11-27",
+      "verdict": "resolved",
+      "note": "#61；#58 已删 CCCTData methods，现 IDB 无类名，回填待 #62"
+    }
+  },
+  {
+    "id": "ev_0058",
+    "subject": "0x00505930",
+    "claim": "现注解 ~CCCTData 挂错：1746B 体先 sub esp,0x88 再读 [edi+0x690AC](m_bShowCircleSet)/[edi+0x69090](m_pPointer)、lea [edi+0x69094] 更新圆标显示，即 PDB CCBCamControl::UpdateCircleSet；不是 19B 的 ??1CCCTData",
+    "evidence_refs": [
+      "data/status/_disasm_cache.txt 0x505930 体",
+      "data/pdb/pdb_export.json CCBCamControl::UpdateCircleSet"
+    ],
+    "authority": "A",
+    "status": "resolved",
+    "created": "2026-11-27",
+    "resolved": {
+      "date": "2026-11-27",
+      "verdict": "resolved",
+      "note": "#61；回填待 #62"
+    }
+  },
+  {
+    "id": "ev_0059",
+    "subject": "0x00506020",
+    "claim": "现注解 CCCTData::Create 挂错：体读 [this+430224]=m_pPointer → gbGeomNode::GetTotalOBBox → 相机 view target → gbRay::IsColOBB，返回鼠标射线是否命中指针 OBB，即 PDB CCBCamControl::IsPointerUnderMouse(gbVec3D*)",
+    "evidence_refs": [
+      "asm/pal3/decomp/CCCTData_Create_00506020.json decompiled_c",
+      "data/pdb/pdb_export.json CCBCamControl::IsPointerUnderMouse(gbVec3D *)"
+    ],
+    "authority": "A",
+    "status": "resolved",
+    "created": "2026-11-27",
+    "resolved": {
+      "date": "2026-11-27",
+      "verdict": "resolved",
+      "note": "#61；回填待 #62"
+    }
+  },
+  {
+    "id": "ev_0060",
+    "subject": "0x005060D0",
+    "claim": "现注解 CCCTData::Destroy 挂错：体 operator new(0x118)→gbGeomNode→存 [this+430224]→LoadFromFile(aUiCombatPointe…)→return 1，即 PDB CCBCamControl::LoadPointer（Destroy 语义相反）",
+    "evidence_refs": [
+      "asm/pal3/decomp/CCCTData_Destroy_005060d0.json decompiled_c",
+      "data/pdb/pdb_export.json CCBCamControl::LoadPointer"
+    ],
+    "authority": "A",
+    "status": "resolved",
+    "created": "2026-11-27",
+    "resolved": {
+      "date": "2026-11-27",
+      "verdict": "resolved",
+      "note": "#61；回填待 #62"
+    }
   }
 ]
