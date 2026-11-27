@@ -6,7 +6,8 @@
    "name": "_tail_000",
    "type": "char[5300]",
    "interim": true,
-   "note": "IDA标准未名尾数组interim 2026-11-17: 本类数据成员语义未普查(零known_members), 语料_tail_000[N]按字节索引访问; 成员语义普查后按实拆分替换"
+   "note": "IDA标准未名尾数组interim 2026-11-17: 本类数据成员语义未普查(零known_members), 语料_tail_000[N]按字节索引访问; 成员语义普查后按实拆分替换 结构定界（A 级，2026-11-28 #72）：本类 5300B 的读序由 RenderTarget::LoadFromFile(0x4BB260) 逐段给出 — +0x000/4 +0x004/4 +0x008/0x40 +0x048/0x80 +0x0C8/0xC +0x0D4/0xC +0x0E0/0x2D0 +0x3B0/0x2D0 +0x680/0xE34 = 0x14B4（合计 0x14B4=5300，与 binary_size 精确闭合）；宿主 sg_emitter/sg_particle 按 0x14B4 步进嵌入。九段为同一种资源容器，除 RenderTarget 已命名的 m_Texture/m_nRenderX/m_fRenderY/m_nHalfWidth/m_fOffsetX/m_fileHeader 外无可锚定的字段语义，故不拆分、不硬起名（命名铁律+#72 口径 A）。",
+   "evidence_level": "A"
   }
  },
  "binary_size": 5300,
