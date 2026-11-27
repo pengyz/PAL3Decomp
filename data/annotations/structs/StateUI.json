@@ -1,402 +1,126 @@
 {
  "name": "StateUI",
- "binary_size": 162000,
+ "binary_size": 171244,
  "known_members": {
   "0x48": {
-   "name": "m_isJusticeBook",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "name": "m_unk_0x048",
+   "type": "unsigned char[296]",
+   "evidence_level": "C",
+   "source": "C：ctor 只写 [58]=320/[5C]=258 与 [168]~[16D] 五次 byte 写，无整块构造；需补证"
   },
-  "0x118": {
-   "name": "m_IsMsg",
-   "type": "unsigned char",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
+  "0x170": {
+   "name": "m_unk_0x170",
+   "type": "UIFrameContainer[6]",
+   "evidence_level": "A-",
+   "source": "A-：asm:193529/535/538/541/544/547 六次 sub_4422E0"
   },
-  "0x119": {
-   "name": "m_Is",
-   "type": "unsigned char[5]",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
+  "0x500": {
+   "name": "m_unk_0x500",
+   "type": "unsigned char[3096]",
+   "evidence_level": "A-",
+   "source": "A-：asm:193550..193574 九次 sub_43A770（344B 元素类未注册，字节视图）"
   },
-  "0x120": {
-   "name": "m_CtrlRole",
+  "0x1118": {
+   "name": "m_unk_0x1118",
+   "type": "UIFrameContainer",
+   "evidence_level": "A-",
+   "source": "A-：asm:193577 sub_4422E0"
+  },
+  "0x11c0": {
+   "name": "m_unk_0x11c0",
+   "type": "UIFrameContainer[3]",
+   "evidence_level": "A-",
+   "source": "A-：asm:193580/584/586 三次 sub_4422E0"
+  },
+  "0x1388": {
+   "name": "m_unk_0x1388",
+   "type": "UIParticle[128]",
+   "evidence_level": "A-",
+   "source": "A-：asm:193591 push 80h / push 248h / ??_L sub_4B4690+sub_4B47E0"
+  },
+  "0x13788": {
+   "name": "m_unk_0x13788",
+   "type": "UIParticle[128]",
+   "evidence_level": "A-",
+   "source": "A-：asm:193599 同池第二块，同 ctor/dtor 对"
+  },
+  "0x25c08": {
+   "name": "m_unk_0x25c08",
+   "type": "unsigned char[47]",
+   "evidence_level": "C",
+   "source": "C：asm:193699 起清零 25C08/25C10/25C14；asm:193608 写 25C32..25C36=07；需补证"
+  },
+  "0x25c48": {
+   "name": "m_unk_0x25c48",
+   "type": "UIFrameContainer",
+   "evidence_level": "A-",
+   "source": "A-：asm:193613 sub_4422E0"
+  },
+  "0x25ce0": {
+   "name": "m_unk_0x25ce0",
+   "type": "unsigned char[1720]",
+   "evidence_level": "A-",
+   "source": "A-：asm:193621 push 5 / push 158h / ??_L sub_43A770+sub_43A810（5×344）"
+  },
+  "0x263ac": {
+   "name": "m_unk_0x263ac",
+   "type": "UIFrameContainer[5]",
+   "evidence_level": "A-",
+   "source": "A-：asm:193629 push 5 / push 98h / ??_L sub_4422E0+sub_442390"
+  },
+  "0x266a4": {
+   "name": "m_unk_0x266a4",
+   "type": "UIFrameContainer[5]",
+   "evidence_level": "A-",
+   "source": "A-：asm:193637 同对"
+  },
+  "0x269f0": {
+   "name": "m_unk_0x269f0",
+   "type": "UIRoleDialog",
+   "evidence_level": "A-",
+   "source": "A-：asm:193642 lea ecx,[esi+269F0h] / call sub_4A12F0"
+  },
+  "0x26f48": {
+   "name": "m_unk_0x26f48",
+   "type": "unsigned char[32]",
+   "evidence_level": "C",
+   "source": "C：ctor 写 26F48=C2180000h/26F4C=3FE66666h/26F50=0/26F54=41400000h，余 16B 无写；需补证"
+  },
+  "0x26f68": {
+   "name": "m_unk_0x26f68",
+   "type": "gbVec3D[6]",
+   "evidence_level": "B",
+   "source": "B：asm:193647 lea edi,[esi+26F68h]，6×步长 0Ch"
+  },
+  "0x26fb0": {
+   "name": "m_unk_0x26fb0",
+   "type": "unsigned char[152]",
+   "evidence_level": "C",
+   "source": "C：asm:193658 lea ecx,[esi+26FB0h] / call sub_47CAD0（无 vtable，字段写至 +0x90）；需补证"
+  },
+  "0x27048": {
+   "name": "m_unk_0x27048",
+   "type": "UIFrameContainer[5]",
+   "evidence_level": "A-",
+   "source": "A-：asm:193663 push 5 / push 98h / 同对"
+  },
+  "0x27360": {
+   "name": "m_unk_0x27360",
+   "type": "UIFrameContainer[6]",
+   "evidence_level": "A-",
+   "source": "A-：asm:193671 push 6 / push 98h / 同对"
+  },
+  "0x276f0": {
+   "name": "m_unk_0x276f0",
+   "type": "unsigned char[9720]",
+   "evidence_level": "C",
+   "source": "C：asm:193679 push 5 / push 798h / ??_L sub_483280+sub_483300（元素=3×152+6×248）；需补证"
+  },
+  "0x29ce8": {
+   "name": "m_unk_0x29ce8",
    "type": "int",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x124": {
-   "name": "m_IsActive",
-   "type": "unsigned char",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x125": {
-   "name": "m_IsCreateable",
-   "type": "unsigned char",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x128": {
-   "name": "m_Frame",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x1c0": {
-   "name": "m_TimeMoney",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x258": {
-   "name": "m_OutFrameT",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x2f0": {
-   "name": "m_OutFrameR",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x388": {
-   "name": "m_OutFrameL",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x420": {
-   "name": "m_OutFrameB",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x4b8": {
-   "name": "stp_BarL",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x550": {
-   "name": "stp_BarM",
-   "type": "UIFlexBar",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x5a4": {
-   "name": "stp_BarR",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x63c": {
-   "name": "stp_State",
-   "type": "UIButton",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x794": {
-   "name": "stp_Magic",
-   "type": "UIButton",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x8ec": {
-   "name": "stp_Equip",
-   "type": "UIButton",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0xa44": {
-   "name": "stp_Prop",
-   "type": "UIButton",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0xb9c": {
-   "name": "stp_BattleArray",
-   "type": "UIButton",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0xcf4": {
-   "name": "stp_TaskBook",
-   "type": "UIButton",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0xe4c": {
-   "name": "stp_System",
-   "type": "UIButton",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0xfa4": {
-   "name": "stp_Exit",
-   "type": "UIButton",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x10fc": {
-   "name": "stp_Effect",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x1194": {
-   "name": "stp_Rect",
-   "type": "tagRECT",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x11a4": {
-   "name": "m_GameTime",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x123c": {
-   "name": "m_GameMoney",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x12d4": {
-   "name": "m_par",
-   "type": "UIParticle[16][7]",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x115d4": {
-   "name": "m_par2",
-   "type": "UIParticle[16][7]",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x218d4": {
-   "name": "m_parRc",
-   "type": "tagRECT[7]",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x21944": {
-   "name": "_isParBtn",
-   "type": "unsigned char[7]",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x2194c": {
-   "name": "_curParEffect",
-   "type": "int",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x21950": {
-   "name": "m_PortraitRc",
-   "type": "tagRECT",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x21960": {
-   "name": "m_Portrait",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x219f8": {
-   "name": "m_TeamState",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x21a90": {
-   "name": "m_Time",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x21b28": {
-   "name": "m_Money",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x21bc0": {
-   "name": "m_TeamStateRc",
-   "type": "tagRECT",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x21bd0": {
-   "name": "m_RoleState",
-   "type": "s_RoleState[5]",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x268ec": {
-   "name": "m_State",
-   "type": "UIStatic[4]",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x26b4c": {
-   "name": "m_Alignment",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x26be4": {
-   "name": "m_AlignmentRc",
-   "type": "tagRECT",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x26bf4": {
-   "name": "m_Head",
-   "type": "UIStatic[5]",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x26eec": {
-   "name": "m_HeadRc",
-   "type": "tagRECT[5]",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x26f3c": {
-   "name": "m_TopFrame",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x26fd4": {
-   "name": "m_LeaveHere",
-   "type": "UIButton",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x2712c": {
-   "name": "m_LeaveRc",
-   "type": "tagRECT",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x2713c": {
-   "name": "m_3DObj",
-   "type": "UI3DCtrl",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x27270": {
-   "name": "m_DlgEx",
-   "type": "MUIDialog",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x277d8": {
-   "name": "p_LineupUI",
-   "type": "LineupUI *",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x277dc": {
-   "name": "p_MagicUI",
-   "type": "MagicUI *",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x277e0": {
-   "name": "p_mEquipUI",
-   "type": "MainEquipUI *",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x277e4": {
-   "name": "p_mPropUI",
-   "type": "MainPropUI *",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x277e8": {
-   "name": "p_SwordUI",
-   "type": "SwordUI *",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x277ec": {
-   "name": "p_JusticeBookUI",
-   "type": "JusticeBookUI *",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x277f0": {
-   "name": "p_TaskBookUI",
-   "type": "TaskBookUI *",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x277f4": {
-   "name": "p_SystemUI",
-   "type": "Scene *",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x277f8": {
-   "name": "m_curRender",
-   "type": "int",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x277fc": {
-   "name": "m_saveflag_note",
-   "type": "unsigned char",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x277fd": {
-   "name": "m_isSeekSAVELOAD",
-   "type": "unsigned char",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x27800": {
-   "name": "m_test",
-   "type": "UIStatic",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x27898": {
-   "name": "pInterceptTex",
-   "type": "gbTexture *",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x2789c": {
-   "name": "sv",
-   "type": "float",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x278a0": {
-   "name": "ev",
-   "type": "float",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x278a4": {
-   "name": "m_isExit",
-   "type": "unsigned char",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
-  },
-  "0x278a8": {
-   "name": "m_SpecialPropItem",
-   "type": "s_SpecialPropItem[5]",
-   "source": "pdb_verified_by_old_ida",
-   "evidence_level": "unverified"
+   "evidence_level": "B",
+   "source": "B：ctor 尾 asm:193686 mov [esi+29CE8h],ebx"
   }
  },
  "methods": {
@@ -416,23 +140,6 @@
     "dtor"
    ],
    "name_note": "[dtor对偶探针 20261122] 删除式存根 0x00483260 call@3 REL32 目标=本址(+0x20 邻接, 编译器配对语义铁证)——_nearby 占位正名为完全形"
-  },
-  "0x00480450": {
-   "name": "DispatchCmd",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "BOOL",
-      "name": "bFlag"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(DispatchCmd): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
   },
   "0x0049ac70": {
    "name": "UpdateScrollValues",
@@ -461,31 +168,6 @@
     "pending": false
    },
    "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(DisplayCaption)"
-  },
-  "0x00480070": {
-   "name": "ShowPanels",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "unsigned __int8",
-      "name": "pData"
-     },
-     {
-      "type": "UIWnd *",
-      "name": "bFlag"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x00492850": {
    "name": "UpdateRoleTooltip",
@@ -581,23 +263,6 @@
     "varargs": false,
     "pending": false
    }
-  },
-  "0x00482c90": {
-   "name": "AutoScrollParticles",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(AutoScrollParticles): int(int,int); 原注解无"
   },
   "0x00484660": {
    "name": "UpdateVisibility",
@@ -933,6 +598,172 @@
    "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x00445c60(UIWnd)注解签名匹配 2026-11-17 机械推导",
    "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, ",
    "adjudication": "transplant_valid"
+  },
+  "0x00484360": {
+   "name": "GetSlotRect",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "unsigned int",
+      "name": "dwVal"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetSlotRect): int(int,int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HHI): int(int,uns"
+  },
+  "0x00484810": {
+   "name": "RebuildNavPage",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
+  },
+  "0x00483650": {
+   "name": "CreatePreviewScene",
+   "evidence_level": "A",
+   "source": "[#151/#127 0x483650 CreatePreviewScene 新建，A 级] 唯一调用点 asm:240604 mov ecx,[esi+2AFB8h] → asm:240605 push esi → asm:240606 call sub_483650；ecx=RoleStatePanel.m_pTabPanel（RoleStatePanel.json:391 已有 verified 证据：pointee 171,244B 未名类=StateUI 尺寸，类型 void*），实参 esi=RoleStatePanel 宿主（binary_size 176,256=0x2B080 > 0x2AFB8h；同函数还访问 [esi+2AFCCh] m_pLineupUI、[esi+2AFD0h]）⇒ 参数类型 RoleStatePanel*，不是 StateUI*（0x2AFB8=175,032 超出 StateUI 171,244）。return void、1 参数、thiscall 不变。",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "RoleStatePanel *",
+      "name": "pOwner"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "[#151/#127 0x483650 CreatePreviewScene 新建，A 级] 唯一调用点 asm:240604 mov ecx,[esi+2AFB8h] → asm:240605 push esi → asm:240606 call sub_483650；ecx=RoleStatePanel.m_pTabPanel（RoleStatePanel.json:391 已有 verified 证据：pointee 171,244B 未名类=StateUI 尺寸，类型 void*），实参 esi=RoleStatePanel 宿主（binary_size 176,256=0x2B080 > 0x2AFB8h；同函数还访问 [esi+2AFCCh] m_pLineupUI、[esi+2AFD0h]）⇒ 参数类型 RoleStatePanel*，不是 StateUI*（0x2AFB8=175,032 超出 StateUI 171,244）。return void、1 参数、thiscall 不变。"
+  },
+  "0x00483fa0": {
+   "name": "ShowById",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "id"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(ShowById): int(int,int); 原注解无"
+  },
+  "0x00484140": {
+   "name": "CallSlotMethod",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nIndex"
+     },
+     {
+      "type": "unsigned int",
+      "name": "dwParam"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(CallSlotMethod): int(int,int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HHI): int(int,uns"
+  },
+  "0x004841b0": {
+   "name": "PositionAt",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "arg0"
+     },
+     {
+      "type": "int",
+      "name": "nVal"
+     },
+     {
+      "type": "int",
+      "name": "nVal2"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(PositionAt): int(int,int,int,int); 原注解无"
+  },
+  "0x00484e10": {
+   "name": "DispatchSlotMethod",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nIndex"
+     },
+     {
+      "type": "unsigned int",
+      "name": "dwParam"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(DispatchSlotMethod): int(int,int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HHI): int(int,uns"
+  },
+  "0x00484e30": {
+   "name": "GetSlotWidget",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nIndex"
+     },
+     {
+      "type": "unsigned int",
+      "name": "dwParam"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetSlotWidget): int(int,int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HHI): int(int,uns"
+  },
+  "0x004844a0": {
+   "name": "CountVisibleStats",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   }
   }
  },
  "vtables": [
@@ -975,5 +806,7 @@
    "name": "UIListBox",
    "offset": 0
   }
- ]
+ ],
+ "_methods_note": " | #141: 0x00483650 CreatePreviewScene 归属证据成立（asm:240606 以 StateUI 实例调用），但 max 0x29CE8 超出本类 162000，按卡面「改名不改布局/不动尺寸」暂不挂入；已自 LineupUI 移除错归属，待尺寸卡（#127 §2 三证）落 171244 后回填。 | #141: 0x00482ED0 归属 StateUI 已定（ctor：asm:240476 push 29CECh → asm:240485 call sub_482ED0；体 asm:193688 mov [esi],offset off_56BA30；尾 asm:193686 mov [esi+29CE8h],ebx），但不作为 methods 条目发射——以 ctor+type=skip 落库会让 codegen 生成 `v16 = ((StateUI*)v15)->StateUI::ctor();`（EquipUI.cpp:1757 C2440 cannot convert from 'void' to 'int'）。归属结论保留在本注记里，等构造器发射机制（ctor 调用点返回型）修好后再回填 methods。\n\n#161 整表替换（2026-11-28）：按 #158 oracle-7 §5 的 27 行重建为 20 成员 + 6 对齐 pad(297B)。旧布局三处（m_Frame@0x128 / m_par[16][7]@0x12D4 / 尾部指针组@0x277D8）全部移出；旧 66 名按 #159 判「必须废弃」处理，名字线索存 data/status/archive/r161_stateui_legacy_names_20261128.json。bases=UIListBox@0/base_size=72 由 ctor asm:193527 call sub_43DCD0 写表 0x56AD20 与 +0x44 字段定谳（卡面写 UIWnd/68 与二进制不符，已在报告 §1 记录）。",
+ "binary_size_source": "#161/#158 oracle-7 §0+§5：asm:240476 push 29CECh → asm:240485 call sub_482ED0 → asm:240496 mov [2AFB8h],eax；ctor 尾 asm:193686 [esi+29CE8h]=ebx；自表 0x56BA30（asm:193688 写 [esi]）；11 段构造链求和+6 pad=171244"
 }
