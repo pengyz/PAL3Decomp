@@ -4174,6 +4174,23 @@
    },
    "evidence_level": "binary_dtor_call_target",
    "name_note": "[dtor对偶探针 20261122] 删除式存根 0x0051dd80 call@3 REL32 目标=本址(+0x20 邻接, 编译器配对语义铁证)——完全形补注(deleted-form 模型精化: 完全形缺失=注解缺口非 ABI 真相)"
+  },
+  "0x005044f0": {
+   "name": "UpdateCamera",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": "nIdx"
+     }
+    ],
+    "varargs": false
+   },
+   "source": "binary: 0x5044f0 `mov eax,[esp+4]; lea eax,[eax+eax*2+0x23d]; lea edx,[ecx+eax*8]; push edx; call 0x5044C0; ret 4` —— thiscall 1 个 int 参（ecx=对象，[esp+4]=nIdx；对象基址 + 0x11E8 + nIdx*24 处取 tagCam 指针后转调 0x5044C0）。唯一调用点 0x4E6F79：`4E6F63 mov edi,[esp+0x3c]`（同函数声明 `CCBStage *v56; // [esp+0x3C]`）→ `4E6F76 mov ecx,edi` / `4E6F78 push edx` / `4E6F79 call 0x5044f0` ⇒ 接收者是 CCBStage* v56，0x11E8 数组落在 CCBStage 673988B 体内 ⇒ owner=CCBStage（原 skip 条目挂 CCCTData::UpdateCamera 系错挂）。",
+   "evidence_level": "A",
+   "name_note": "调用点 ecx=v56(CCBStage*) 与体 ecx 用法两项独立证据；原 skip 名 j_CCCTData::UpdateCamera 的 CCCTData 归属无调用点支持（#66 复核）。"
   }
  },
  "vtables": [
