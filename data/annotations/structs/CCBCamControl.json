@@ -154,22 +154,11 @@
    "evidence_level": "unverified"
   },
   "0x0": {
-   "name": "m_Pool",
-   "type": "tagCCT[2000]",
-   "evidence_level": "verified",
-   "source": "2026-11-26 R1: 寻址 this+204*handle(shl4->x17->x3->x4 乘法链, InsertTaskToList 0x5075e0/SwapTask 0x507b20); tagCCT=204 已闭合; 计数字面量 0x7D0 五址+ResetAllData 派生常量三组(探针 probe_ccbcamcontrol_poolcount v2); 408000B=0x639C0 恰接 flag 数组"
-  },
-  "0x639c0": {
-   "name": "m_bPoolInUse",
-   "type": "unsigned char[2000]",
-   "evidence_level": "verified",
-   "source": "2026-11-26 R1: 门①复活迁移(自 CCCTData.json)——flexcam.dat 存读布局 0x639C0+0x7D0+0x4E20 自证独立 flag 数组每槽 1B; ResetAllData@0x504e30 0x1F4h dwords=2000B; 孪生 v1'证伪'被门① v2 后裁覆盖; 注意与池条目内状态字节(+0x59/5A/5B)语义并存不同义, 后续普查可再拆"
-  },
-  "0x64190": {
-   "name": "m_TaskListIndex",
-   "type": "int[100][50]",
-   "evidence_level": "verified",
-   "source": "2026-11-26 R1: idx公式T+50L+102500 -> 基址4x102500=0x64190(410000), +20000=0x68FB0=430000精确闭合(=binary_size尾域起点); 访问形 lea eax,[eax+eax*4+280Ah]/lea eax,[eax+eax*4]/lea edx,[edx+eax*2]/mov edx,[ecx+edx*4] (InsertTaskToList 0x5075e0/SwapTask 0x507b20 双方法同式); 行步距200B=50项/行; 行数100=几何闭合推导(0x64190+100行x200B恰抵尾域起点0x68FB0), 非池计数字面量, 运行时上界待证; 探针 data/status/probe_ccbcamcontrol_pooldecode_20261126.json"
+   "name": "m_CCT",
+   "type": "CCCTData",
+   "offset": 0,
+   "evidence_level": "A",
+   "note": "PDB CCBCamControl::m_CCT:CCCTData@0；池三段（m_Pool/m_bPoolInUse/m_nCCTIndex）经该成员唯一可达，本类不再重复声明"
   }
  },
  "methods": {
@@ -665,6 +654,6 @@
    "sig_note": "2026-11-18 mangle硬真值全量定谳(GetData_B8D0): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
   }
  },
- "_attribution_note": "0x00449C20 Render 从本类移除：该类无 IDB vtable 记录、无 RTTI，且 IDA size 430256 = 无 vptr 布局 ⇒ 非多态；Render 为误归属（+4 = 编译器 vptr 插入的特征签名，47/47 全成员 +4 吻合）",
- "members_note": "\n[R1 2026-11-26 Task 4 池区整表退役版] 四段连续闭合：m_Pool tagCCT[2000] [0x0,0x639C0) + m_bPoolInUse uchar[2000] [0x639C0,0x64190) + m_TaskListIndex int[100][50] [0x64190,0x68FB0) + 尾域 25 员 [0x68FB0,0x690B0)。旧 R1 2026-11-18 池区头域/中域 17 员（m_pvecCenter@0x8 ~ m_TabLists@0x5F360，含 4 个 A 级'填充物'）经 controller 裁定整表退役：offset 全落池区内与 m_Pool 几何互斥，池模型 A 级三证压倒成员区间填充模型。逐员台账（name/offset/access 证据/固定槽视图假说重建线索）见 data/status/ccbcamcontrol_r1_retirement_20261126.json decisions[3..19]；语料引用悬空 N13a×15 冻结于 check_baseline_errors.json（Task 7 loop 重渲后解冻）。"
+ "_attribution_note": "0x00449C20 Render 从本类移除：该类无 IDB vtable 记录、无 RTTI，且 IDA size 430256 = 无 vptr 布局 ⇒ 非多态；Render 为误归属（+4 = 编译器 vptr 插入的特征签名，47/47 全成员 +4 吻合） ｜ 2026-11-27 #58：本类 0x5058F0/0x5060D0/0x506020/0x505930 体证据强（SetCircle/LoadPointer/IsPointerUnderMouse/UpdateCircleSet），回填留后续卡（#57 文档 §10 B-2），本卡不新增方法。",
+ "members_note": "[P-1 2026-11-27 #57/#58] 布局 = m_CCT:CCCTData[0,0x68FB0) + 相机尾 25 员 [0x68FB0,0x690B0)，合计 430256=0x690B0。R1 2026-11-26 退役版的 m_Pool tagCCT[2000]@0 / m_bPoolInUse@0x639C0 / m_TaskListIndex@0x64190 三份重复声明已收进 m_CCT（同一存储不得双份声明），尾域成员与证据不变；逐员台账仍见 data/status/ccbcamcontrol_r1_retirement_20261126.json decisions[3..19]。"
 }
