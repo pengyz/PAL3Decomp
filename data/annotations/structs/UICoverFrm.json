@@ -1,517 +1,535 @@
 {
- "name": "UICoverFrm",
- "binary_size": 12956,
- "known_members": {
-  "0x46c": {
-   "name": "m_layoutParams",
-   "type": "int[6]",
-   "source": "ctor sub_52BA10 asm:450740 一簇写 46Ch/470h/474h/478h/47Ch/480h/484h/485h/487h",
-   "evidence_level": "A"
-  },
-  "0x488": {
-   "name": "m_frameA",
-   "type": "UIFrameContainer",
-   "source": "ctor L450751 call sub_4422E0（表 0x56ADD0，152B）；跨度 0x488–0x520",
-   "evidence_level": "A-"
-  },
-  "0x520": {
-   "name": "m_unk_0x520",
-   "type": "unsigned char[180]",
-   "source": "ctor L450754 call sub_442E10（写表 0x56AE10）；类未注册，按不透明控件 180B",
-   "evidence_level": "B"
-  },
-  "0x5d8": {
-   "name": "m_frames",
-   "type": "UIFrameContainer[4]",
-   "source": "ctor L450758 ??_L(0x5D8,0x98,4)",
-   "evidence_level": "A-"
-  },
-  "0x838": {
-   "name": "m_invalidIdx",
-   "type": "int[4]",
-   "source": "ctor L450789 写 [838h..847h]=-1",
-   "evidence_level": "A"
-  },
-  "0x848": {
-   "name": "m_frameB",
-   "type": "UIFrameContainer",
-   "source": "ctor L450751 call sub_4422E0；跨度 0x848–0x8E0",
-   "evidence_level": "A-"
-  },
-  "0x8e0": {
-   "name": "m_frameC",
-   "type": "UIFrameContainer",
-   "source": "ctor L450751 call sub_4422E0；跨度 0x8E0–0x978",
-   "evidence_level": "A-"
-  },
-  "0x978": {
-   "name": "m_cloudElements",
-   "type": "unsigned char[7760]",
-   "source": "ctor L450772 ??_L(0x978,0x610,5)；元素 ctor sub_52BBD0（7×152B + 2×244B = 1552B），元素类未注册",
-   "evidence_level": "B"
-  },
-  "0x27c8": {
-   "name": "m_stateBlock",
-   "type": "int[5]",
-   "source": "ctor L450797 写 27C8h/27CCh/27D0h/27D4h/27D8h/27DEh",
-   "evidence_level": "A"
-  },
-  "0x27e0": {
-   "name": "m_dialogA",
-   "type": "UIRoleDialog",
-   "source": "ctor L450777 call sub_4A12F0（1,368B）",
-   "evidence_level": "A-"
-  },
-  "0x2d38": {
-   "name": "m_dialogB",
-   "type": "UIRoleDialog",
-   "source": "ctor L450786 call sub_4A12F0（1,368B）",
-   "evidence_level": "A-"
-  },
-  "0x3290": {
-   "name": "m_logoState",
-   "type": "unsigned char[12]",
-   "source": "ctor L450801 [3299h]=1；12B 状态块，跨度 0x3290–0x329C",
-   "evidence_level": "A"
-  }
- },
- "methods": {
-  "0x0052ba10": {
-   "name": "UICoverFrm",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ UICoverFrm（ctor 名形=类名）：A 级 refs ??0UIListBox/??0TxtFile/??0UIRoleDialog（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0TxtFile/??0UIRoleDialog",
-   "evidence_level": "A",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "ctor"
-   ],
-   "flags_evidence": "IDA名字形态=UICoverFrm(??0构造); decomp文件=UICoverFrm_UICoverFrmvoid_0052ba10 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
-  },
-  "0x0052bd50": {
-   "name": "~UICoverFrm",
-   "source": "| [ctor/dtor 错位改名 2026-10-16] 名 UICoverFrm 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UICoverFrm。refs: ??1UIRoleDialog@@QAE@XZ ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ?ctor@UIFrameWnd@@QAEXXZ ?Cleanup@",
-   "evidence_level": "A",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor"
-   ],
-   "flags_evidence": "IDA名字形态=~UICoverFrm(??1/??_G析构族); decomp文件=UICoverFrm_~UICoverFrmvoid_0052bd50 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
-  },
-  "0x0052d5b0": {
-   "name": "AnimateElements",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0044c8a0": {
-   "name": "UpdateAnimation",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "char",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "float",
-      "name": "fVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateAnimation): int(char,float); 原注解无"
-  },
-  "0x0052c480": {
-   "name": "Update",
-   "ordinal": 2,
-   "evidence_level": "chain_unified",
-   "sig_model": {
-    "return": "BOOL",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd) | C9name定谳20261117→Update: 体else分支UIWnd::Update铁证; 原名UpdateStarAnimation留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→BOOL __thiscall(int, int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→BOOL __thiscall(CCBUI **deltatime, int) | param0真值化20261121: CCBUI**=基链编造类型复制(0x445c60基体从不解引用param0), 改int",
-   "flags": [
-    "override"
-   ],
-   "override_of": "0x0043bbc0",
-   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导",
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
-  },
-  "0x0044ff20": {
-   "name": "FindActiveSlot",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int *",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0052bbb0": {
-   "name": "~UICoverFrm",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "ordinal": 5,
-   "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UICoverFrm（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x570830）",
-   "evidence_level": "A",
-   "declaration_only": true,
-   "sig_model": {
-    "return": "void *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "char",
-      "name": "pData"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor",
-    "deleting"
-   ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_BBB0(??1/??_G析构族); decomp文件=UICoverFrm_scalar_dtor_BBB0UIWnd_char_0052bbb0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
-  },
-  "0x0052c450": {
-   "name": "Render",
-   "ordinal": 1,
-   "evidence_level": "chain_unified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "name_note": " | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
-   "flags": [
-    "override"
-   ],
-   "override_of": "0x00445cd0",
-   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
-  },
-  "0x0044c840": {
-   "name": "SetDefaultValues",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0044db50": {
-   "name": "SetCoverTexture",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nTexPtr"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetCoverTexture): int(int,int); 原注解无"
-  },
-  "0x00527230": {
-   "name": "UpdateClouds",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateClouds): int(int,int,int); 原注解无"
-  },
-  "0x00527370": {
-   "name": "ResetStarFrames",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(ResetStarFrames): int(int,int); 原注解无"
-  },
-  "0x0052ca10": {
-   "name": "OnMessage",
-   "ordinal": 6,
-   "evidence_level": "chain_unified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "name_note": " | C9sig链统一20261117→int __thiscall(int nVal, unsigned int, int nVal2): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→int __thiscall(int nVal, int, int nVal2) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
-   "flags": [
-    "override"
-   ],
-   "override_of": "0x00445d10",
-   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessage): int(int,int,unsigned int,int); 原注解2026-11-18 mangle硬真值定谳(HHIH): int(int,un"
-  },
-  "0x0052d7c0": {
-   "name": "LoadFromFile",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "char",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "char *",
-      "name": "pszFileName"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(LoadFromFile): int(char,char *); 原注解2026-11-18 mangle硬真值定谳(DPAD): char(char "
-  },
-  "0x00527d80": {
-   "name": "RenderWithSceneMap",
-   "ordinal": 1,
-   "source": "| [4 表裁决落地 2026-10-16] 自 UIListBox 误挂迁入（0x5706EC=UICoverFrm 域子对象表的服务方法；UIListBox 自表 0x56AD40/20/B1BC 不含此槽 ⇒ 移属无歧义 ✓）",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00527ea0": {
-   "name": "OnMessageEx",
-   "ordinal": 6,
-   "source": "| [4 表裁决落地 2026-10-16] 自 UIListBox 误挂迁入（0x5706EC=UICoverFrm 域子对象表的服务方法；UIListBox 自表 0x56AD40/20/B1BC 不含此槽 ⇒ 移属无歧义 ✓）",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     },
-     {
-      "type": "int",
-      "name": "nVal3"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessageEx): int(int,int,int,int); 原注解无"
-  },
-  "0x00527dc0": {
-   "name": "ProcessInput",
-   "evidence_level": "unverified",
-   "adjudication": "rejected",
-   "source": " | multiclaim 裁决 2026-11-03: 败于 UICoverFrm（uniq=2）",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x005279d0": {
-   "name": "~UICoverFrm",
-   "evidence_level": "unverified",
-   "declaration_only": true,
-   "source": "vtable_gap_fill_v1(from UIListBox.json) | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UICoverFrm（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5706EC）",
-   "sig_model": {
-    "return": "signed __int32",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "char",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor",
-    "deleting"
-   ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_79d0(??1/??_G析构族); decomp文件=UICoverFrm_scalar_dtor_79d0_UICoverFrm_QAEPAVUIListBox_PAV3_ 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, ",
-   "adjudication": "confirmed"
-  }
- },
- "vtables": [
-  {
-   "addr": "0x00570830",
-   "base": "UIWnd",
-   "slots": [
-    {
-     "addr": "0x00445e70"
+  "name": "UICoverFrm",
+  "binary_size": 12956,
+  "known_members": {
+    "0x46c": {
+      "name": "m_layoutParams",
+      "type": "int[6]",
+      "source": "ctor asm:450740–450747 写 [esi+46Ch..480h]（6 个 int）",
+      "evidence_level": "A"
     },
-    {
-     "addr": "0x0052c450",
-     "name": "Render"
+    "0x484": {
+      "name": "m_layoutFlags",
+      "type": "unsigned char[4]",
+      "source": "ctor asm:450748 mov [esi+484h],bl / asm:450749 [esi+485h] / asm:450750 [esi+487h]（0x46C 段按 #155 为 int[6]+uchar[4]=28B，落到 0x488）",
+      "evidence_level": "A-"
     },
-    {
-     "addr": "0x0052c480",
-     "name": "Update"
+    "0x488": {
+      "name": "m_unk_0x488",
+      "type": "UIFrameContainer",
+      "source": "ctor L450751 call sub_4422E0（表 0x56ADD0，152B）；跨度 0x488–0x520",
+      "evidence_level": "A-",
+      "name_note": "type=UIFrameContainer 由共享构建函数 sub_442E0 建（#155 A-）；无控件语义证据，按留白形挂账（避免 m_frameA 单字母后缀触发 R6 伪语义门禁）"
     },
-    {
-     "addr": "0x0043de40",
-     "name": "HideAll"
+    "0x520": {
+      "name": "m_unk_0x520",
+      "type": "unsigned char[180]",
+      "source": "ctor L450754 call sub_442E10（写表 0x56AE10）；类未注册，按不透明控件 180B",
+      "evidence_level": "B",
+      "name_note": "无证据段：#155 清单 B 级「构造点已知但元素类未注册」（ctor asm:450754 call sub_442E10 写表 0x56AE10），无语义证据，按留白形 m_unk_<offset> 挂账；禁用伪语义名（#164 §7-4）。"
     },
-    {
-     "addr": "0x00445b90"
+    "0x5d8": {
+      "name": "m_frames",
+      "type": "UIFrameContainer[4]",
+      "source": "ctor L450758 ??_L(0x5D8,0x98,4)",
+      "evidence_level": "A-"
     },
-    {
-     "addr": "0x0052bbb0",
-     "name": "_scalar_dtor_BBB0"
+    "0x838": {
+      "name": "m_invalidIdx",
+      "type": "int[4]",
+      "source": "ctor L450789 写 [838h..847h]=-1",
+      "evidence_level": "A"
     },
-    {
-     "addr": "0x0052ca10",
-     "name": "OnMessage"
+    "0x848": {
+      "name": "m_unk_0x848",
+      "type": "UIFrameContainer",
+      "source": "ctor L450751 call sub_4422E0；跨度 0x848–0x8E0",
+      "evidence_level": "A-",
+      "name_note": "type=UIFrameContainer 由 sub_442E0 建（#155 A-）；无控件语义证据，留白形挂账"
+    },
+    "0x8e0": {
+      "name": "m_unk_0x8e0",
+      "type": "UIFrameContainer",
+      "source": "ctor L450751 call sub_4422E0；跨度 0x8E0–0x978",
+      "evidence_level": "A-",
+      "name_note": "type=UIFrameContainer 由 sub_442E0 建（#155 A-）；无控件语义证据，留白形挂账"
+    },
+    "0x978": {
+      "name": "m_cloudElements",
+      "type": "unsigned char[7760]",
+      "source": "ctor L450772 ??_L(0x978,0x610,5)；元素 ctor sub_52BBD0（7×152B + 2×244B = 1552B），元素类未注册",
+      "evidence_level": "B"
+    },
+    "0x27c8": {
+      "name": "m_stateBlock",
+      "type": "int[5]",
+      "source": "ctor L450797 写 27C8h/27CCh/27D0h/27D4h/27D8h/27DEh",
+      "evidence_level": "A"
+    },
+    "0x27dc": {
+      "name": "m_stateFlags",
+      "type": "unsigned char[4]",
+      "source": "ctor asm:450783 mov [esi+27D8h],bl / asm:450784 [esi+27DEh] / asm:450798 mov [esi+27D9h],ecx(dword 覆盖 27D9–27DC) / asm:450799 mov [edx+4],cl(=27DD)（0x27C8 段为 int[5]+uchar[4]=24B，落到 0x27E0）",
+      "evidence_level": "A-"
+    },
+    "0x27e0": {
+      "name": "m_unk_0x27e0",
+      "type": "UIRoleDialog",
+      "source": "ctor L450777 call sub_4A12F0（1,368B）",
+      "evidence_level": "A-",
+      "name_note": "type=UIRoleDialog 由 sub_4A12F0 建（#155 A-）；无对话语义证据，按留白形挂账（避免 R6 单字母后缀）"
+    },
+    "0x2d38": {
+      "name": "m_unk_0x2d38",
+      "type": "UIRoleDialog",
+      "source": "ctor L450786 call sub_4A12F0（1,368B）",
+      "evidence_level": "A-",
+      "name_note": "type=UIRoleDialog 由 sub_4A12F0 建（#155 A-）；无对话语义证据，留白形挂账"
+    },
+    "0x3290": {
+      "name": "m_logoState",
+      "type": "unsigned char[12]",
+      "source": "ctor L450801 [3299h]=1；12B 状态块，跨度 0x3290–0x329C",
+      "evidence_level": "A"
     }
-   ]
   },
-  {
-   "addr": "0x005706ec",
-   "base": null,
-   "slots": [
-    {
-     "addr": "0x00445e70"
+  "methods": {
+    "0x0052ba10": {
+      "name": "UICoverFrm",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "source": "| [ctor 名形核对 2026-10-16] 名 ctor/ctor_addr ⇒ UICoverFrm（ctor 名形=类名）：A 级 refs ??0UIListBox/??0TxtFile/??0UIRoleDialog（成员 ctor）；idapro decompile session b1a7a222 零多余参 __thiscall | [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0TxtFile/??0UIRoleDialog",
+      "evidence_level": "A",
+      "sig_model": {
+        "return": "void",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      },
+      "flags": [
+        "ctor"
+      ],
+      "flags_evidence": "IDA名字形态=UICoverFrm(??0构造); decomp文件=UICoverFrm_UICoverFrmvoid_0052ba10 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
     },
-    {
-     "addr": "0x00527d80",
-     "name": "RenderWithSceneMap"
+    "0x0052bd50": {
+      "name": "~UICoverFrm",
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 UICoverFrm 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 ~UICoverFrm。refs: ??1UIRoleDialog@@QAE@XZ ?_UIFrameWnd@UIFrameWnd@@QAEXXZ ?ctor@UIFrameWnd@@QAEXXZ ?Cleanup@",
+      "evidence_level": "A",
+      "sig_model": {
+        "return": "void",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      },
+      "flags": [
+        "dtor"
+      ],
+      "flags_evidence": "IDA名字形态=~UICoverFrm(??1/??_G析构族); decomp文件=UICoverFrm_~UICoverFrmvoid_0052bd50 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
     },
-    {
-     "addr": "0x00527dc0",
-     "name": "ProcessInput"
+    "0x0052d5b0": {
+      "name": "AnimateElements",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
     },
-    {
-     "addr": "0x0043de40",
-     "name": "HideAll"
+    "0x0044c8a0": {
+      "name": "UpdateAnimation",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "char",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "float",
+            "name": "fVal"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateAnimation): int(char,float); 原注解无"
     },
-    {
-     "addr": "0x00445b90"
+    "0x0052c480": {
+      "name": "Update",
+      "ordinal": 2,
+      "evidence_level": "chain_unified",
+      "sig_model": {
+        "return": "BOOL",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "int",
+            "name": null
+          },
+          {
+            "type": "int",
+            "name": null
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd) | C9name定谳20261117→Update: 体else分支UIWnd::Update铁证; 原名UpdateStarAnimation留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→BOOL __thiscall(int, int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→BOOL __thiscall(CCBUI **deltatime, int) | param0真值化20261121: CCBUI**=基链编造类型复制(0x445c60基体从不解引用param0), 改int",
+      "flags": [
+        "override"
+      ],
+      "override_of": "0x0043bbc0",
+      "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导",
+      "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
     },
-    {
-     "addr": "0x005279d0",
-     "name": "_scalar_dtor_79d0"
+    "0x0044ff20": {
+      "name": "FindActiveSlot",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int *",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
     },
-    {
-     "addr": "0x00527ea0",
-     "name": "OnMessageEx"
+    "0x0052bbb0": {
+      "name": "~UICoverFrm",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5,
+      "source": "| [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UICoverFrm（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x570830）",
+      "evidence_level": "A",
+      "declaration_only": true,
+      "sig_model": {
+        "return": "void *",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "char",
+            "name": "pData"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "flags": [
+        "dtor",
+        "deleting"
+      ],
+      "flags_evidence": "IDA名字形态=_scalar_dtor_BBB0(??1/??_G析构族); decomp文件=UICoverFrm_scalar_dtor_BBB0UIWnd_char_0052bbb0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
+      "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+    },
+    "0x0052c450": {
+      "name": "Render",
+      "ordinal": 1,
+      "evidence_level": "chain_unified",
+      "sig_model": {
+        "return": "void",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      },
+      "name_note": " | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+      "flags": [
+        "override"
+      ],
+      "override_of": "0x00445cd0",
+      "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+    },
+    "0x0044c840": {
+      "name": "SetDefaultValues",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x0044db50": {
+      "name": "SetCoverTexture",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "int",
+            "name": "nTexPtr"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "sig_note": "2026-11-18 mangle硬真值全量定谳(SetCoverTexture): int(int,int); 原注解无"
+    },
+    "0x00527230": {
+      "name": "UpdateClouds",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "int",
+            "name": "nVal"
+          },
+          {
+            "type": "int",
+            "name": "nVal2"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateClouds): int(int,int,int); 原注解无"
+    },
+    "0x00527370": {
+      "name": "ResetStarFrames",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "int",
+            "name": "nVal"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "sig_note": "2026-11-18 mangle硬真值全量定谳(ResetStarFrames): int(int,int); 原注解无"
+    },
+    "0x0052ca10": {
+      "name": "OnMessage",
+      "ordinal": 6,
+      "evidence_level": "chain_unified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "int",
+            "name": "nVal"
+          },
+          {
+            "type": "unsigned int",
+            "name": null
+          },
+          {
+            "type": "int",
+            "name": "nVal2"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "name_note": " | C9sig链统一20261117→int __thiscall(int nVal, unsigned int, int nVal2): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→int __thiscall(int nVal, int, int nVal2) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+      "flags": [
+        "override"
+      ],
+      "override_of": "0x00445d10",
+      "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
+      "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessage): int(int,int,unsigned int,int); 原注解2026-11-18 mangle硬真值定谳(HHIH): int(int,un"
+    },
+    "0x0052d7c0": {
+      "name": "LoadFromFile",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "char",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "char *",
+            "name": "pszFileName"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "sig_note": "2026-11-18 mangle硬真值全量定谳(LoadFromFile): int(char,char *); 原注解2026-11-18 mangle硬真值定谳(DPAD): char(char "
+    },
+    "0x00527d80": {
+      "name": "RenderWithSceneMap",
+      "ordinal": 1,
+      "source": "| [4 表裁决落地 2026-10-16] 自 UIListBox 误挂迁入（0x5706EC=UICoverFrm 域子对象表的服务方法；UIListBox 自表 0x56AD40/20/B1BC 不含此槽 ⇒ 移属无歧义 ✓）",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x00527ea0": {
+      "name": "OnMessageEx",
+      "ordinal": 6,
+      "source": "| [4 表裁决落地 2026-10-16] 自 UIListBox 误挂迁入（0x5706EC=UICoverFrm 域子对象表的服务方法；UIListBox 自表 0x56AD40/20/B1BC 不含此槽 ⇒ 移属无歧义 ✓）",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "int",
+            "name": "nVal"
+          },
+          {
+            "type": "int",
+            "name": "nVal2"
+          },
+          {
+            "type": "int",
+            "name": "nVal3"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessageEx): int(int,int,int,int); 原注解无"
+    },
+    "0x00527dc0": {
+      "name": "ProcessInput",
+      "evidence_level": "unverified",
+      "adjudication": "rejected",
+      "source": " | multiclaim 裁决 2026-11-03: 败于 UICoverFrm（uniq=2）",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "int",
+            "name": "nVal"
+          },
+          {
+            "type": "int",
+            "name": "nVal2"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x005279d0": {
+      "name": "~UICoverFrm",
+      "evidence_level": "unverified",
+      "declaration_only": true,
+      "source": "vtable_gap_fill_v1(from UIListBox.json) | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=UICoverFrm（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x5706EC）",
+      "sig_model": {
+        "return": "signed __int32",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "unsigned int",
+            "name": null
+          },
+          {
+            "type": "char",
+            "name": null
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "flags": [
+        "dtor",
+        "deleting"
+      ],
+      "flags_evidence": "IDA名字形态=_scalar_dtor_79d0(??1/??_G析构族); decomp文件=UICoverFrm_scalar_dtor_79d0_UICoverFrm_QAEPAVUIListBox_PAV3_ 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
+      "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, ",
+      "adjudication": "confirmed"
     }
-   ],
-   "source": "[4 表裁决落地 2026-10-16] ✅ UICoverFrm **域子对象表**（A 级：deleting ?_scalar_dtor_79d0@UICoverFrm@@ 修饰名 + ctor 嵌 UIRoleDialog 子对象）——自 UIListBox 误挂迁入；⚠️ 派生 UIListBox 注记**待考**（不预设）"
-  }
- ],
- "base_size": 68,
- "bases": [
-  {
-   "name": "UIListBox",
-   "offset": 0
-  }
- ],
- "table_adjudication_pending": "registry ctor名=bisect误名(写表0), 需alloc-wrapper扫描定谳真表 — 组②挂起",
- "known_methods": {
-  "UICoverFrm": {
-   "name": "UICoverFrm",
-   "signature": "void __thiscall ()",
-   "address": "0x0052ba10",
-   "source": "manual:N13b 消解 20261122——语料限定引用 UICoverFrm, 注解 methods 直通依赖显式化为 known_methods 记录"
-  }
- },
- "size_evidence": "[R8-T6 2026-11-27] 真尺寸 12,956B(0x329C)：asm:450474 push 329Ch 全库唯一 → 450477 call ??2 → 450482 call sub_52BA10(ctor)；ctor 17 构造段 Σ=12,952 + 尾隙 4B = 12,956；写界 asm:450801 [esi+3299h]=1。旧注解 14,952 多出 1,996B 全部越界，已裁。",
- "bases_note": "[R8-T6 2026-11-27] 基类实测 UIListBox@0：ctor 首调 sub_43DCD0（写 off_56AD20），从未调用 sub_43BB70(UIFrameWnd ctor)；按 UIListBox 已用 68B + 0x44–0x48 4B 尾隙取 base_size=68。"
+  },
+  "vtables": [
+    {
+      "addr": "0x00570830",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445e70"
+        },
+        {
+          "addr": "0x0052c450",
+          "name": "Render"
+        },
+        {
+          "addr": "0x0052c480",
+          "name": "Update"
+        },
+        {
+          "addr": "0x0043de40",
+          "name": "HideAll"
+        },
+        {
+          "addr": "0x00445b90"
+        },
+        {
+          "addr": "0x0052bbb0",
+          "name": "_scalar_dtor_BBB0"
+        },
+        {
+          "addr": "0x0052ca10",
+          "name": "OnMessage"
+        }
+      ]
+    },
+    {
+      "addr": "0x005706ec",
+      "base": null,
+      "slots": [
+        {
+          "addr": "0x00445e70"
+        },
+        {
+          "addr": "0x00527d80",
+          "name": "RenderWithSceneMap"
+        },
+        {
+          "addr": "0x00527dc0",
+          "name": "ProcessInput"
+        },
+        {
+          "addr": "0x0043de40",
+          "name": "HideAll"
+        },
+        {
+          "addr": "0x00445b90"
+        },
+        {
+          "addr": "0x005279d0",
+          "name": "_scalar_dtor_79d0"
+        },
+        {
+          "addr": "0x00527ea0",
+          "name": "OnMessageEx"
+        }
+      ],
+      "source": "[4 表裁决落地 2026-10-16] ✅ UICoverFrm **域子对象表**（A 级：deleting ?_scalar_dtor_79d0@UICoverFrm@@ 修饰名 + ctor 嵌 UIRoleDialog 子对象）——自 UIListBox 误挂迁入；⚠️ 派生 UIListBox 注记**待考**（不预设）"
+    }
+  ],
+  "base_size": 72,
+  "bases": [
+    {
+      "name": "UIListBox",
+      "offset": 0
+    }
+  ],
+  "table_adjudication_pending": "registry ctor名=bisect误名(写表0), 需alloc-wrapper扫描定谳真表 — 组②挂起",
+  "known_methods": {
+    "UICoverFrm": {
+      "name": "UICoverFrm",
+      "signature": "void __thiscall ()",
+      "address": "0x0052ba10",
+      "source": "manual:N13b 消解 20261122——语料限定引用 UICoverFrm, 注解 methods 直通依赖显式化为 known_methods 记录"
+    }
+  },
+  "size_evidence": "[R8-T6 2026-11-27] 真尺寸 12,956B(0x329C)：asm:450474 push 329Ch 全库唯一 → 450477 call ??2 → 450482 call sub_52BA10(ctor)；ctor 17 构造段 Σ=12,952 + 尾隙 4B = 12,956；写界 asm:450801 [esi+3299h]=1。旧注解 14,952 多出 1,996B 全部越界，已裁。",
+  "bases_note": "[R8-T6 2026-11-27] 基类实测 UIListBox@0：ctor 首调 sub_43DCD0（写 off_56AD20），从未调用 sub_43BB70(UIFrameWnd ctor)；按 UIListBox 已用 68B + 0x44–0x48 4B 尾隙取 base_size=68。"
 }

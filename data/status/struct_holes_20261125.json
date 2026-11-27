@@ -2,8 +2,8 @@
  "_meta": {
   "rule": "v3 对齐感知+四修：成员间/尾部 pad（VC6 char1/short2/其余4/double8）扣除后仅溢出计洞；尾部对齐含 bases；Win32 定尺寸拼写表；未知类型 offset 闭合兜底（unresolved 记账）；多态确证类 vptr 槽 [0,4) 豁免；无名字豁免；overlay 孪生单列",
   "classes_with_holes": 196,
-  "total_hole_bytes": 203915,
-  "total_holes": 894,
+  "total_hole_bytes": 213151,
+  "total_holes": 893,
   "unresolved_type_members": 6,
   "vptr_exempt_classes": 56,
   "overlay_twin_bytes": 919151,
@@ -521,6 +521,47 @@
    ],
    "hole_bytes": 17260,
    "total_holes": 1
+  },
+  {
+   "cls": "StateUI",
+   "size": 171244,
+   "members": 66,
+   "bases": 1,
+   "holes": [
+    [
+     "0x49",
+     "0x118",
+     207
+    ],
+    [
+     "0x11254",
+     "0x115d4",
+     896
+    ],
+    [
+     "0x21554",
+     "0x218d4",
+     896
+    ],
+    [
+     "0x265cc",
+     "0x268ec",
+     800
+    ],
+    [
+     "0x27778",
+     "0x277d8",
+     96
+    ],
+    [
+     "0x278d0",
+     "0x29cec",
+     9244
+    ]
+   ],
+   "hole_bytes": 12139,
+   "total_holes": 6,
+   "vptr_slot_exempt": true
   },
   {
    "cls": "MainEquipUI",
@@ -1633,42 +1674,6 @@
    "total_holes": 1
   },
   {
-   "cls": "StateUI",
-   "size": 162000,
-   "members": 66,
-   "bases": 1,
-   "holes": [
-    [
-     "0x49",
-     "0x118",
-     207
-    ],
-    [
-     "0x11254",
-     "0x115d4",
-     896
-    ],
-    [
-     "0x21554",
-     "0x218d4",
-     896
-    ],
-    [
-     "0x265cc",
-     "0x268ec",
-     800
-    ],
-    [
-     "0x27778",
-     "0x277d8",
-     96
-    ]
-   ],
-   "hole_bytes": 2895,
-   "total_holes": 5,
-   "vptr_slot_exempt": true
-  },
-  {
    "cls": "UITitle_ArcSave",
    "size": 4004,
    "members": 1,
@@ -2548,7 +2553,7 @@
   {
    "cls": "UICoverFrm",
    "size": 12956,
-   "members": 12,
+   "members": 14,
    "bases": 1,
    "holes": [
     [
@@ -2557,23 +2562,13 @@
      1060
     ],
     [
-     "0x484",
-     "0x488",
-     4
-    ],
-    [
      "0x5d4",
      "0x5d8",
      4
-    ],
-    [
-     "0x27dc",
-     "0x27e0",
-     4
     ]
    ],
-   "hole_bytes": 1072,
-   "total_holes": 4,
+   "hole_bytes": 1064,
+   "total_holes": 2,
    "vptr_slot_exempt": true
   },
   {
