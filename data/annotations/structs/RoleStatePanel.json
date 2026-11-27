@@ -413,9 +413,9 @@
    "evidence_level": "verified"
   },
   "0x2afc8": {
-   "name": "m_unk_0x2afc8",
-   "type": "void *",
-   "source": "[R2 七模块指针落位 2026-11-26 verified] 三证：①分配=金表闭合容器七模块槽 5；pointee 402824B 类Y 身份未名（PDB 三类零命中 + corpus 全档 binary_size 对账零命中），ctor 名义 CCCTData_6F10 系误名（CCCTData=430256B≠402824B），落透明指针；②存储=[esi+2afc8] 三写：InitUI 清零（site 0x4a20dd）+ Init 构造存储（site 0x4a468c）+ HideAll 再清零（site 0x4a66a5）；③消费面=15 读点，callee 簇=InitEquipUI@EquipUI（名义名×1）+ 10× 虚表 thunk [edx+18h]（语义薄不足命名）。命名 m_pPanel_2afc8 地址消歧诚实形（m_nTodo_00C 族先例：数据成员地址后缀合法惯例）。probe data/status/probe_equipui_tail_20261126.json seven_ptr_consumers",
+   "name": "m_pSwordUI",
+   "type": "SwordUI *",
+   "source": "[R2 三证 + R7-T3 2026-11-27 类型化定谳] ①分配：RoleStatePanel::Init 内 push 62588h → operator new(0x55353B) → call sub_4A6F10(asm:240558)，随后 mov [esi+2AFC8h],eax(asm:240568)；②pointee=SwordUI(402,824B)：ctor sub_4A6F10 写表 0x56F29C(asm:245101)，与 SwordUI.json vtables[0] 一致；③消费：RoleStatePanel 的消息/刷新路径经本指针调用 SwordUI 方法 ⇒ 类型 SwordUI* | [R7-T3 类型化 2026-11-27] pointee 身份已定：402,824B 对象=SwordUI（#49/#60/#69：表 0x56F29C 唯一写者 ctor sub_4A6F10、分配 0x62588 唯一、store 到本槽）⇒ void* → SwordUI* | [R7-T3 类型化 2026-11-27] pointee 身份已定：402,824B 对象=SwordUI（#49/#60/#69：表 0x56F29C 唯一写者 ctor sub_4A6F10、分配 0x62588 唯一、store 到本槽）⇒ void* → SwordUI*",
    "evidence_level": "verified"
   },
   "0x2afcc": {
