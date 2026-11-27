@@ -2,13 +2,6 @@
  "name": "UIGameFrm",
  "note": "类改名20261120(用户裁定): CGameData→UIGameFrm——证据=实例名g_gamefrm(game frame)+UI*Frm命名族+旧patch注PAL3patch:UIGameFrm*; CGameData名=早期误读(Large game data container,PDB无档)。真身=游戏主框架窗口(模式切换中枢+场景装载+子对象族)。 | Large game data container. Not in PAL3A PDB. Size estimated from offset analysis.",
  "known_members": {
-  "0x38c0": {
-   "name": "m_pDialog",
-   "type": "char *",
-   "source": "binary:Init _dF40 pattern | type_fix:int→void*(naming m_p)",
-   "note": "replaced void* with char* (IDB struct compat)",
-   "evidence_level": "unverified"
-  },
   "0x38c4": {
    "name": "m_pSceneObjRef",
    "type": "SceneObj *",
@@ -19,12 +12,6 @@
    "name": "m_nPrevSceneState",
    "type": "int",
    "source": "binary:Render+manual_ida_load",
-   "evidence_level": "unverified"
-  },
-  "0x104": {
-   "name": "m_nInit",
-   "type": "UIWnd *",
-   "source": "gen_headers_9.2+codegen_infer",
    "evidence_level": "unverified"
   },
   "0x100": {
@@ -53,23 +40,21 @@
   },
   "0x6e10": {
    "name": "m_pGameObj",
-   "type": "char *",
-   "source": "ida_decomp:Init=v3, Render vtable+4 call, Destroy delete, 5 refs | type_fix:int→void*(new/delete+vtable)",
-   "note": "replaced void* with char* (IDB struct compat)",
-   "evidence_level": "unverified"
+   "type": "unsigned char *",
+   "evidence_level": "A",
+   "source": "[R6-T2 20261127] ctor0x44F19F push 0xB30 → 0x44F1BB call 0x452580 → 0x44F1CA mov [esi+0x6e10]。对象表 0x56B1BC=2864B 类，类名无直接证据 ⇒ 保留待定名（#26 oracle P3/P8；缺 ctor 归属/vtable 归属证据）。"
   },
   "0x6e14": {
    "name": "m_nMode",
-   "type": "int",
-   "source": "binary:raw_batch",
-   "evidence_level": "unverified"
+   "type": "RoleStatePanel *",
+   "evidence_level": "A",
+   "source": "[R6-T2 20261127] ctor0x44F1D5 push 0x2B080 → 0x44F1F1 call 0x4A1E40 → 0x44F200 mov [esi+0x6e14] → 0x44F206 call 0x4A4220(Init)。对象尺寸 0x2B080=176256=RoleStatePanel ⇒ 类型改 RoleStatePanel*。"
   },
   "0x6e18": {
    "name": "m_pGameObjB",
-   "type": "char *",
-   "source": "ida_decomp:Init = v12, Render deref[3829] byte check, 2 refs | type_fix:int→void*(deref pattern)",
-   "note": "replaced void* with char* (IDB struct compat)",
-   "evidence_level": "unverified"
+   "type": "UITitle_YXXX *",
+   "evidence_level": "A",
+   "source": "[R6-T2 20261127] ctor0x44F264 push 0xEF8 → 0x44F280 call 0x47DCA0 → 0x44F28F mov [esi+0x6e18] → 0x44F295 call 0x47DE40。尺寸 0xEF8=3832=UITitle_YXXX ⇒ 类型改 UITitle_YXXX*。"
   },
   "0x44": {
    "name": "m_nField_044",
@@ -81,30 +66,6 @@
    "name": "m_pStartScene",
    "type": "UIScene *",
    "source": "binary:gap_r2",
-   "evidence_level": "unverified"
-  },
-  "0x164": {
-   "name": "m_nSaveSlot",
-   "type": "int",
-   "source": "binary:10x abs refs (0x164) | 子对象嫌疑20261120(dtor cast直证: RoleCameraCtrl)——type回退(C10: 尺寸冲突需布局专项)",
-   "evidence_level": "unverified"
-  },
-  "0x8ac": {
-   "name": "m_pItemArray",
-   "type": "int[13]",
-   "source": "| inline-union治理 2026-10-16（idapro A 级）：InitItems@0x44E660 memset32(&field, val=3, count=13)（ida_defs.h:137 (dst,val,count) 语义已核）⇒ 52B 区 2220..2272 填 3；**overlap**：m_nInitItems@2228/m_nItemCount2@2232/m_nEquipCount@2248/m_nConsumableCount@2260 为数组槽的命名视图（同区）",
-   "evidence_level": "A"
-  },
-  "0x38d0": {
-   "name": "m_aItemData",
-   "type": "int",
-   "source": "ida_decomp:ctor_F050 eh_vector_dtor(0x8E0,6), Init InitItems loop, 2 refs",
-   "evidence_level": "unverified"
-  },
-  "0x148": {
-   "name": "m_nField_148",
-   "type": "int",
-   "source": "binary:gamedata_gap",
    "evidence_level": "unverified"
   },
   "0x270": {
@@ -155,158 +116,8 @@
    "source": "binary:gamedata_gap | ida_xref",
    "evidence_level": "unverified"
   },
-  "0x2d8": {
-   "name": "m_nBattleResult",
-   "type": "int",
-   "source": "binary:5x abs refs (0x2D8)",
-   "evidence_level": "unverified"
-  },
-  "0x2e0": {
-   "name": "m_nMissionState",
-   "type": "int",
-   "source": "binary:4x abs refs, dword access in PalScriptMgr",
-   "evidence_level": "unverified"
-  },
-  "0xf88": {
-   "name": "m_nUIFlags",
-   "type": "int",
-   "source": "binary:4x abs refs, A1(load eax) + others",
-   "evidence_level": "unverified"
-  },
-  "0x38bc": {
-   "name": "m_nGameFlags",
-   "type": "int",
-   "source": "binary:gamedata_gap",
-   "evidence_level": "unverified"
-  },
   "0x48": {
    "name": "m_nDataCRC",
-   "type": "int",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x6d0": {
-   "name": "m_fAnimTimer",
-   "type": "float",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x6d4": {
-   "name": "m_fAnimSpeed",
-   "type": "float",
-   "source": "A:FPU_abs_addr_0xD8EB94@0x438C0B",
-   "evidence_level": "unverified"
-  },
-  "0x6fc": {
-   "name": "m_bAnimPaused",
-   "type": "unsigned char",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x730": {
-   "name": "m_bAnimLoop",
-   "type": "unsigned char",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x9b0": {
-   "name": "m_fBGMVolume",
-   "type": "float",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x9b4": {
-   "name": "m_nBGMState",
-   "type": "int",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0xed4": {
-   "name": "m_nUIDialogId",
-   "type": "int",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x1160": {
-   "name": "m_fUIColorR",
-   "type": "float",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x1164": {
-   "name": "m_nUIColorMode",
-   "type": "int",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x13f0": {
-   "name": "m_fUITransition",
-   "type": "float",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x1680": {
-   "name": "m_fUIFadeAlpha",
-   "type": "float",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x1684": {
-   "name": "m_nUIFadeState",
-   "type": "int",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x1910": {
-   "name": "m_fSceneTimer",
-   "type": "float",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x1914": {
-   "name": "m_nSceneState",
-   "type": "int",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x1e30": {
-   "name": "m_fEffectTimer",
-   "type": "float",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x1e34": {
-   "name": "m_nEffectState",
-   "type": "int",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x2870": {
-   "name": "m_fScriptTimer",
-   "type": "float",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x287c": {
-   "name": "m_nScriptPhase",
-   "type": "int",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x2b00": {
-   "name": "m_fDialogTimer",
-   "type": "float",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x2b04": {
-   "name": "m_nDialogState",
-   "type": "int",
-   "source": "globals_merge",
-   "evidence_level": "unverified"
-  },
-  "0x42d0": {
-   "name": "m_nPostGame",
    "type": "int",
    "source": "globals_merge",
    "evidence_level": "unverified"
@@ -317,71 +128,95 @@
    "source": "gap_fill:ida_decomp_access+manual_ida_load",
    "evidence_level": "unverified"
   },
-  "0x198": {
-   "name": "m_nSceneTransFlag",
-   "type": "int",
-   "source": "binary_discovery:1refs+manual_ida_load",
-   "evidence_level": "unverified"
-  },
-  "0x300": {
-   "name": "m_nBattleCount",
-   "type": "int",
-   "source": "binary_discovery:1refs",
-   "evidence_level": "unverified"
-  },
-  "0x400": {
-   "name": "m_nWinCount",
-   "type": "int",
-   "source": "binary_discovery:1refs",
-   "evidence_level": "unverified"
-  },
-  "0x500": {
-   "name": "m_nLossCount",
-   "type": "int",
-   "source": "binary_discovery:1refs",
-   "evidence_level": "unverified"
-  },
-  "0x600": {
-   "name": "m_nEscapeCount",
-   "type": "int",
-   "source": "binary_discovery:1refs",
-   "evidence_level": "unverified"
-  },
-  "0x900": {
-   "name": "m_nKeyItemCount",
-   "type": "int",
-   "source": "binary_discovery:1refs",
-   "evidence_level": "unverified"
-  },
-  "0xef5": {
-   "name": "m_bDialogActive",
-   "type": "unsigned char",
-   "source": "binary_discovery:1refs | ida_xref",
-   "evidence_level": "unverified"
-  },
-  "0x32c0": {
-   "name": "m_fUIColorParam",
-   "type": "float",
-   "source": "auto:overlap_g_GameData_at_+0x32C0",
-   "evidence_level": "unverified"
-  },
-  "0x4028": {
-   "name": "m_bGameUpdating",
-   "type": "unsigned char",
-   "source": "auto:overlap_g_GameData_at_+0x4028",
-   "evidence_level": "unverified"
-  },
-  "0x1ba0": {
-   "name": "m_fTimerC",
-   "type": "float",
-   "source": "auto:extern_overlap_g_GameData_at_+0x1BA0",
-   "evidence_level": "unverified"
-  },
   "0xdc": {
    "name": "g_pSceneTransitionEnd",
    "type": "unchar *",
    "source": "region-audit: interior extern @0xDBA0AC",
    "evidence_level": "unverified"
+  },
+  "0x290": {
+   "name": "m_bAnimLoop",
+   "type": "int",
+   "evidence_level": "B",
+   "source": "[R6-T2 20261127] 0x290 复合体 1488B（dtor0x451900 写 0x56B178/+0x48 0x56B16C；lea 0x510→0x445010 UITextArea192 ⇒ 0x510+0xC0=0x5D0=1488）。语料 m_bAnimLoop 引用 1 处 ⇒ 名保留；按 int 占位避免 2B 对齐伪洞（vptr 真实类型未证）。"
+  },
+  "0x860": {
+   "name": "m_aDialogItems",
+   "type": "unsigned char[5][352]",
+   "evidence_level": "A",
+   "source": "[R6-T2 20261127] ctor0x44F2FA lea 0x860 + call 0x4503D0；dtor0x44F0D5 ??_M(0x860,0x160,5,0x450390) ⇒ 5 元素×352B，元素类名未定 ⇒ 字节数组占位。"
+  },
+  "0xf40": {
+   "name": "m_SceneMap",
+   "type": "unsigned char[1108]",
+   "evidence_level": "A",
+   "source": "[R6-T2 20261127] ctor0x44F2CD lea 0xf40 + call 0x450F90；dtor0x44F0B8 lea 0xf40 + call 0x450EB0。0x450EB0 写 vtable 0x56B14C/+0x48 0x56B140 并 lea 0x350/0x2b8/0x250/0x1b4/0x110/0x50 调子对象 dtor，与 UISceneMap dtor(0x450090/0x56B0B4) 不同类 ⇒ 不写 UISceneMap 类型，按 span 1108B 字节占位（1012/1108 二义未定）。"
+  },
+  "0x1394": {
+   "name": "m_pDialog",
+   "type": "char *",
+   "evidence_level": "A",
+   "source": "[R6-T2 20261127] ctor0x44F386 lea 0x1394；dtor0x44F0A8 lea 0x1394 + call 0x44ACE0（写 vtable 0x56AFD4=UITitle 9520B）。语料 m_pDialog 引用 1 处 ⇒ 保留名。"
+  },
+  "0x168": {
+   "name": "m_nSceneTransFlag",
+   "type": "int",
+   "evidence_level": "A",
+   "source": "[R6-T2 20261127] 同 RoleCameraCtrl span；语料 m_nSceneTransFlag 引用 1 处 ⇒ 保留名。"
+  },
+  "0x16c": {
+   "name": "m_CameraCtrlBytes",
+   "type": "unsigned char[256]",
+   "evidence_level": "A",
+   "source": "[R6-T2 20261127] RoleCameraCtrl 实为 264B（UIFrameWnd72 + UITextArea192@+0x48，dtor0x450AD0 `lea 0x48`+call0x445010 与 call0x43BBB0 互证）⇒ 0x16c 余量 256B 到 0x26c，其后 4B 对齐 pad，无逐字段语义 ⇒ 字节占位。"
+  },
+  "0x294": {
+   "name": "m_nUIColorMode",
+   "type": "int",
+   "evidence_level": "B",
+   "source": "[R6-T2 20261127] 同复合体；语料 m_nUIColorMode 引用 1 处 ⇒ 名保留（类型未证）。"
+  },
+  "0x108": {
+   "name": "m_CaptionBytes",
+   "type": "unsigned char[92]",
+   "evidence_level": "A",
+   "source": "[R6-T2 20261127] UICaption 96B span（0x104–0x164）余量，无逐字段语义 ⇒ 字节占位。"
+  },
+  "0x104": {
+   "name": "m_nInit",
+   "type": "UIWnd *",
+   "evidence_level": "A",
+   "source": "[R6-T2 20261127] ctor0x44F3C1 lea 0x104；dtor0x44F0FA lea 0x104 + call 0x44A7F0（写 vtable 0x56AFB0=UICaption 96B）。语料 m_nInit 引用 4 处（m_nInit->...）⇒ 保留名/指针类型；span 余量见 0x10c。"
+  },
+  "0x164": {
+   "name": "m_nSaveSlot",
+   "type": "int",
+   "evidence_level": "A",
+   "source": "[R6-T2 20261127] ctor0x44F37A lea 0x164 + 0x44F380 call 0x450B30；dtor0x44F0EA lea 0x164 + call 0x450AD0（vtable 0x56B120=RoleCameraCtrl 76B）。语料 m_nSaveSlot 引用 3 处 ⇒ 保留名。"
+  },
+  "0x298": {
+   "name": "m_ListBoxDialogBytes",
+   "type": "unsigned char[1480]",
+   "evidence_level": "A",
+   "source": "[R6-T2 20261127] 复合体 1488B span（0x290–0x860）余量，无逐字段语义 ⇒ 字节占位。"
+  },
+  "0x1398": {
+   "name": "m_TitleBytes",
+   "type": "unsigned char[9516]",
+   "evidence_level": "A",
+   "source": "[R6-T2 20261127] UITitle 9520B span（0x1394–0x38C4）余量，无逐字段语义 ⇒ 字节占位。"
+  },
+  "0x38d0": {
+   "name": "m_aItemData",
+   "type": "int",
+   "evidence_level": "A",
+   "source": "[R6-T2 20261127] ctor0x44F29A lea 0x38d0；dtor0x44F098 ??_M(0x38D0,0x8E0,6,0x44E5E0) ⇒ UIEmote[6] 6×2272=13632B。语料 m_aItemData 引用 1 处 ⇒ 保留名。"
+  },
+  "0x38d4": {
+   "name": "m_aEmotesBytes",
+   "type": "unsigned char[13628]",
+   "evidence_level": "A",
+   "source": "[R6-T2 20261127] UIEmote[6] 13632B span（0x38D0–0x6E10，含 0x38C4–0x38D0 之后 12B 对齐 pad）余量，无逐字段语义 ⇒ 字节占位。"
   }
  },
  "binary_size": 28268,
@@ -616,5 +451,5 @@
  "_ctor_entry_note": "0x56B094 ctor 错挂摘除20261120: 该地址=vtable 表址(vtables[0].addr 已登记), 写表普查产物误挂 methods; 真 ctor 待查(写表者函数址)",
  "_subclass_verdict": "dtor 0x44f050 清理四子对象直证: 0x1394=UITitle(9236B!)/0xF40=UIWnd/0x290=UIListBox/0x164=RoleCameraCtrl(76B)——CGameData 真语义=游戏主框架窗口(g_gamefrm=game frame 名直证), 28KB 大部分=子对象区; \"Large game data container\" note=早期误读; 50 零踪迹成员多数=子对象区伪标量。type 回退原因: UITitle 9236B 覆盖 0x1394-0x3744 与现有散成员大面积冲突, RoleCameraCtrl 76B>52B 窗口——子对象布局重划=独立战役(牵动数十成员)挂账",
  "_phantom_absorbed": "幻影壳档案吸收20261120: 原UIGameFrm.json(方法尽迁RoleStatePanel后空壳)——其 bases PalScriptWaitObj@68 无证据弃置(真bases=[UIWnd]: dtor调UIWnd dtor+slot0指纹), size 28448 弃置(真size=28268: ctor/dtor链)",
- "members_note": "超界仲裁 20261124(探针 #10 A 案): g_UISceneMapDlg@0xF40/g_UIListBoxDlg@0x290/g_CCBEditorInst@0x1394 = 独立对象实锤(绑定全景: 17/29/1 处代码引用全部来自 PalScript 系 Op_* 脚本操作/RoleSystem::UpdateFollowerMovement/UITitle::OnMessage/sub_426EB0——零 UIGameFrm 方法内嵌构造证据) → 对应折叠成员 m_nRender/m_nGameMode/m_UITitle 删除(双活渲染将在重导后转全局形). g_gamefrm 真类确认(75 接收站调 UIGameFrm::Load/InitUIComponents/GetMode)."
+ "members_note": "超界仲裁 20261124(探针 #10 A 案): g_UISceneMapDlg@0xF40/g_UIListBoxDlg@0x290/g_CCBEditorInst@0x1394 = 独立对象实锤(绑定全景: 17/29/1 处代码引用全部来自 PalScript 系 Op_* 脚本操作/RoleSystem::UpdateFollowerMovement/UITitle::OnMessage/sub_426EB0——零 UIGameFrm 方法内嵌构造证据) → 对应折叠成员 m_nRender/m_nGameMode/m_UITitle 删除(双活渲染将在重导后转全局形). g_gamefrm 真类确认(75 接收站调 UIGameFrm::Load/InitUIComponents/GetMode).\n[R6-T2 落位 20261127] sizeof 28268 非独立证据：全 .text 无 `push 6E6Ch`（16 处 6E6Ch 均为他类 [+26E6C] 偏移），g_gamefrm 全局亦无 size 字段；可证下界 0x6E1C（最后访问 +0x6E18），尾 0x6E1C–0x6E6C 80B 无访问点，属估算。\n[R6-T2 落位 20261127] sizeof 28268 非独立证据：全 .text 无 `push 6E6Ch`（16 处 6E6Ch 均为他类 [+26E6C] 偏移），g_gamefrm 全局亦无 size 字段；可证下界 0x6E1C（最后访问 +0x6E18），尾 0x6E1C–0x6E6C 80B 无访问点，属估算。"
 }
