@@ -101,11 +101,12 @@
    "span_bytes": 104
   },
   "0x66f4": {
-   "name": "m_unk_0x66f4_view",
+   "name": "m_PageItemFrames",
    "type": "UIFrameContainer[240]",
    "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A9B2 ??_L(0x98,240)；dtor ??1SaleUI(0x45AE60) 0x45B16D ??_M；[2026-11-26 21:35 语料契约] 该成员名对齐当前 decomp 语料引用名（上一轮 export 以 union 双视图渲染后语料只引用此名），类型仍取池/清跨度证据",
    "evidence_level": "A",
-   "span_bytes": 36480
+   "span_bytes": 36480,
+   "name_note": "按 `48 * *(_DWORD *)&this->m_unk_0x150_view[20]` 索引（每页 48 个），`UIWnd::SetRect` 出现 93 处、CreateFromTemplate 以其元素为按钮模板容器 ⇒ 240 = 5 页 × 48 的条目面板数组。证据：SaleUI_InitCombatUIint_0045b990.json / Updateint_0046a8b0.json"
   },
   "0xf574": {
    "name": "m_unk_0xf574",
@@ -150,18 +151,20 @@
    "span_bytes": 12480
   },
   "0x14618": {
-   "name": "m_unk_0x14618",
+   "name": "m_ResultWindows",
    "type": "CCBResultWindow[30]",
    "source": "ctor ??0SaleUI(0x45A7B0) site 0x45A9FC ??_L(0xB4,30)；dtor ??1SaleUI(0x45AE60) 0x45B130",
    "evidence_level": "A",
-   "span_bytes": 5400
+   "span_bytes": 5400,
+   "name_note": "CreateFromTemplate 以 `&this->m_unk_0x14618[6 * *(_DWORD *)&this->m_unk_0x150_view[20] + k]` 逐页创建 6 个；另 `CCBResultWindow::SetDirty/StartAnim` 直接以元素为 this ⇒ 每页 6 个、共 30 的结果窗对象数组。证据：SaleUI_InitCombatUIint_0045b990.json / HandleInputint_int_int_00469eb0.json"
   },
   "0x15b30": {
-   "name": "m_unk_0x15b30",
+   "name": "m_ResultWindowFrames",
    "type": "UIFrameContainer[30]",
    "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AA1E ??_L(0x98,30)，紧接写 [esi+16D00h]；dtor ??1SaleUI(0x45AE60) 0x45B113",
    "evidence_level": "A",
-   "span_bytes": 4560
+   "span_bytes": 4560,
+   "name_note": "与 0x14618 成对：`UIPushButton::CreateFromTemplate((UIPushButton *)&this->m_unk_0x15b30[6*page + k], …)` 同索引创建，且 HandleInput 以 `&this->m_unk_0x15b30[6*nInputID].UIWnd` 调 vtable slot0 ⇒ 结果窗对应的 30 个容器框。证据：SaleUI_InitCombatUIint_0045b990.json / HandleInputint_int_int_00469eb0.json"
   },
   "0x16d00": {
    "name": "m_unk_0x16d00",
@@ -214,10 +217,15 @@
   },
   "0x17604": {
    "name": "m_unk_0x17604",
-   "type": "unsigned char[168]",
-   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AAC7；dtor ??1SaleUI(0x45AE60) 0x45B0AC；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "type": "UIFrameContainer",
    "evidence_level": "A",
-   "span_bytes": 168
+   "source": "ctor ??0SaleUI(0x45A7B0)/??_L 构造点 sub_4422E0（UIFrameContainer ctor，表 0x56ADD0）；原 char[168] 拆容器(152)+尾随 tagRECT(16)：sub_4422E0 体最高写 +0x94 ⇒ 152B"
+  },
+  "0x1769c": {
+   "name": "m_unk_0x1769C",
+   "type": "tagRECT",
+   "evidence_level": "A",
+   "source": "尾随四 dword：0x1769C/176A0/176A4/176A8 写入(asm:163840-163850)、0x18DB8/18E60 写四 dword 并 lea 作 RECT* 传参(asm:142748/142777) ⇒ tagRECT"
   },
   "0x176ac": {
    "name": "m_unk_0x176ac",
@@ -234,11 +242,16 @@
    "span_bytes": 344
   },
   "0x1795c": {
-   "name": "m_unk_0x1795c",
-   "type": "unsigned char[168]",
-   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AAF4；dtor ??1SaleUI(0x45AE60) 0x45B07C；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "name": "m_unk_0x1795C",
+   "type": "UIFrameContainer",
    "evidence_level": "A",
-   "span_bytes": 168
+   "source": "ctor ??0SaleUI(0x45A7B0)/??_L 构造点 sub_4422E0（UIFrameContainer ctor，表 0x56ADD0）；原 char[168] 拆容器(152)+尾随 tagRECT(16)：sub_4422E0 体最高写 +0x94 ⇒ 152B"
+  },
+  "0x179f4": {
+   "name": "m_unk_0x179F4",
+   "type": "tagRECT",
+   "evidence_level": "A",
+   "source": "尾随四 dword：0x1769C/176A0/176A4/176A8 写入(asm:163840-163850)、0x18DB8/18E60 写四 dword 并 lea 作 RECT* 传参(asm:142748/142777) ⇒ tagRECT"
   },
   "0x17a04": {
    "name": "m_unk_0x17a04",
@@ -269,11 +282,12 @@
    "span_bytes": 152
   },
   "0x18384": {
-   "name": "m_unk_0x18384",
-   "type": "unsigned char[1224]",
+   "name": "m_ListBoxes",
+   "type": "UIListBox[17]",
    "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AB3F sub_43DFC0；dtor ??1SaleUI(0x45AE60) 0x45B01F sub_43E120；组件类未定",
    "evidence_level": "A",
-   "span_bytes": 1224
+   "span_bytes": 1224,
+   "name_note": "直接作 UIListBox 的 this：`UIListBox::GetItem((UIListBox *)this->m_unk_0x18384)`、`GetItemData`、`SetColumnHead`；1224B / 72B(sizeof UIListBox)=17 个 ⇒ 17 个列表框对象（原为 unsigned char[1224]，类型修正）。证据：SaleUI_Updateint_0046a8b0.json"
   },
   "0x1884c": {
    "name": "m_unk_0x1884c",
@@ -297,32 +311,52 @@
    "span_bytes": 152
   },
   "0x18bd0": {
-   "name": "m_unk_0x18bd0",
-   "type": "unsigned char[168]",
-   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AB89；dtor ??1SaleUI(0x45AE60) 0x45AFD8；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "name": "m_unk_0x18BD0",
+   "type": "UIFrameContainer",
    "evidence_level": "A",
-   "span_bytes": 168
+   "source": "ctor ??0SaleUI(0x45A7B0)/??_L 构造点 sub_4422E0（UIFrameContainer ctor，表 0x56ADD0）；原 char[168] 拆容器(152)+尾随 tagRECT(16)：sub_4422E0 体最高写 +0x94 ⇒ 152B"
+  },
+  "0x18c68": {
+   "name": "m_unk_0x18C68",
+   "type": "tagRECT",
+   "evidence_level": "A",
+   "source": "尾随四 dword：0x1769C/176A0/176A4/176A8 写入(asm:163840-163850)、0x18DB8/18E60 写四 dword 并 lea 作 RECT* 传参(asm:142748/142777) ⇒ tagRECT"
   },
   "0x18c78": {
-   "name": "m_unk_0x18c78",
-   "type": "unsigned char[168]",
-   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45AB98；dtor ??1SaleUI(0x45AE60) 0x45AFC8；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "name": "m_unk_0x18C78",
+   "type": "UIFrameContainer",
    "evidence_level": "A",
-   "span_bytes": 168
+   "source": "ctor ??0SaleUI(0x45A7B0)/??_L 构造点 sub_4422E0（UIFrameContainer ctor，表 0x56ADD0）；原 char[168] 拆容器(152)+尾随 tagRECT(16)：sub_4422E0 体最高写 +0x94 ⇒ 152B"
+  },
+  "0x18d10": {
+   "name": "m_unk_0x18D10",
+   "type": "tagRECT",
+   "evidence_level": "A",
+   "source": "尾随四 dword：0x1769C/176A0/176A4/176A8 写入(asm:163840-163850)、0x18DB8/18E60 写四 dword 并 lea 作 RECT* 传参(asm:142748/142777) ⇒ tagRECT"
   },
   "0x18d20": {
-   "name": "m_unk_0x18d20",
-   "type": "unsigned char[168]",
-   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45ABA7；dtor ??1SaleUI(0x45AE60) 0x45AFB8；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "name": "m_unk_0x18D20",
+   "type": "UIFrameContainer",
    "evidence_level": "A",
-   "span_bytes": 168
+   "source": "ctor ??0SaleUI(0x45A7B0)/??_L 构造点 sub_4422E0（UIFrameContainer ctor，表 0x56ADD0）；原 char[168] 拆容器(152)+尾随 tagRECT(16)：sub_4422E0 体最高写 +0x94 ⇒ 152B"
+  },
+  "0x18db8": {
+   "name": "m_unk_0x18DB8",
+   "type": "tagRECT",
+   "evidence_level": "A",
+   "source": "尾随四 dword：0x1769C/176A0/176A4/176A8 写入(asm:163840-163850)、0x18DB8/18E60 写四 dword 并 lea 作 RECT* 传参(asm:142748/142777) ⇒ tagRECT"
   },
   "0x18dc8": {
-   "name": "m_unk_0x18dc8",
-   "type": "unsigned char[168]",
-   "source": "ctor ??0SaleUI(0x45A7B0) site 0x45ABB6；dtor ??1SaleUI(0x45AE60) 0x45AFA8；段长 168 与 IDB UIFrameContainer(152) 不符 ⇒ 字节闭合",
+   "name": "m_unk_0x18DC8",
+   "type": "UIFrameContainer",
    "evidence_level": "A",
-   "span_bytes": 168
+   "source": "ctor ??0SaleUI(0x45A7B0)/??_L 构造点 sub_4422E0（UIFrameContainer ctor，表 0x56ADD0）；原 char[168] 拆容器(152)+尾随 tagRECT(16)：sub_4422E0 体最高写 +0x94 ⇒ 152B"
+  },
+  "0x18e60": {
+   "name": "m_unk_0x18E60",
+   "type": "tagRECT",
+   "evidence_level": "A",
+   "source": "尾随四 dword：0x1769C/176A0/176A4/176A8 写入(asm:163840-163850)、0x18DB8/18E60 写四 dword 并 lea 作 RECT* 传参(asm:142748/142777) ⇒ tagRECT"
   },
   "0x18e70": {
    "name": "m_unk_0x18e70",
