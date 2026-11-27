@@ -327,58 +327,6 @@
     "pending": false
    }
   },
-  "0x00508370": {
-   "name": "UpdateCircleSet",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x005083b0": {
-   "name": "SetCircle",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "signed __int32",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
-  },
-  "0x005084c0": {
-   "name": "IsPointerUnderMouse",
-   "source": "pdb_ret",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "bool",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00508660": {
-   "name": "LoadPointer",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int *",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
   "0x00508680": {
    "name": "DoList",
    "source": "pdb_ret",
@@ -652,6 +600,75 @@
     "pending": false
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(GetData_B8D0): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
+  },
+  "0x005058f0": {
+   "name": "SetCircle",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "gbVec3D *",
+      "name": "vecCenter"
+     },
+     {
+      "type": "gbVec3D *",
+      "name": "vecEnd"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "source": "#65 A: 5058f0 体 mov edx,[eax]; [ecx+0x69094/98/9C]=...; [ecx+0x690A0/A4/A8]=...; ret 8 ⇒ 2 个 vec3 形参、写 m_vecCircleCenter/m_vecCircleEnd（430228..430248）；PDB CCBCamControl::SetCircle(gbVec3D*,gbVec3D*) void；原 0x5083b0 条目体为 161B 带 SEH 的构造型（ret 4/裸 ret 混合、写 [esi+0x10]/[esi+0xec]/[esi+0x9a0...]），不是 SetCircle ⇒ 名字迁到本 VA"
+  },
+  "0x00505930": {
+   "name": "UpdateCircleSet",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": "#65 A: 505930 体 sub esp,0x88 读 [edi+0x690AC](m_bShowCircleSet)/[edi+0x69090](m_pPointer)、lea [edi+0x69094]；两处出口均裸 ret ⇒ 0 参 void；PDB UpdateCircleSet void；原 0x508370 条目 57B 无 this 访问（只写 ds:0x17ab574..580 全局），不可能是成员函数 ⇒ 名字迁到本 VA"
+  },
+  "0x00506020": {
+   "name": "IsPointerUnderMouse",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "gbVec3D *",
+      "name": "vecPoint"
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "source": "#65 A: 506020 体 168B，读 [this+430224](m_pPointer)→gbGeomNode::GetTotalOBBox→gbRay::IsColOBB，ret 4 ⇒ 1 个指针形参、返回 bool；PDB IsPointerUnderMouse(gbVec3D*)；原 0x5084c0 条目裸 ret（0 参）与之矛盾 ⇒ 名字迁到本 VA"
+  },
+  "0x005060d0": {
+   "name": "LoadPointer",
+   "sig_model": {
+    "return": "bool",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": "#65 A: 5060d0 体 operator new(0x118)→gbGeomNode→存 [this+430224]→LoadFromFile(aUiCombatPointe…)→ret（0 参）返回 1；PDB LoadPointer void? PDB return bool 338B；原 0x508660 条目 32B 只写 [eax+0x34..0x48] 并返回 this，属另一类 ⇒ 名字迁到本 VA"
+  },
+  "0x005052c0": {
+   "name": "GetFreePoolSlot",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "source": "#65 A: 5052c0 体 32B，`5052c6: mov bl,BYTE PTR [ecx+eax*1+0x639c0]` 循环到 2000、满则返回 -1，读的是 CCBCamControl.m_bPoolInUse[2000]（0x639c0）；裸 ret ⇒ 0 参、返回索引。原挂 CCBStageCam::IsCamValid 被 A 级否定（CCBStageCam size 6272B 不可能含 +0x639c0；PDB IsCamValid(tagCam*) 1 参）⇒ 移到池所属类，名按体语义 GetFreePoolSlot（PDB 同名物 CCCTData::GetFreeSpaceInPool(int) 尺寸 223B 与本函数 32B 不符，故不套 PDB 名）"
   }
  },
  "_attribution_note": "0x00449C20 Render 从本类移除：该类无 IDB vtable 记录、无 RTTI，且 IDA size 430256 = 无 vptr 布局 ⇒ 非多态；Render 为误归属（+4 = 编译器 vptr 插入的特征签名，47/47 全成员 +4 吻合） ｜ 2026-11-27 #58：本类 0x5058F0/0x5060D0/0x506020/0x505930 体证据强（SetCircle/LoadPointer/IsPointerUnderMouse/UpdateCircleSet），回填留后续卡（#57 文档 §10 B-2），本卡不新增方法。",
