@@ -608,66 +608,6 @@
    "override_of": "0x00445cd0",
    "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
   },
-  "0x004819a0": {
-   "name": "LoadFromFile",
-   "_misattrib_evidence": "max_offset=162724>class_size=152",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "OpenNULLFile *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "OpenNULLFile *",
-      "name": "pFile"
-     },
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 return 粘 cc 剥离(漏网条目——return 粘 cc 99 条剥离时此条不在受影响集, 但 N16 双调用约定检测器显形)。2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。20"
-  },
-  "0x00481cb0": {
-   "name": "SelectWithSound",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(SelectWithSound"
-  },
-  "0x00481eb0": {
-   "name": "ShowPanelsWithSound",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ShowPanelsWithS"
-  },
   "0x004930e0": {
    "name": "UpdateTooltip",
    "evidence_level": "unverified",
@@ -849,68 +789,6 @@
     "pending": false
    }
   },
-  "0x00480530": {
-   "name": "UpdateFadeAlpha",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "float",
-      "name": "fVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 mangle硬真值全量定谳(UpdateFadeAlpha): int(int"
-  },
-  "0x00481ba0": {
-   "name": "SetAdornVisible",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "unsigned __int8",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "unsigned __int8",
-      "name": "pData"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetAdornVisible): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
-  },
-  "0x00482140": {
-   "name": "RenderEquipDetails",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "arg0"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(RenderEquipDeta"
-  },
-  "0x004844a0": {
-   "name": "CountVisibleStats",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
   "0x0049c9f0": {
    "name": "SetSlotLabel",
    "evidence_level": "unverified",
@@ -968,7 +846,7 @@
  "vtables": [
   {
    "addr": "0x0056b820",
-   "base": "UIWnd",
+   "base": "UIListBox",
    "slots": [
     {
      "addr": "0x00445e70"
@@ -1003,7 +881,7 @@
  "size_evidence": "[IMPOSSIBLE 尺寸修正 2026-10-16] 204620 → 209008（A 级 new-ctor 三元组：new@0x47c16d push $0x33010(209008) → call MainEquipUI::MainEquipUI@0x479300 ✓ 真 ctor）· req=209004 吻合 ✓ 原尺寸低估（IMPOSSIBLE 成因）",
  "bases": [
   {
-   "name": "UIFrameWnd",
+   "name": "UIListBox",
    "offset": 0
   }
  ]

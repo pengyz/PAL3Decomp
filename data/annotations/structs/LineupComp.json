@@ -121,114 +121,6 @@
     "ctor"
    ],
    "flags_evidence": "IDA名字形态=LineupComp(??0构造); decomp文件=LineupComp_LineupCompvoid_0044b850 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
-  },
-  "0x00483fa0": {
-   "name": "ShowById",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "id"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(ShowById): int(int,int); 原注解无"
-  },
-  "0x004841b0": {
-   "name": "PositionAt",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "arg0"
-     },
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(PositionAt): int(int,int,int,int); 原注解无"
-  },
-  "0x00484e10": {
-   "name": "DispatchSlotMethod",
-   "class": "UIWnd",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nIndex"
-     },
-     {
-      "type": "unsigned int",
-      "name": "dwParam"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(DispatchSlotMethod): int(int,int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HHI): int(int,uns"
-  },
-  "0x00484e30": {
-   "name": "GetSlotWidget",
-   "class": "UIWnd",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nIndex"
-     },
-     {
-      "type": "unsigned int",
-      "name": "dwParam"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetSlotWidget): int(int,int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HHI): int(int,uns"
-  },
-  "0x00484140": {
-   "name": "CallSlotMethod",
-   "class": "UIWnd",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nIndex"
-     },
-     {
-      "type": "unsigned int",
-      "name": "dwParam"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(CallSlotMethod): int(int,int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HHI): int(int,uns"
   }
  },
  "base_size": 68,
@@ -237,5 +129,6 @@
    "name": "UIWnd",
    "offset": 0
   }
- ]
+ ],
+ "_methods_note": "本轮（#151）已将 5 条实际属于 StateUI 的方法迁出：0x00483fa0 / 0x00484140 / 0x004841b0 / 0x00484e10 / 0x00484e30 —— 现挂 StateUI.methods；依据 `docs/audit/2026-11-27-stateui-method-attribution.md`（#127）B 组与 #151 Thread seq24 口径。LineupComp 现存方法 2 条（0x0044b850 / 0x004543c0）为本类自有。"
 }
