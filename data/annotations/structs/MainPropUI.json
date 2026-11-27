@@ -5,482 +5,219 @@
   "0x48": {
    "name": "rc",
    "type": "tagRECT",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "A-",
+   "source": "DisplayCaption/Update/OnMessage 访问；#51 段2 首 16B（tagRECT）"
   },
   "0x58": {
    "name": "m_nBkWndX",
    "type": "int",
-   "source": "正名20261120(R5+ MainPropUI): LayoutWidgets: =800 屏宽直证 | 原 bkWndX",
-   "evidence_level": "unverified"
+   "evidence_level": "A",
+   "source": "ctor sub_4909F0+0xA5: mov dword ptr [esi+58h], 320h（800）"
   },
   "0x5c": {
    "name": "m_nBkWndY",
    "type": "int",
-   "source": "正名20261120(R5+ MainPropUI): LayoutWidgets: =600 屏高直证 | 原 bkWndY",
-   "evidence_level": "unverified"
+   "evidence_level": "A",
+   "source": "ctor sub_4909F0+0xAC: mov dword ptr [esi+5Ch], 258h（600）"
   },
   "0x60": {
-   "name": "m_nListIdx",
-   "type": "_DWORD *",
-   "source": "正名20261120(R5+ MainPropUI): 列表填充循环主计数(22处) | 原 i | 2026-11-25 成员型修正: int→_DWORD * (下标走查 0x3[v]/0x118[v] = 指针语义, lvar override 遮蔽回滚—用户裁定成员型层修)",
-   "evidence_level": "unverified"
+   "name": "m_unk_0x60",
+   "type": "unsigned char[264]",
+   "evidence_level": "C",
+   "source": "段2 余下 0x60–0x168（264B）：ctor 不写、仅方法访问，按不透明块；旧注解 m_nListIdx/m_szListBuf 起点与 ctor 表冲突（#51 §7），不沿用"
   },
-  "0x64": {
-   "name": "j",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x168": {
+   "name": "m_pageFlags",
+   "type": "unsigned char[24]",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0xB3–0xC0: [168h]=0,[169h..16Fh]=0,[170h/174h]=0,mov dword ptr [esi+178h],7,[17Ch]=0；OnMessage 26 / HandleKeyInput 7"
   },
-  "0x68": {
-   "name": "m_szListBuf",
-   "type": "char[256]",
-   "source": "正名20261120(R5+ MainPropUI): 62处 sprintf/字符串操作直证(0x68 处 char[256]) | 原 s_x",
-   "evidence_level": "unverified"
+  "0x180": {
+   "name": "m_unk_0x180",
+   "type": "UIFrameContainer",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0xCD: lea ecx,[esi+180h]; call sub_4422E0 [命名修订 2026-11-27：原拟用名 m_topFrame0 含数字后缀/尺寸编码，按验收口径改留白形 m_unk_<offset>；类型与证据不变]"
   },
-  "0x6c": {
-   "name": "buf",
-   "type": "char[256]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x218": {
+   "name": "m_unk_0x218",
+   "type": "UIFrameContainer",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0xE3: lea ecx,[esi+218h]; call sub_4422E0 [命名修订 2026-11-27：原拟用名 m_topFrame1 含数字后缀/尺寸编码，按验收口径改留白形 m_unk_<offset>；类型与证据不变]"
   },
-  "0x16c": {
-   "name": "m_tabRemarkBuf",
-   "type": "char[256]",
-   "source": "正名20261120(R5+ MainPropUI): 42处 [2] 判定+页签备注区(同 MagicUI 形) | 原 remarkbuf",
-   "evidence_level": "unverified"
+  "0x2b0": {
+   "name": "m_unk_0x2B0",
+   "type": "UIFrameContainer",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0xF7: lea ecx,[esi+2B0h]; call sub_4422E0；ShowSubPanels 2 [命名修订 2026-11-27：原拟用名 m_topFrame2 含数字后缀/尺寸编码，按验收口径改留白形 m_unk_<offset>；类型与证据不变]"
   },
-  "0x26c": {
-   "name": "m_IsMsg",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x348": {
+   "name": "m_sharedTabBarBlock",
+   "type": "unsigned char[3720]",
+   "evidence_level": "A",
+   "source": "共用层页签栏整块（#51 §4）：3×152 容器 0x348/0x3E0/0x478 + 9×344 页签 0x510..0xFD0(步长 0x158) + 152 Effect 页签 0x1128 + 16B 状态 0x11C0；ctor 只建空容器（sub_4422E0/sub_43A770），运行期由 A4 sub_491630 灌入 StpBarL/M/R.tga 与 9 个页签，故不拆成 MainPropUI 私有成员"
   },
-  "0x26d": {
-   "name": "m_Is",
-   "type": "unsigned char[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x11d0": {
+   "name": "m_unk_0x11D0",
+   "type": "UIFrameContainer",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x2B1: lea ecx,[esi+11D0h]; call sub_4422E0 [命名修订 2026-11-27：原拟用名 m_frame152_0 含数字后缀，按验收口径改留白形 m_unk_<offset>；类型与证据不变]"
   },
-  "0x274": {
-   "name": "m_CurSelRole",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x1268": {
+   "name": "m_unk_0x1268",
+   "type": "UIFrameContainer",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x2C5: lea ecx,[esi+1268h]; call sub_4422E0 [命名修订 2026-11-27：原拟用名 m_frame152_1 含数字后缀，按验收口径改留白形 m_unk_<offset>；类型与证据不变]"
   },
-  "0x278": {
-   "name": "m_CurNeedRole",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x1300": {
+   "name": "m_particlePoolUpdateByMode",
+   "type": "UIParticle[128]",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x2D9: ??_L(0x1300, 0x248, 0x80, ctor=0x4B4690, dtor=0x4B47E0) ⇒ 128×584B；Render 0x496FA0 按页取 16 个元素并 UIParticle::Apply(元素, 0Bh)，Apply 的 switch 中 case 11 → UIParticle::UpdateByMode（UIParticle_Applyint_004b4dc0.json），故命名按唯一可证的调用语义"
   },
-  "0x27c": {
-   "name": "m_IsActive",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x13700": {
+   "name": "m_particlePoolLoadLibrary",
+   "type": "UIParticle[128]",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x304: ??_L(0x13700, 0x248, 0x80, ctor=0x4B4690, dtor=0x4B47E0) ⇒ 128×584B；Render 按页取 16 个元素并 Apply(元素, 0Ah)，Apply switch 中 case 10 → UIParticle::LoadLibrary；两池元素宽度相同、唯一可证差异是 Apply 模式，故以该模式函数命名（不声称页面用途）"
   },
-  "0x27d": {
-   "name": "m_IsCreateable",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x25b00": {
+   "name": "m_unk_0x25B00",
+   "type": "unsigned char[140]",
+   "evidence_level": "C",
+   "source": "0x13700+128×0x248=0x25B00 到段17起点 0x25B8C 的 140B：ctor 不构造，仅收尾 12B（lea ecx,[esi+25B80h]; [ecx]=0;[ecx+4]=0;[esi+25B88h]=0）被清；元素边界未证，按不透明块（#51 §7 G7）"
   },
-  "0x280": {
-   "name": "curPage",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x25b8c": {
+   "name": "m_pageRecords",
+   "type": "unsigned char[49916]",
+   "evidence_level": "B",
+   "source": "ctor sub_4909F0+0x33C: ??_L(0x25B8C, 0x26FC, 5, ctor=0x490E90, dtor=0x4910B0) ⇒ 5×9980B=49900B（0xC2EC），到下一成员 0x31E88（49916B）另含 16B 未构造 tail；ShowSubPanels 14，元素内部字段未证，按不透明记录"
   },
-  "0x284": {
-   "name": "curList",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x31e88": {
+   "name": "m_unk_0x31E88",
+   "type": "UIFrameContainer[5]",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x3AC 起 5 处 lea 0x31E88/0x31F20/0x31FB8/0x32050/0x320E8(步长0x98); call sub_4422E0 [命名修订 2026-11-27：原拟用名 m_frame152_grp2 含数字后缀/尺寸编码，按验收口径改留白形 m_unk_<offset>；类型与证据不变]"
   },
-  "0x288": {
-   "name": "m_SelNum",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x32180": {
+   "name": "m_unk_0x32180",
+   "type": "unsigned char[16]",
+   "evidence_level": "C",
+   "source": "16B 未构造（#51 段19/G7）：ctor 与 dtor 均不写；留白并注明需要重读 ctor 尾段才能定归属"
   },
-  "0x28c": {
-   "name": "m_UseNum",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x32190": {
+   "name": "m_slotRecords",
+   "type": "unsigned char[4260]",
+   "evidence_level": "B",
+   "source": "ctor sub_4909F0+0x3E3 起循环 5 次：每项 0x354B（=852），首字段 int、lstrcpyA 目标 +6/+0x200/+0x21E/+0x252、rep stosd 12 dword 于 +0x276；#51 段20 判 B（4 个字符串用途 inferred）"
   },
-  "0x290": {
-   "name": "m_LockUse",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x33234": {
+   "name": "m_roleDialog",
+   "type": "UIRoleDialog",
+   "evidence_level": "A",
+   "source": "ctor sub_4909F0+0x4C6: lea ecx,[esi+33234h]; call sub_4A12F0（vtable 0x56E190）"
   },
-  "0x291": {
-   "name": "m_IsUsed",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x292": {
-   "name": "m_IsCanUse",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x293": {
-   "name": "m_IsAllUse",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x294": {
-   "name": "pStateUI",
-   "type": "StateUI *",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x298": {
-   "name": "m_Frame",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x338": {
-   "name": "m_TimeMoney",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x3d8": {
-   "name": "m_TopFrame",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x478": {
-   "name": "m_TopFrameWP",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x518": {
-   "name": "m_OutFrameT",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x5b8": {
-   "name": "m_OutFrameR",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x658": {
-   "name": "m_OutFrameL",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x6f8": {
-   "name": "m_OutFrameB",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x798": {
-   "name": "stp_BarL",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x838": {
-   "name": "stp_BarM",
-   "type": "UIFlexBar",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x88c": {
-   "name": "stp_BarR",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x92c": {
-   "name": "stp_State",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0xa84": {
-   "name": "stp_Magic",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0xbdc": {
-   "name": "stp_Equip",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0xd34": {
-   "name": "stp_Prop",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0xe8c": {
-   "name": "stp_BattleArray",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0xfe4": {
-   "name": "stp_TaskBook",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x113c": {
-   "name": "stp_System",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x1294": {
-   "name": "stp_Exit",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x13ec": {
-   "name": "stp_Effect",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x148c": {
-   "name": "stp_Rect",
-   "type": "tagRECT",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x149c": {
-   "name": "m_GameTime",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x153c": {
-   "name": "m_GameMoney",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x15dc": {
-   "name": "m_DlgEx",
-   "type": "MUIDialog",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x1b44": {
-   "name": "m_btnPar",
-   "type": "UIParticle[16][7]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x11e44": {
-   "name": "m_btnPar2",
-   "type": "UIParticle[16][7]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x22144": {
-   "name": "m_btnParRc",
-   "type": "tagRECT[7]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x221b4": {
-   "name": "_isParBtn",
-   "type": "unsigned char[7]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x221bc": {
-   "name": "_curParEffect",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x221c0": {
-   "name": "m_Dlg",
-   "type": "MUIDialog",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x22728": {
-   "name": "m_Role",
-   "type": "p_RoleState[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x27afc": {
-   "name": "m_RemarkBk",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x27b9c": {
-   "name": "m_Remark",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x27c3c": {
-   "name": "m_RemarkVal",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x27cdc": {
-   "name": "m_RemarkRc",
-   "type": "tagRECT",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x27cec": {
-   "name": "m_typeWord",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x27d8c": {
-   "name": "m_PageBk",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x27e2c": {
-   "name": "m_Ctrlbtn",
+  "0x3378c": {
+   "name": "m_unk_0x3378C",
    "type": "UIButton[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x4D4: ??_L(0x3378C, 0x158, 5, ctor=0x43A770, dtor=0x43A810) [命名修订 2026-11-27：原拟用名 m_btn344_grp3 含数字后缀，按验收口径改留白形 m_unk_<offset>；类型与证据不变]"
   },
-  "0x284e4": {
-   "name": "m_Pushbtn",
-   "type": "UIPushButton[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x33e44": {
+   "name": "m_unk_0x33E44",
+   "type": "UIFrameContainer[6]",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x4F2 起 6 处 lea 0x33E44..0x3413C(步长0x98); call sub_4422E0 [命名修订 2026-11-27：原拟用名 m_frame152_grp3 含数字后缀，按验收口径改留白形 m_unk_<offset>；类型与证据不变]"
   },
-  "0x289d0": {
-   "name": "m_Title",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x341d4": {
+   "name": "m_unk_0x341D4",
+   "type": "unsigned char[16]",
+   "evidence_level": "C",
+   "source": "16B 未构造（#51 段24/G7）：同 0x32180，ctor/dtor 均不写"
   },
-  "0x28a70": {
-   "name": "m_ListFrame",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x341e4": {
+   "name": "m_unk_0x341E4",
+   "type": "UIButton[5]",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x57C: ??_L(0x341E4, 0x158, 5, ...); DisplayCaption 索引触达 [命名修订 2026-11-27：原拟用名 m_btn344_grp4 含数字后缀，按验收口径改留白形 m_unk_<offset>；类型与证据不变]"
   },
-  "0x28b10": {
-   "name": "m_ListGrid",
-   "type": "UIStatic[14]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x293d0": {
-   "name": "m_ScrollHB",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x29470": {
-   "name": "ml_Resume",
-   "type": "UIListBox",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x29978": {
-   "name": "ml_Attack",
-   "type": "UIListBox",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x29e80": {
-   "name": "ml_Treasure",
-   "type": "UIListBox",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2a388": {
-   "name": "ml_Smelt",
-   "type": "UIListBox",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2a890": {
-   "name": "ml_Special",
-   "type": "UIListBox",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2ad98": {
-   "name": "m_Animate",
-   "type": "UIAnimate[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2ae9c": {
-   "name": "m_AnimateRc",
-   "type": "tagRECT[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2aeec": {
-   "name": "m_SortRc",
-   "type": "tagRECT",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2aefc": {
-   "name": "mb_SortDefault",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2b054": {
-   "name": "mb_SortPrice",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2b1ac": {
-   "name": "mb_SortUse",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2b304": {
-   "name": "m_SortState",
+  "0x3489c": {
+   "name": "m_gaugeIndex",
    "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x5B4: mov [esi+3489Ch], -1（0FFFFFFFFh）"
   },
-  "0x2b308": {
-   "name": "m_3DObj",
+  "0x348a0": {
+   "name": "m_unk_0x348A0",
+   "type": "unsigned char[84]",
+   "evidence_level": "B-",
+   "source": "ctor sub_4909F0+0x5BD: lea ecx,[esi+348A0h]; call sub_43D830 ⇒ 84B 控件；decomp 把 0x43D830 渲染为 UI3DCtrl::UI3DCtrl，而 UI3DCtrl.json 把该 ctor 记 0x43D830/表0x56ACFC，与 0x439030(UIProgressBar/表0x56AC20) 构成交叉线（存量债）；本员按 84B 不透明块，类名待裁决 [命名修订 2026-11-27：原拟用名 m_ctrl84 含数字后缀/尺寸编码，按验收口径改留白形 m_unk_<offset>；类型与证据不变]"
+  },
+  "0x348f4": {
+   "name": "m_unk_0x348F4",
+   "type": "UIFrameContainer",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x5D1: lea ecx,[esi+348F4h]; call sub_4422E0 [命名修订 2026-11-27：原拟用名 m_frame152_2 含数字后缀，按验收口径改留白形 m_unk_<offset>；类型与证据不变]"
+  },
+  "0x3498c": {
+   "name": "m_unk_0x3498C",
+   "type": "UIFrameContainer[12]",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x5E5: ??_L(0x3498C, 0x98, 0xC, ctor=0x4422E0, dtor=0x442390) [命名修订 2026-11-27：原拟用名 m_frame152_grp4 含数字后缀，按验收口径改留白形 m_unk_<offset>；类型与证据不变]"
+  },
+  "0x350ac": {
+   "name": "m_unk_0x350AC",
+   "type": "UIFrameContainer",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x62A: lea ecx,[esi+350ACh]; call sub_4422E0 [命名修订 2026-11-27：原拟用名 m_frame152_3 含数字后缀，按验收口径改留白形 m_unk_<offset>；类型与证据不变]"
+  },
+  "0x35144": {
+   "name": "m_itemList",
+   "type": "unsigned char[1208]",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x63D: lea ecx,[esi+35144h]; call sub_43DFC0 ⇒ 1208B 列表控件（vtable 0x56AD40），类未登记注解故按字节；OnMessage 8"
+  },
+  "0x355fc": {
+   "name": "m_listIndex",
+   "type": "int",
+   "evidence_level": "B-",
+   "source": "ctor sub_4909F0+0x68B: mov [esi+355FCh], -1；其后 16B 未构造（#51 段32）"
+  },
+  "0x35600": {
+   "name": "m_unk_0x35600",
+   "type": "unsigned char[16]",
+   "evidence_level": "C",
+   "source": "段32 尾 16B：ctor/dtor 不写，OnMessage 访问面待查（#51 段32 补证入口）"
+  },
+  "0x35610": {
+   "name": "m_unk_0x35610",
+   "type": "UIButton",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x68E: lea ecx,[esi+35610h]; call sub_43A770 [命名修订 2026-11-27：原拟用名 m_btn344_5 含数字后缀，按验收口径改留白形 m_unk_<offset>；类型与证据不变]"
+  },
+  "0x35768": {
+   "name": "m_unk_0x35768",
+   "type": "UIButton",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x6A2: lea ecx,[esi+35768h]; call sub_43A770 [命名修订 2026-11-27：原拟用名 m_btn344_6 含数字后缀，按验收口径改留白形 m_unk_<offset>；类型与证据不变]"
+  },
+  "0x358c0": {
+   "name": "m_unk_0x358C0",
+   "type": "UIButton",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x6B5: lea ecx,[esi+358C0h]; call sub_43A770 [命名修订 2026-11-27：原拟用名 m_btn344_7 含数字后缀，按验收口径改留白形 m_unk_<offset>；类型与证据不变]"
+  },
+  "0x35a18": {
+   "name": "m_scaleIndex",
+   "type": "int",
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x6C4: mov [esi+35A18h], -1"
+  },
+  "0x35a1c": {
+   "name": "m_scaleCtrl",
    "type": "UI3DCtrl",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2b43c": {
-   "name": "m_parSingle",
-   "type": "UIParticle[12][5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "A-",
+   "source": "ctor sub_4909F0+0x6C8: lea ecx,[esi+35A1Ch]; call sub_439030（vtable 0x56AC20）；0x35A1C+308=0x35B50=sizeof",
+   "name_note": "ctor 0x439030 当前在 UIProgressBar.json 记 ctor（表0x56AC20），UI3DCtrl.json 却记 ctor0x43D830/表0x56ACFC/308B，两者交叉线为存量债；该 ctor 写面（0x44 m_numobj、0x48 m_obj[5]×0x20、0xE8/0xEC/0xF0、0xF4=0x62、0xF8..0x130）与 UI3DCtrl 成员表逐项吻合⇒308B 尺寸成立，类名不标 verified，待交叉线裁决"
   }
  },
  "methods": {
@@ -823,7 +560,7 @@
  "vtables": [
   {
    "addr": "0x0056d618",
-   "base": "UIBigMap",
+   "base": "UIListBox",
    "slots": [
     {
      "addr": "0x00445e70"
@@ -857,9 +594,10 @@
  "base_size": 72,
  "bases": [
   {
-   "name": "UIFrameWnd",
+   "name": "UIListBox",
    "offset": 0
   }
  ],
- "binary_size_source": "ctor ??0MainPropUI + push 0x35B50 (EquipUI::Init [esi+0x2AFC0]) 编译器sizeof A级 [2026-11-26 金表对账 probe_heap_alloc_census]"
+ "binary_size_source": "0x35B50=219984：push 35B50h 全库唯一(asm240512) + ctor sub_4909F0 建链求和（0x35A1C+308）三证一致；#39 oracle",
+ "bases_note": "原 bases=[UIFrameWnd@0] 与 vtables[0].base=UIBigMap 均被 ctor 否定：MainPropUI ctor 首调 0x43DCD0=UIListBox ctor（表0x56AD20，size72）且表 0x56D618 slot3=0x43DE40 与 UIListBox 相同；UIFrameWnd ctor=0x43BB70/表0x56ACB8。2026-11-27 独立复核更正为 UIListBox@0（base_size 72 不变）"
 }
