@@ -7669,6 +7669,13 @@
   "orig_type": "void *[]",
   "source": "[F-TAB 2026-10-15] A 级 hexdump 0x5AC080 起=递减指针表（94 0a 5a 00/80 0a 5a 00…=0x5A0A94/0x5A0A80…），0x5AC098=f4 09 5a 00 表元素；RoleShadow.cpp:25 就地 extern void* off_5AC098[]（数组形正确）vs globals.h 启发 void* 标量 ⇒ C2372 重定义 + L284 下标 C2036/C2664"
  },
+ "0x0056f314": {
+  "name": "off_56F314",
+  "type": "const char *[]",
+  "category": "ptr_table",
+  "orig_type": "const char *[]",
+  "source": "[#76 2026-11-28] A 级 hexdump 0x56F314..=6c 0a 5b 00/50 0a 5b 00…=0x5B0A6C/0x5B0A50… 递减字符串指针表，与已登记 0x56F328 同表（0x56F310 起）；IDB 原 tombstone skip(rdata:compiler_generated) ⇒ Hex-Rays 发 (&off_56F314)[v10]，codegen 取址降级成地址常量 ⇒ (0x56F314)[v10] C2109。引用点 0x4B2527/0x4B26AE（StateUI::SaveData 0x4B2470）、0x4B2B7B（UITitle_JDHY::LoadData 0x4B2920），均作 UIPushButton::CreateFromTemplate 模板指针。"
+ },
  "0x0056f328": {
   "name": "off_56F328",
   "type": "const char *[]",
