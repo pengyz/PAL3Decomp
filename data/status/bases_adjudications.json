@@ -162,5 +162,16 @@
         "ctor_evidence": "0x4BEE60 call 0x4B6F70(PAL3VisNode ctor：内含 call [0x56A3B0] 基构造 + 存表 0x56F37C@0x4B6F79 + [esi+0x58]=0)@0x4BEE7F；存表 0x56F580@0x4BEF01",
         "dtor_evidence": "0x4BEF30 删除式(??_G) → 0x4BEF50 complete(??1)：写 vptr 0x56F580 + 调 CleanupTextures/ParticleEffect dtor/PAL3VisNode dtor 链",
         "verdict_by": "#19 施工图 #16 §0-3/§4 + 本机反汇编核对"
+    },
+    "LineupUI": {
+        "bases": [
+            "UIListBox"
+        ],
+        "date": "2026-11-27",
+        "ctor_evidence": "ctor sub_47E5C0 首调 sub_43DCD0（UIListBox ctor，体内 L96584 写 off_56AD20）@sub_47E5C0+3（asm L187098）；存己表 off_56B90C @sub_47E5C0+0x2FC（asm L187243，DATA XREF: sub_47E5C0+2FC↑o）",
+        "dtor_evidence": "sub_47E910 SEH 拆除（尾调 UIListBox 族 dtor）；表 off_56B90C 无基类表混入 ⇒ 单继承 UIListBox",
+        "verdict_by": "#63 C2 裁决 + #42 oracle + 本卡 asm 复读（L187098/L187243）",
+        "card": "tsk_01M8CZFQK991E7G4NFCBYQ (#83)",
+        "note": "旧注解 bases=UIFrameWnd@0 无 ctor 证据（#63 C2 判为错声明）；UIListBox=72B 与本类 base_size 一致"
     }
 }

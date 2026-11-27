@@ -1,1008 +1,984 @@
 {
- "name": "LineupUI",
- "binary_size": 162772,
- "known_members": {
-  "0x48": {
-   "name": "rc",
-   "type": "tagRECT",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x58": {
-   "name": "bkWndX",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x5c": {
-   "name": "bkWndY",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x60": {
-   "name": "i",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x64": {
-   "name": "j",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x68": {
-   "name": "buf",
-   "type": "char[256]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x168": {
-   "name": "m_IsMsg",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x169": {
-   "name": "m_Is",
-   "type": "unsigned char[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x170": {
-   "name": "m_Frame",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x210": {
-   "name": "m_TimeMoney",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2b0": {
-   "name": "m_OutFrameT",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x350": {
-   "name": "m_OutFrameR",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x3f0": {
-   "name": "m_OutFrameL",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x490": {
-   "name": "m_OutFrameB",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x530": {
-   "name": "stp_BarL",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x5d0": {
-   "name": "stp_BarM",
-   "type": "UIFlexBar",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x624": {
-   "name": "stp_BarR",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x6c4": {
-   "name": "stp_State",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x81c": {
-   "name": "stp_Magic",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x974": {
-   "name": "stp_Equip",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0xacc": {
-   "name": "stp_Prop",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0xc24": {
-   "name": "stp_BattleArray",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0xd7c": {
-   "name": "stp_TaskBook",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0xed4": {
-   "name": "stp_System",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x102c": {
-   "name": "stp_Exit",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x1184": {
-   "name": "stp_Effect",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x1224": {
-   "name": "stp_Rect",
-   "type": "tagRECT",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x1234": {
-   "name": "m_GameTime",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x12d4": {
-   "name": "m_GameMoney",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x1374": {
-   "name": "m_DlgEx",
-   "type": "MUIDialog",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x18dc": {
-   "name": "m_ZhenLie",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x197c": {
-   "name": "m_btnPar",
-   "type": "UIParticle[16][7]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x11c7c": {
-   "name": "m_btnPar2",
-   "type": "UIParticle[16][7]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x21f7c": {
-   "name": "m_btnParRc",
-   "type": "tagRECT[7]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x21fec": {
-   "name": "_isParBtn",
-   "type": "unsigned char[7]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x21ff4": {
-   "name": "_curParEffect",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x21ff8": {
-   "name": "m_LineupInfo",
-   "type": "LINEUPINFO[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x22016": {
-   "name": "m_Sequence",
-   "type": "char[4]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2201c": {
-   "name": "roleRc",
-   "type": "tagRECT",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2202c": {
-   "name": "m_RoleFrame",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x220cc": {
-   "name": "m_RoleBtn",
-   "type": "UIButton[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x22784": {
-   "name": "m_RoleBtnIndex",
-   "type": "int[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x22798": {
-   "name": "m_NoBody",
-   "type": "UIStatic[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x22ab8": {
-   "name": "m_RoleLeader",
-   "type": "UIStatic[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x22dd8": {
-   "name": "m_headRc",
-   "type": "tagRECT[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x22e28": {
-   "name": "m_headRole",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x22e2c": {
-   "name": "m_Msg",
-   "type": "MUIDialog",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x23394": {
-   "name": "m_objCamPitch",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x23398": {
-   "name": "m_objRotSpeed",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2339c": {
-   "name": "m_pCamera",
-   "type": "ObjectCamera *",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x233a0": {
-   "name": "m_pointerHeight",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x233a4": {
-   "name": "m_bPeek",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x233a8": {
-   "name": "m_nPeek",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x233ac": {
-   "name": "m_nLastPeek",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x233b0": {
-   "name": "m_isRotLineup",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x233b4": {
-   "name": "m_ObjPos",
-   "type": "gbVec3D[6]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x233fc": {
-   "name": "m_LineupObj",
-   "type": "Object3D",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x23494": {
-   "name": "m_3DRole",
-   "type": "Object3D[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2378c": {
-   "name": "m_IsRole",
-   "type": "unsigned char[6]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x23794": {
-   "name": "m_RoleId",
-   "type": "int[6]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x237ac": {
-   "name": "m_3DNone",
-   "type": "Object3D[6]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x23b3c": {
-   "name": "m_CtrlPlank",
-   "type": "LineupPlank[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x26224": {
-   "name": "m_ProtectPanel",
-   "type": "ProtectPanel",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2672c": {
-   "name": "m_ProFlag",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x26730": {
-   "name": "pStateUI",
-   "type": "StateUI *",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  }
- },
- "methods": {
-  "0x0047e910": {
-   "name": "~LineupUI",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_E910。refs: ?ReleaseResource@StateUI@@QAEHXZ ??1UIPushButton@@QAE@XZ ?Destroy2@UICaption@@QAEXXZ ?_UIF",
-   "evidence_level": "A",
-   "declaration_only": true,
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor"
-   ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_E910(??1/??_G析构族); decomp文件=LineupUI_scalar_dtor_E910void_0047e910 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
-  },
-  "0x00470f40": {
-   "name": "~LineupUI",
-   "_misattrib_evidence": "max_offset=124248>class_size=1208",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor"
-   ],
-   "flags_evidence": "IDA名字形态=~LineupUI(??1/??_G析构族); decomp文件=LineupUI_~LineupUIvoid_00470f40 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
-  },
-  "0x00477bb0": {
-   "name": "OnMessage_7bb0",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "msg"
-     },
-     {
-      "type": "int",
-      "name": "wparam"
-     },
-     {
-      "type": "int",
-      "name": "lparam"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessage_7bb0): int(int,int,int,int); 原注解无"
-  },
-  "0x00482ed0": {
-   "name": "Save",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0047e5c0": {
-   "name": "LineupUI",
-   "source": "| [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0UIPushButton",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "ctor"
-   ],
-   "flags_evidence": "IDA名字形态=LineupUI(??0构造); decomp文件=LineupUI_LineupUIvoid_0047e5c0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
-  },
-  "0x00473b50": {
-   "name": "InitItemList",
-   "_misattrib_evidence": "max_offset=121112>class_size=1208",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00473520": {
-   "name": "Render3DModels",
-   "_misattrib_evidence": "max_offset=124260>class_size=1208",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00474c50": {
-   "name": "UpdateAndForward",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "int",
-      "name": "nVal2"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateAndForward): int(int,int,int); 原注解无"
-  },
-  "0x00475fc0": {
-   "name": "RefreshDisplay",
-   "_misattrib_evidence": "max_offset=124248>class_size=1208",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x004765f0": {
-   "name": "SetItemDisplay",
-   "_misattrib_evidence": "max_offset=124076>class_size=1208",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00476ed0": {
-   "name": "SetItemColors",
-   "_misattrib_evidence": "max_offset=124076>class_size=1208",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0047e8f0": {
-   "name": "~LineupUI",
-   "type": "skip",
-   "reason": "compiler-generated ctor/dtor/thunk, not game logic",
-   "ordinal": 5,
-   "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=LineupUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B90C）",
-   "evidence_level": "A",
-   "declaration_only": true,
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal1"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "flags": [
-    "dtor",
-    "deleting"
-   ],
-   "flags_evidence": "IDA名字形态=_scalar_dtor_E8F0(??1/??_G析构族); decomp文件=LineupUI_scalar_dtor_E8F0int_0047e8f0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_scalar_dtor_E8"
-  },
-  "0x0047f880": {
-   "name": "Render",
-   "ordinal": 1,
-   "evidence_level": "chain_unified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名RenderEffects=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
-   "flags": [
-    "override"
-   ],
-   "override_of": "0x00445cd0",
-   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
-  },
-  "0x00482bb0": {
-   "name": "ShowPage",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00483650": {
-   "name": "CreatePreviewScene",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(CreatePreviewScene): int(void *,int); 原注解无"
-  },
-  "0x004b1920": {
-   "name": "UpdateProtectPanel",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int *",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 mangle硬真值全量定谳(UpdateProtectPanel): int("
-  },
-  "0x004b3da0": {
-   "name": "RebuildMainPage",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00471590": {
-   "name": "InitListView",
-   "_misattrib_evidence": "max_offset=124256>class_size=1208",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00472a80": {
-   "name": "SetPageIndex",
-   "_misattrib_evidence": "max_offset=124248>class_size=39240",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nPage"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(SetPageIndex): int(int,int); 原注解无"
-  },
-  "0x00472aa0": {
-   "name": "RefreshListData",
-   "_misattrib_evidence": "max_offset=121112>class_size=1208",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x004739f0": {
-   "name": "BuildEquipList",
-   "_misattrib_evidence": "max_offset=121112>class_size=39240",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00474ab0": {
-   "name": "ProcessMouseInput",
-   "_misattrib_evidence": "max_offset=121864>class_size=10584",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "float",
-      "name": "fVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ProcessMouseInp"
-  },
-  "0x00474c80": {
-   "name": "BuildListItems",
-   "_misattrib_evidence": "max_offset=124076>class_size=1208",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00476010": {
-   "name": "PopulateList",
-   "_misattrib_evidence": "max_offset=124076>class_size=1208",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x004765d0": {
-   "name": "UpdateAllSlots",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x004777b0": {
-   "name": "RefreshDisplayEx",
-   "_misattrib_evidence": "max_offset=123740>class_size=1208",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0047b0e0": {
-   "name": "CountVisibleItems",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "char",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(CountVisibleItems): int(char,int); 原注解无"
-  },
-  "0x0047f970": {
-   "name": "Update",
-   "ordinal": 2,
-   "evidence_level": "chain_unified",
-   "sig_model": {
-    "return": "BOOL",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,fVal,a3)铁证; 原名CleanupAndForwardInput留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→BOOL __thiscall(int, int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→BOOL __thiscall(CCBUI **deltatime, int) | param0真值化20261121: CCBUI**=基链编造类型复制(0x445c60基体从不解引用param0), 改int",
-   "flags": [
-    "override"
-   ],
-   "override_of": "0x0043bbc0",
-   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导",
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
-  },
-  "0x00480600": {
-   "name": "OnMessage",
-   "ordinal": 6,
-   "source": "+canonical_rename",
-   "evidence_level": "chain_unified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": null
-     },
-     {
-      "type": "unsigned int",
-      "name": null
-     },
-     {
-      "type": "int",
-      "name": null
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
-   "flags": [
-    "override"
-   ],
-   "override_of": "0x00445d10",
-   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessage): int(int,int,unsigned int,int); 原注解2026-11-18 mangle硬真值定谳(HHIH): int(int,un"
-  },
-  "0x004826a0": {
-   "name": "RebuildSystemPage",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00484360": {
-   "name": "GetSlotRect",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     },
-     {
-      "type": "unsigned int",
-      "name": "dwVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(GetSlotRect): int(int,int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HHI): int(int,uns"
-  },
-  "0x00484810": {
-   "name": "RebuildNavPage",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00491630": {
-   "name": "RebuildExitPage",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x004993d0": {
-   "name": "RebuildCaptionPage",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x004a26d0": {
-   "name": "RebuildFontPage",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x00488de0": {
-   "name": "LoadRoleData",
-   "source": "pdb",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。"
-  },
-  "0x00474990": {
-   "name": "GetUpdateFlag",
-   "source": "[函数归属判定 2026-10-17·主攻点 2] 迁入 LineupUI（①LineupUI::UpdateAndForward ✓ ③this[103789] ✓ ⑤更新状态查询 ✓——前批面证）——成员访问谱比对类布局 ✓ （禁止仅凭 signature this ✓ 本条为 decomp member access 证）",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "char",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  }
- },
- "vtables": [
-  {
-   "addr": "0x0056b90c",
-   "base": "UIWnd",
-   "slots": [
-    {
-     "addr": "0x00445e70"
+  "name": "LineupUI",
+  "binary_size": 162772,
+  "known_members": {
+    "0x48": {
+      "name": "rc",
+      "type": "tagRECT",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#2：L187102 `[esi+58h]=320h`；L187103 `[esi+5Ch]=258h`；L187104 起 `[esi+168h]` 等头字段",
+      "evidence_level": "A"
     },
-    {
-     "addr": "0x0047f880",
-     "name": "Render"
+    "0x58": {
+      "name": "bkWndX",
+      "type": "int",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)",
+      "evidence_level": "A"
     },
-    {
-     "addr": "0x0047f970",
-     "name": "Update"
+    "0x5c": {
+      "name": "bkWndY",
+      "type": "int",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)",
+      "evidence_level": "A"
     },
-    {
-     "addr": "0x0043de40",
-     "name": "HideAll"
+    "0x60": {
+      "name": "i",
+      "type": "int",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)",
+      "evidence_level": "A"
     },
-    {
-     "addr": "0x00445b90"
+    "0x64": {
+      "name": "j",
+      "type": "int",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)",
+      "evidence_level": "A"
     },
-    {
-     "addr": "0x0047e8f0",
-     "name": "_scalar_dtor_E8F0"
+    "0x68": {
+      "name": "buf",
+      "type": "char[256]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)",
+      "evidence_level": "A"
     },
-    {
-     "addr": "0x00480600",
-     "name": "OnMessage"
+    "0x168": {
+      "name": "m_IsMsg",
+      "type": "unsigned char",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)",
+      "evidence_level": "A"
+    },
+    "0x169": {
+      "name": "m_Is",
+      "type": "unsigned char[5]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)",
+      "evidence_level": "A"
+    },
+    "0x170": {
+      "name": "m_unk_0x170",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#3：L187100 `lea ..,[esi+170h]`；ctor 1 / dtor 1",
+      "evidence_level": "A"
+    },
+    "0x208": {
+      "name": "m_unk_0x208",
+      "type": "UIFrameContainer",
+      "source": "SetItemColors(0x476ED0) 读 [esi+250h]=m_bfocus（真方法 asm 实测）；对象边界=ctor sub_47E5C0 L187108 lea [esi+208h] call sub_4422E0(152B UIFrameContainer)；m_bfocus@对象内 +0x48；另 CreatePreviewScene/RebuildSystemPage 对其 m_FVF 调 UIPushButton::CreateFromTemplate、ctor 末 ResetContainerState(&m_TimeMoney.m_FVF)",
+      "evidence_level": "B",
+      "span_bytes": 152,
+      "name_note": "旧注解语料名 m_TimeMoney 已按 #81/#42 归到 0xDD0（资产串 StpCtl\\System）；本 0x208 是 ctor 独立构造的 152B 容器（sub_4422E0），保留留白名"
+    },
+    "0x2a0": {
+      "name": "stp_BarL",
+      "type": "UIFrameContainer",
+      "source": "StpCtl\\StpBa… 第一根（ctor sub_47E5C0 L187120 lea [esi+2A0h]；资产串 asm:192880 off_56B8C8）",
+      "evidence_level": "A",
+      "span_bytes": 152
+    },
+    "0x338": {
+      "name": "stp_BarM",
+      "type": "UIFrameContainer",
+      "source": "StpCtl\\StpBa… 第二根（L187132；asm:192898 off_56B8CC）",
+      "evidence_level": "A",
+      "span_bytes": 152
+    },
+    "0x3d0": {
+      "name": "stp_BarR",
+      "type": "UIFrameContainer",
+      "source": "StpCtl\\StpBa… 第三根（L187144；asm:192916 off_56B8D0）",
+      "evidence_level": "A",
+      "span_bytes": 152
+    },
+    "0x468": {
+      "name": "stp_State",
+      "type": "unsigned char[344]",
+      "source": "StpCtl\\State（L187161 起 344 对象；asm:192932 off_56B8DC + lea [esi+468h]）｜344B 元素类未登记：ctor sub_43A770 写 vtable 0x56AC70，该表不在 ida_structs 任何类；UIPushButton=248B(0x56AD88)、UIButton=344B(0x56AD64)、UIScene=344B(0x56ACB8) 三者 vtable 均不等 ⇒ 保 unsigned char[344]",
+      "evidence_level": "A",
+      "span_bytes": 344
+    },
+    "0x5c0": {
+      "name": "stp_Magic",
+      "type": "unsigned char[344]",
+      "source": "StpCtl\\Magic（asm:193015 off_56B8E0 + lea [esi+5C0h]）｜344B 元素类未登记：ctor sub_43A770 写 vtable 0x56AC70，该表不在 ida_structs 任何类；UIPushButton=248B(0x56AD88)、UIButton=344B(0x56AD64)、UIScene=344B(0x56ACB8) 三者 vtable 均不等 ⇒ 保 unsigned char[344]",
+      "evidence_level": "A",
+      "span_bytes": 344
+    },
+    "0x718": {
+      "name": "stp_Equip",
+      "type": "unsigned char[344]",
+      "source": "StpCtl\\Equip（asm:192989 off_56B8E4 + lea [esi+718h]）｜344B 元素类未登记：ctor sub_43A770 写 vtable 0x56AC70，该表不在 ida_structs 任何类；UIPushButton=248B(0x56AD88)、UIButton=344B(0x56AD64)、UIScene=344B(0x56ACB8) 三者 vtable 均不等 ⇒ 保 unsigned char[344]",
+      "evidence_level": "A",
+      "span_bytes": 344
+    },
+    "0x870": {
+      "name": "stp_Prop",
+      "type": "unsigned char[344]",
+      "source": "StpCtl\\Prop（asm:192961 off_56B8E8 + lea [esi+870h]）｜344B 元素类未登记：ctor sub_43A770 写 vtable 0x56AC70，该表不在 ida_structs 任何类；UIPushButton=248B(0x56AD88)、UIButton=344B(0x56AD64)、UIScene=344B(0x56ACB8) 三者 vtable 均不等 ⇒ 保 unsigned char[344]",
+      "evidence_level": "A",
+      "span_bytes": 344
+    },
+    "0x9c8": {
+      "name": "stp_Sword",
+      "type": "unsigned char[344]",
+      "source": "StpCtl\\Sword（asm:193069 off_56B8EC + lea [esi+9C8h]）｜344B 元素类未登记：ctor sub_43A770 写 vtable 0x56AC70，该表不在 ida_structs 任何类；UIPushButton=248B(0x56AD88)、UIButton=344B(0x56AD64)、UIScene=344B(0x56ACB8) 三者 vtable 均不等 ⇒ 保 unsigned char[344]",
+      "evidence_level": "A",
+      "span_bytes": 344
+    },
+    "0xb20": {
+      "name": "stp_Justice",
+      "type": "unsigned char[344]",
+      "source": "StpCtl\\Justi…（asm:193117 off_56B8F0 + lea [esi+B20h]）｜344B 元素类未登记：ctor sub_43A770 写 vtable 0x56AC70，该表不在 ida_structs 任何类；UIPushButton=248B(0x56AD88)、UIButton=344B(0x56AD64)、UIScene=344B(0x56ACB8) 三者 vtable 均不等 ⇒ 保 unsigned char[344]",
+      "evidence_level": "A",
+      "span_bytes": 344
+    },
+    "0xc78": {
+      "name": "stp_BattleArray",
+      "type": "unsigned char[344]",
+      "source": "StpCtl\\Battl…（asm:193042 off_56B8F4 + lea [esi+C78h]）｜344B 元素类未登记：ctor sub_43A770 写 vtable 0x56AC70，该表不在 ida_structs 任何类；UIPushButton=248B(0x56AD88)、UIButton=344B(0x56AD64)、UIScene=344B(0x56ACB8) 三者 vtable 均不等 ⇒ 保 unsigned char[344]",
+      "evidence_level": "A",
+      "span_bytes": 344
+    },
+    "0xdd0": {
+      "name": "m_TimeMoney",
+      "type": "unsigned char[344]",
+      "source": "RebuildSystemPage(0x4826A0) UIPushButton::CreateFromTemplate((UIPushButton*)&this->m_TimeMoney.m_FVF,...) + ctor ResetContainerState(&m_TimeMoney.m_FVF)；资产串 StpCtl\\System 指向同偏移 0xDD0｜命名=资产串 StpCtl\\System（System 页签对象），旧名 m_TimeMoney 沿用（语料 116 次 this->m_TimeMoney）；344B 类型未登记，保字节形",
+      "evidence_level": "A",
+      "span_bytes": 344,
+      "name_note": "资产串 StpCtl\\System（asm L193020-193030 的 lea ecx,[esi+DD0h]+资产串+call [edx+1Ch] 三元组）；沿用旧注解语料名 m_TimeMoney"
+    },
+    "0xf28": {
+      "name": "stp_Exit",
+      "type": "unsigned char[344]",
+      "source": "StpCtl\\Exit（asm:193139 off_56B8FC；ctor 第 9 页签）｜344B 元素类未登记：ctor sub_43A770 写 vtable 0x56AC70，该表不在 ida_structs 任何类；UIPushButton=248B(0x56AD88)、UIButton=344B(0x56AD64)、UIScene=344B(0x56ACB8) 三者 vtable 均不等 ⇒ 保 unsigned char[344]",
+      "evidence_level": "A",
+      "span_bytes": 344
+    },
+    "0x1080": {
+      "name": "stp_Effect",
+      "type": "UIFrameContainer",
+      "source": "StpCtl\\Effec…（asm:193109 off_56B8D8；L1871xx lea [esi+1080h]）",
+      "evidence_level": "A",
+      "span_bytes": 152
+    },
+    "0x1128": {
+      "name": "m_unk_0x1128",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#19：L187150 `lea ..,[esi+1128h]`",
+      "evidence_level": "A"
+    },
+    "0x11c0": {
+      "name": "m_unk_0x11c0",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#20：L187153 `lea ..,[esi+11C0h]`",
+      "evidence_level": "A"
+    },
+    "0x1258": {
+      "name": "m_btnPar",
+      "type": "UIParticle[128]",
+      "source": "ctor sub_47E5C0 site L187159-L187161 (push 80h; lea [esi+1258h]; push 248h) ⇒ UIParticle[128]×584B；沿用既有语料名 m_btnPar，跨度按实测 128 修正（旧视图 112×584 作废，#63 C1）｜核对表#21：L187159 `push 80h`（128 个）、L187160 `lea eax,[esi+1258h]`、L187161 `push 248h`（584B）；Render L188501/L188511 `lea ecx,[esi+edx*8+1258h]`",
+      "evidence_level": "A"
+    },
+    "0x13658": {
+      "name": "m_btnPar2",
+      "type": "UIParticle[128]",
+      "source": "同上，第二片 0x13658（push 80h; lea [esi+13658h]; push 248h）｜核对表#22：L187166 `push 80h`、L187167 `lea ecx,[esi+13658h]`、L187168 `push 248h`；Render L188520/L188530 `lea ecx,[esi+edx*8+13658h]`",
+      "evidence_level": "A"
+    },
+    "0x25ad8": {
+      "name": "m_aParGroupOn",
+      "type": "unsigned char[8]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#24：L187241 `lea eax,[esi+25AD8h]`；L187248 `mov [esi+25AE0h], ebx`；`Render` 索引 188488–188501",
+      "evidence_level": "A"
+    },
+    "0x25ae0": {
+      "name": "m_nCurParGroup",
+      "type": "int",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)",
+      "evidence_level": "A"
+    },
+    "0x25ae4": {
+      "name": "m_unk_0x25ae4",
+      "type": "unsigned char[308]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#25：L187172 `lea ..,[esi+25AE4h]`",
+      "evidence_level": "A"
+    },
+    "0x25c18": {
+      "name": "m_unk_0x25c18",
+      "type": "unsigned char[308]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#26：L187175 `lea ..,[esi+25C18h]`",
+      "evidence_level": "A"
+    },
+    "0x25d4c": {
+      "name": "m_unk_0x25d4c",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#27：L187178 `lea ..,[esi+25D4Ch]`",
+      "evidence_level": "A"
+    },
+    "0x25de4": {
+      "name": "m_unk_0x25de4",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#28：L187181 `lea ..,[esi+25DE4h]`",
+      "evidence_level": "A"
+    },
+    "0x25e7c": {
+      "name": "m_unk_0x25e7c",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#29：L187184 `lea ..,[esi+25E7Ch]`",
+      "evidence_level": "A"
+    },
+    "0x25f14": {
+      "name": "m_unk_0x25f14",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#30：组起点 L187190 `lea ..,[esi+25F14h]` + 0x98×0",
+      "evidence_level": "A"
+    },
+    "0x25fac": {
+      "name": "m_unk_0x25fac",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#31：组起点 L187190 `lea ..,[esi+25F14h]` + 0x98×1",
+      "evidence_level": "A"
+    },
+    "0x26044": {
+      "name": "m_unk_0x26044",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#32：组起点 L187190 `lea ..,[esi+25F14h]` + 0x98×2",
+      "evidence_level": "A"
+    },
+    "0x260dc": {
+      "name": "m_unk_0x260dc",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#33：组起点 L187190 `lea ..,[esi+25F14h]` + 0x98×3",
+      "evidence_level": "A"
+    },
+    "0x26174": {
+      "name": "m_unk_0x26174",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#34：组起点 L187190 `lea ..,[esi+25F14h]` + 0x98×4",
+      "evidence_level": "A"
+    },
+    "0x2620c": {
+      "name": "m_unk_0x2620c",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#35：组起点 L187198 `lea ..,[esi+2620Ch]` + 0x98×0",
+      "evidence_level": "A"
+    },
+    "0x262a4": {
+      "name": "m_unk_0x262a4",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#36：组起点 L187198 `lea ..,[esi+2620Ch]` + 0x98×1",
+      "evidence_level": "A"
+    },
+    "0x2633c": {
+      "name": "m_unk_0x2633c",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#37：组起点 L187198 `lea ..,[esi+2620Ch]` + 0x98×2",
+      "evidence_level": "A"
+    },
+    "0x263d4": {
+      "name": "m_unk_0x263d4",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#38：组起点 L187198 `lea ..,[esi+2620Ch]` + 0x98×3",
+      "evidence_level": "A"
+    },
+    "0x2646c": {
+      "name": "m_unk_0x2646c",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#39：组起点 L187198 `lea ..,[esi+2620Ch]` + 0x98×4",
+      "evidence_level": "A"
+    },
+    "0x26504": {
+      "name": "m_unk_0x26504",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#40：组起点 L187206 `lea ..,[esi+26504h]` + 0x98×0",
+      "evidence_level": "A"
+    },
+    "0x2659c": {
+      "name": "m_unk_0x2659c",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#41：组起点 L187206 `lea ..,[esi+26504h]` + 0x98×1",
+      "evidence_level": "A"
+    },
+    "0x26634": {
+      "name": "m_unk_0x26634",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#42：组起点 L187206 `lea ..,[esi+26504h]` + 0x98×2",
+      "evidence_level": "A"
+    },
+    "0x266cc": {
+      "name": "m_unk_0x266cc",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#43：组起点 L187206 `lea ..,[esi+26504h]` + 0x98×3",
+      "evidence_level": "A"
+    },
+    "0x267a4": {
+      "name": "m_unk_0x267a4",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#45：L187211 `lea ..,[esi+267A4h]`",
+      "evidence_level": "A"
+    },
+    "0x2683c": {
+      "name": "m_unk_0x2683c",
+      "type": "unsigned char[152]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#46：L187214 `lea ..,[esi+2683Ch]`",
+      "evidence_level": "A"
+    },
+    "0x268d4": {
+      "name": "m_unk_0x268d4",
+      "type": "unsigned char[344]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#47：L187217 `lea ..,[esi+268D4h]`｜344B 元素类未登记：ctor sub_43A770 写 vtable 0x56AC70，该表不在 ida_structs 任何类；UIPushButton=248B(0x56AD88)、UIButton=344B(0x56AD64)、UIScene=344B(0x56ACB8) 三者 vtable 均不等 ⇒ 保 unsigned char[344]",
+      "evidence_level": "A"
+    },
+    "0x26a2c": {
+      "name": "m_unk_0x26a2c",
+      "type": "unsigned char[344]",
+      "source": "ctor sub_47E5C0 头块写点 (L187102-187104)｜核对表#48：L187220 `lea ..,[esi+26A2Ch]`｜344B 元素类未登记：ctor sub_43A770 写 vtable 0x56AC70，该表不在 ida_structs 任何类；UIPushButton=248B(0x56AD88)、UIButton=344B(0x56AD64)、UIScene=344B(0x56ACB8) 三者 vtable 均不等 ⇒ 保 unsigned char[344]",
+      "evidence_level": "A"
+    },
+    "0x26b84": {
+      "name": "m_unk_0x26b84",
+      "type": "UIPushButton",
+      "source": "ctor sub_47E5C0 site 0x26B84..0x2705C 各调 sub_440740；sub_440740 体 L101045 写 vtable 0x56AD88 == asm/pal3/ida_structs.json 的 UIPushButton(248B, vtable 0x56AD88) ⇒ 类型 A 级；邻接：#81 核对表 L49-L54（248B×6）",
+      "evidence_level": "A"
+    },
+    "0x26c7c": {
+      "name": "m_unk_0x26c7c",
+      "type": "UIPushButton",
+      "source": "ctor sub_47E5C0 site 0x26B84..0x2705C 各调 sub_440740；sub_440740 体 L101045 写 vtable 0x56AD88 == asm/pal3/ida_structs.json 的 UIPushButton(248B, vtable 0x56AD88) ⇒ 类型 A 级；邻接：#81 核对表 L49-L54（248B×6）",
+      "evidence_level": "A"
+    },
+    "0x26d74": {
+      "name": "m_unk_0x26d74",
+      "type": "UIPushButton",
+      "source": "ctor sub_47E5C0 site 0x26B84..0x2705C 各调 sub_440740；sub_440740 体 L101045 写 vtable 0x56AD88 == asm/pal3/ida_structs.json 的 UIPushButton(248B, vtable 0x56AD88) ⇒ 类型 A 级；邻接：#81 核对表 L49-L54（248B×6）",
+      "evidence_level": "A"
+    },
+    "0x26e6c": {
+      "name": "m_unk_0x26e6c",
+      "type": "UIPushButton",
+      "source": "ctor sub_47E5C0 site 0x26B84..0x2705C 各调 sub_440740；sub_440740 体 L101045 写 vtable 0x56AD88 == asm/pal3/ida_structs.json 的 UIPushButton(248B, vtable 0x56AD88) ⇒ 类型 A 级；邻接：#81 核对表 L49-L54（248B×6）",
+      "evidence_level": "A"
+    },
+    "0x26f64": {
+      "name": "m_unk_0x26f64",
+      "type": "UIPushButton",
+      "source": "ctor sub_47E5C0 site 0x26B84..0x2705C 各调 sub_440740；sub_440740 体 L101045 写 vtable 0x56AD88 == asm/pal3/ida_structs.json 的 UIPushButton(248B, vtable 0x56AD88) ⇒ 类型 A 级；邻接：#81 核对表 L49-L54（248B×6）",
+      "evidence_level": "A"
+    },
+    "0x2705c": {
+      "name": "m_unk_0x2705c",
+      "type": "UIPushButton",
+      "source": "ctor sub_47E5C0 site 0x26B84..0x2705C 各调 sub_440740；sub_440740 体 L101045 写 vtable 0x56AD88 == asm/pal3/ida_structs.json 的 UIPushButton(248B, vtable 0x56AD88) ⇒ 类型 A 级；邻接：#81 核对表 L49-L54（248B×6）",
+      "evidence_level": "A"
+    },
+    "0x27154": {
+      "name": "m_lineupScratch",
+      "type": "unsigned char[2432]",
+      "source": "ctor sub_47E5C0 清零/构造点 + sub_47EC00 初始化｜核对表#55：L187249 `call sub_47EC00`；其体 L187470 `lea edi,[edx+2715Ch]` + L187473 `rep stosd`(ecx=6) + L187474 `mov ecx,258h` + L187475 `lea edi,[edx+27174h]` + L187476 `rep stosd`(2,400B)",
+      "evidence_level": "A"
+    },
+    "0x27ad4": {
+      "name": "m_lineupActionState",
+      "type": "unsigned char[256]",
+      "source": "ctor sub_47E5C0 清零/构造点 + sub_47EC00 初始化｜核对表#56：L187249 `call sub_47EC00`；其体 L187477–187497（`[27AD4h]`/`[27AD8h]`/`[27ADCh]`/`[27AE0h]`、`[27BBCh]/[27BBDh]`、`[27BC0h]=-1`、`[27BC4h]`、`27BA4h` 起 6 dword、`[27BC8h..27BCCh]`、`[27BD0h]`；副作用 `gbColorQuad::ColorQuadFmt=1` L187492）",
+      "evidence_level": "A"
     }
-   ]
-  }
- ],
- "base_size": 72,
- "bases": [
-  {
-   "name": "UIFrameWnd",
-   "offset": 0
-  }
- ],
- "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~LineupUI()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形2留",
- "binary_size_source": "ctor ??0LineupUI + push 0x27BD4 (EquipUI::Init [esi+0x2AFCC]) 编译器sizeof A级; 旧值171244=邻类(0x29CEC,首call Save@LineupUI误名) [2026-11-26 金表对账 probe_heap_alloc_census]"
+  },
+  "methods": {
+    "0x0047e910": {
+      "name": "~LineupUI",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "source": "| [ctor/dtor 错位改名 2026-10-16] 名 ctor 语义实为**真析构**：idapro decompile（session ddd274bb）callee 修饰名前缀 ??1/??3/??_G（dtor/operator delete/scalar deleting）无 ??0（ctor）⇒ A 级改名 _scalar_dtor_E910。refs: ?ReleaseResource@StateUI@@QAEHXZ ??1UIPushButton@@QAE@XZ ?Destroy2@UICaption@@QAEXXZ ?_UIF",
+      "evidence_level": "A",
+      "declaration_only": true,
+      "sig_model": {
+        "return": "void",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      },
+      "flags": [
+        "dtor"
+      ],
+      "flags_evidence": "IDA名字形态=_scalar_dtor_E910(??1/??_G析构族); decomp文件=LineupUI_scalar_dtor_E910void_0047e910 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+    },
+    "0x00470f40": {
+      "name": "~LineupUI",
+      "_misattrib_evidence": "max_offset=124248>class_size=1208",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "void",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      },
+      "flags": [
+        "dtor"
+      ],
+      "flags_evidence": "IDA名字形态=~LineupUI(??1/??_G析构族); decomp文件=LineupUI_~LineupUIvoid_00470f40 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+    },
+    "0x00477bb0": {
+      "name": "OnMessage_7bb0",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "int",
+            "name": "msg"
+          },
+          {
+            "type": "int",
+            "name": "wparam"
+          },
+          {
+            "type": "int",
+            "name": "lparam"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessage_7bb0): int(int,int,int,int); 原注解无"
+    },
+    "0x0047e5c0": {
+      "name": "LineupUI",
+      "source": "| [签名层正交治理 2026-10-16] A返回型占位：int __thiscall() ⇒ void __thiscall()（ctor 无返回型；emit_headers:2565 is_ctor 丢返回型=生成物零影响·假参除外）A级：分类refs ??0UIListBox/??0UIPushButton",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "void",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      },
+      "flags": [
+        "ctor"
+      ],
+      "flags_evidence": "IDA名字形态=LineupUI(??0构造); decomp文件=LineupUI_LineupUIvoid_0047e5c0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
+    },
+    "0x00473b50": {
+      "name": "InitItemList",
+      "_misattrib_evidence": "max_offset=121112>class_size=1208",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x00473520": {
+      "name": "Render3DModels",
+      "_misattrib_evidence": "max_offset=124260>class_size=1208",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x00474c50": {
+      "name": "UpdateAndForward",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "int",
+            "name": "nVal"
+          },
+          {
+            "type": "int",
+            "name": "nVal2"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateAndForward): int(int,int,int); 原注解无"
+    },
+    "0x00475fc0": {
+      "name": "RefreshDisplay",
+      "_misattrib_evidence": "max_offset=124248>class_size=1208",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x004765f0": {
+      "name": "SetItemDisplay",
+      "_misattrib_evidence": "max_offset=124076>class_size=1208",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x00476ed0": {
+      "name": "SetItemColors",
+      "_misattrib_evidence": "max_offset=124076>class_size=1208",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x0047e8f0": {
+      "name": "~LineupUI",
+      "type": "skip",
+      "reason": "compiler-generated ctor/dtor/thunk, not game logic",
+      "ordinal": 5,
+      "source": "| 签名缺参批量 2026-10-06：ret 4/4=1 参 vs 签名 0——补 1 参（int 占位·nVal 序号惯例） | 回滚 2026-10-06：方向混（渲染丢参族不该补签名——调用缺参侧） | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=LineupUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56B90C）",
+      "evidence_level": "A",
+      "declaration_only": true,
+      "sig_model": {
+        "return": "void",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "int",
+            "name": "nVal1"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "flags": [
+        "dtor",
+        "deleting"
+      ],
+      "flags_evidence": "IDA名字形态=_scalar_dtor_E8F0(??1/??_G析构族); decomp文件=LineupUI_scalar_dtor_E8F0int_0047e8f0 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。",
+      "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(_scalar_dtor_E8"
+    },
+    "0x0047f880": {
+      "name": "Render",
+      "ordinal": 1,
+      "evidence_level": "chain_unified",
+      "sig_model": {
+        "return": "void",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      },
+      "name_note": "C9级联正名20261116: slot1位+表归属CONFIRMED(ctor写表)+ABI与根槽一致(RET普查) → 链律名Render(基类同槽); 原名RenderEffects=体读数命名 | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+      "flags": [
+        "override"
+      ],
+      "override_of": "0x00445cd0",
+      "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)"
+    },
+    "0x00482bb0": {
+      "name": "ShowPage",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x00483650": {
+      "name": "CreatePreviewScene",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "void *",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "int",
+            "name": "nVal"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "sig_note": "2026-11-18 mangle硬真值全量定谳(CreatePreviewScene): int(void *,int); 原注解无"
+    },
+    "0x004b1920": {
+      "name": "UpdateProtectPanel",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int *",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "int",
+            "name": "nVal"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "sig_note": "2026-11-18 return粘cc剥离(N8双调用约定检测器显形)。2026-11-18 mangle硬真值全量定谳(UpdateProtectPanel): int("
+    },
+    "0x004b3da0": {
+      "name": "RebuildMainPage",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x00471590": {
+      "name": "InitListView",
+      "_misattrib_evidence": "max_offset=124256>class_size=1208",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x00472a80": {
+      "name": "SetPageIndex",
+      "_misattrib_evidence": "max_offset=124248>class_size=39240",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "int",
+            "name": "nPage"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "sig_note": "2026-11-18 mangle硬真值全量定谳(SetPageIndex): int(int,int); 原注解无"
+    },
+    "0x00472aa0": {
+      "name": "RefreshListData",
+      "_misattrib_evidence": "max_offset=121112>class_size=1208",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "void",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x004739f0": {
+      "name": "BuildEquipList",
+      "_misattrib_evidence": "max_offset=121112>class_size=39240",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x00474ab0": {
+      "name": "ProcessMouseInput",
+      "_misattrib_evidence": "max_offset=121864>class_size=10584",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "void",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "float",
+            "name": "fVal"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(ProcessMouseInp"
+    },
+    "0x00474c80": {
+      "name": "BuildListItems",
+      "_misattrib_evidence": "max_offset=124076>class_size=1208",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x00476010": {
+      "name": "PopulateList",
+      "_misattrib_evidence": "max_offset=124076>class_size=1208",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x004765d0": {
+      "name": "UpdateAllSlots",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x004777b0": {
+      "name": "RefreshDisplayEx",
+      "_misattrib_evidence": "max_offset=123740>class_size=1208",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x0047b0e0": {
+      "name": "CountVisibleItems",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "char",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "int",
+            "name": "nVal"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "sig_note": "2026-11-18 mangle硬真值全量定谳(CountVisibleItems): int(char,int); 原注解无"
+    },
+    "0x0047f970": {
+      "name": "Update",
+      "ordinal": 2,
+      "evidence_level": "chain_unified",
+      "sig_model": {
+        "return": "BOOL",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "int",
+            "name": null
+          },
+          {
+            "type": "int",
+            "name": null
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,fVal,a3)铁证; 原名CleanupAndForwardInput留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→BOOL __thiscall(int, int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→BOOL __thiscall(CCBUI **deltatime, int) | param0真值化20261121: CCBUI**=基链编造类型复制(0x445c60基体从不解引用param0), 改int",
+      "flags": [
+        "override"
+      ],
+      "override_of": "0x0043bbc0",
+      "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导",
+      "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
+    },
+    "0x00480600": {
+      "name": "OnMessage",
+      "ordinal": 6,
+      "source": "+canonical_rename",
+      "evidence_level": "chain_unified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "int",
+            "name": null
+          },
+          {
+            "type": "unsigned int",
+            "name": null
+          },
+          {
+            "type": "int",
+            "name": null
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "name_note": " | C9sig链统一20261117→int __thiscall(int, unsigned int, int): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+      "flags": [
+        "override"
+      ],
+      "override_of": "0x00445d10",
+      "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
+      "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessage): int(int,int,unsigned int,int); 原注解2026-11-18 mangle硬真值定谳(HHIH): int(int,un"
+    },
+    "0x004826a0": {
+      "name": "RebuildSystemPage",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x00484360": {
+      "name": "GetSlotRect",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [
+          {
+            "type": "int",
+            "name": "nVal"
+          },
+          {
+            "type": "unsigned int",
+            "name": "dwVal"
+          }
+        ],
+        "varargs": false,
+        "pending": false
+      },
+      "sig_note": "2026-11-18 mangle硬真值全量定谳(GetSlotRect): int(int,int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HHI): int(int,uns"
+    },
+    "0x00484810": {
+      "name": "RebuildNavPage",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x00491630": {
+      "name": "RebuildExitPage",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x004993d0": {
+      "name": "RebuildCaptionPage",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x004a26d0": {
+      "name": "RebuildFontPage",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "int",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    },
+    "0x00488de0": {
+      "name": "LoadRoleData",
+      "source": "pdb",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "void",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      },
+      "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。"
+    },
+    "0x00474990": {
+      "name": "GetUpdateFlag",
+      "source": "[函数归属判定 2026-10-17·主攻点 2] 迁入 LineupUI（①LineupUI::UpdateAndForward ✓ ③this[103789] ✓ ⑤更新状态查询 ✓——前批面证）——成员访问谱比对类布局 ✓ （禁止仅凭 signature this ✓ 本条为 decomp member access 证）",
+      "evidence_level": "unverified",
+      "sig_model": {
+        "return": "char",
+        "cc": "thiscall",
+        "params": [],
+        "varargs": false,
+        "pending": false
+      }
+    }
+  },
+  "vtables": [
+    {
+      "addr": "0x0056b90c",
+      "base": "UIWnd",
+      "slots": [
+        {
+          "addr": "0x00445e70"
+        },
+        {
+          "addr": "0x0047f880",
+          "name": "Render"
+        },
+        {
+          "addr": "0x0047f970",
+          "name": "Update"
+        },
+        {
+          "addr": "0x0043de40",
+          "name": "HideAll"
+        },
+        {
+          "addr": "0x00445b90"
+        },
+        {
+          "addr": "0x0047e8f0",
+          "name": "_scalar_dtor_E8F0"
+        },
+        {
+          "addr": "0x00480600",
+          "name": "OnMessage"
+        }
+      ]
+    }
+  ],
+  "base_size": 72,
+  "bases": [
+    {
+      "name": "UIListBox",
+      "offset": 0
+    }
+  ],
+  "note": "# R7-T5 落位（2026-11-27）\n按 #81 控件级核对表 56 行 + #42 oracle 三证 + #63 七条裁决重排：60 成员，span 闭合 0x48→0x27BD4。\nbases=UIListBox@0（#63 C2：ctor 首调 sub_43DCD0 写 off_56AD20 = UIListBox 表）。\n两池 m_btnPar/m_btnPar2 = UIParticle[128]（584B×128，基址 0x1258/0x13658），修正旧注解 112×584。\n尾块 m_lineupScratch(2432B)/m_lineupActionState(256B) 按 #42/#44（sub_47EC00 初始化，不被自有方法驱动）。\n九页签按资产串落位（lea ecx,[esi+Xh]+资产串 StpCtl\\*+call [edx+1Ch] 三元组），344B 元素类未登记（表 0x56AC70）故保 unsigned char[344]。\n旧名 pStateUI/m_CtrlPlank 是旧网格的绝对偏移锚（基 0x26730/0x23B3C），按真实布局重排后消失，不加占位成员。\n",
+  "binary_size_source": "ctor ??0LineupUI + push 0x27BD4 (EquipUI::Init [esi+0x2AFCC]) 编译器sizeof A级; 旧值171244=邻类(0x29CEC,首call Save@LineupUI误名) [2026-11-26 金表对账 probe_heap_alloc_census]",
+  "_methods_note": "0x00482ED0 原被标为 LineupUI::Save，按 #42 判据（ctor 写表 off_56BA30 第7槽/StateUI 表、LineupUI 自有表 off_56B90C/方法集不含它）确认实为 StateUI ctor（sub_482ED0），已自本类 methods 删除；StateUI.json 补条不在本卡写面（仅 structs/LineupUI.json），交后续归属卡。"
 }
