@@ -75,6 +75,7 @@
 - [**恢复多态基类的虚方法集合**](pattern_recover_polymorphic_base_virtual_methods.md) — 从二进制取证虚方法的完整方法链 + MSVC6 vtable 发射条件（定义本类虚函数才发射）+ ??_E/??_G 是同一函数
 - [**用 ctor 做二进制挂钩前先验本体**](pattern_verify_ctor_body_before_binary_hooks.md) — 注解里的"ctor"可能是静态初始化 thunk（实测 `0x51D6E0`）；真 ctor 的判据是 `mov [this], offset <自己的vtable>`；配方=vtable 归属 → 表的 DATA XREF → 写表者
 - [struct-hole-fill-campaign-20261126](struct_hole_fill_campaign_20261126.md) — R1-R3.5 结构洞填充战役的可复用方法：洞口径（4B 粒度扫注解尾到 binary_size，vptr/数组豁免）、三锚闭合（CCBCamControl 池区/EquipUI 尾区九数组/RoleStatePanel 40 员）、证据分级与 `m_unk_<offset>` 留白命名；含当前开放洞与 R4-R6 入口
+- [**chimera 类按对象身份拆**](pattern_chimera_class_split_by_object_identity.md) — 一个注解类装多个对象时，先查 vptr 存表、ctor 基类调用链、分配立即数/ctor 写界，至少两锚一致再拆；R4 `ScreenEffectMgr` 363,968/16 员实为 RingNode 363,968 + Mgr 152 + ScreenEffect 24，拆后 census 洞 76→64B、严格布局洞 96→84B，Mgr 4B；不按成员偏移猜
 
 ## Debugging
 
@@ -101,3 +102,9 @@
 - [互锁不变式让局部修复净亏](gotcha_interlocking_invariants_block_local_fixes.md) — vtable 解析里 owner 文本同时是 `_drop_self_arg` 的输入、又与 stub 签名约定耦合 ⇒ 只修"owner 前缀截断"两轮各净增 17 条 C2660（两层各测一次）；规则：改被别处当输入的字符串前先找全部消费者；局部净亏 ⇒ 回退并立为独立项目
 - [动手前先验证'病灶在哪一层'](gotcha_verify_the_layer_before_patching.md) — 跨层缺陷的病灶常在消费者侧；本会话 12 次假设驱动修补全部零效果，而每次只读验证（#include 链 + -I 顺序 + 临时 #error）都能一步定位；规则：先答'哪一层/消费者实际读哪个文件/报错还缺什么信息'再动手
 - [`does not take N parameters` 不含类型信息](gotcha_does_not_take_n_says_nothing_about_types.md) — 该报错只说实参数目 ⇒ 据此推断重载必然失败（本会话两次）；必须 grep 出调用点所在函数的签名取真实类型；多站点类型不一致 ⇒ 属发射侧统一
+- [R6 六项决策简报（#35 收口）](../audit/2026-11-26-r6-decision-brief.md) — 589 行；六项终态数字与 A/B 等级、矛盾、2–3 方案、影响与推荐，含 3 个 Human 拍板问题与 R4 边界；已验收，工作树未提交
+- [管线架构债执行路线图（#36）](../specs/2026-11-27-architecture-debt-roadmap.md) — 230 行；D1–D14 的 6 批执行计划（B1–B6）、写域/blockedBy/验收命令/风险回退；推荐先做 B2（注解直读 38→0 + lint）；已验收，工作树未提交
+- [R6 注解落地施工图（#37）](../specs/2026-11-27-r6-annotation-landing-plan.md) — ①UITitle_JDHY 290,488、③CCBStage 672,040、⑤CCBRoleState 20,568 的 before→after JSON 改动、验收门槛、风险回退与顺序；含 PMO 对 census 重算的裁定；已验收，工作树未提交
+- [R6 证据台账缺口（#38）](../audit/2026-11-27-r6-evidence-ledger-gap.md) — 255 行；六项 ev id 现状：①已有 ev_0013/ev_0014，②–⑥ 缺；含补登记指针、P0/P1/P2 分级与 add 草案；已验收，工作树未提交
+- [R4 fade 落地施工图（#39）](../specs/2026-11-27-r4-screenfade-landing-plan.md) — 四个 fade 类各多 4B 的根因（PalScriptWaitObj 非多态致 vfptr 抢 offset 0）与 1+1 JSON 改动；模型探针 Mgr 152；三槽命名、Role PSWO 两处阻断；已验收，工作树未提交
+- [R6 六项证据台账补登记（#40）](../../data/status/evidence_ledger.json) — 2026-11-27 按 #38 新增 ev_0016–ev_0021 六条（全 open，A16/B5），①沿用 ev_0013/14；条目详情见台账，不在索引复制；已验收，工作树未提交
