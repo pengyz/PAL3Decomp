@@ -2,8 +2,8 @@
  "_meta": {
   "rule": "v3 对齐感知+四修：成员间/尾部 pad（VC6 char1/short2/其余4/double8）扣除后仅溢出计洞；尾部对齐含 bases；Win32 定尺寸拼写表；未知类型 offset 闭合兜底（unresolved 记账）；多态确证类 vptr 槽 [0,4) 豁免；无名字豁免；overlay 孪生单列",
   "classes_with_holes": 196,
-  "total_hole_bytes": 205775,
-  "total_holes": 910,
+  "total_hole_bytes": 203915,
+  "total_holes": 894,
   "unresolved_type_members": 6,
   "vptr_exempt_classes": 56,
   "overlay_twin_bytes": 919151,
@@ -1633,117 +1633,6 @@
    "total_holes": 1
   },
   {
-   "cls": "UICoverFrm",
-   "size": 14952,
-   "members": 51,
-   "bases": 1,
-   "holes": [
-    [
-     "0x1f0",
-     "0x1f8",
-     8
-    ],
-    [
-     "0x1150",
-     "0x11c8",
-     120
-    ],
-    [
-     "0x15c4",
-     "0x1600",
-     60
-    ],
-    [
-     "0x19fc",
-     "0x1a38",
-     60
-    ],
-    [
-     "0x2164",
-     "0x21d0",
-     108
-    ],
-    [
-     "0x2268",
-     "0x2270",
-     8
-    ],
-    [
-     "0x2308",
-     "0x2310",
-     8
-    ],
-    [
-     "0x23a8",
-     "0x23b0",
-     8
-    ],
-    [
-     "0x2448",
-     "0x2450",
-     8
-    ],
-    [
-     "0x2518",
-     "0x2520",
-     8
-    ],
-    [
-     "0x25e0",
-     "0x25e8",
-     8
-    ],
-    [
-     "0x300c",
-     "0x3290",
-     644
-    ],
-    [
-     "0x3298",
-     "0x3299",
-     1
-    ],
-    [
-     "0x32a1",
-     "0x3648",
-     935
-    ],
-    [
-     "0x3650",
-     "0x36e8",
-     152
-    ],
-    [
-     "0x36f0",
-     "0x36f4",
-     4
-    ],
-    [
-     "0x3744",
-     "0x3798",
-     84
-    ],
-    [
-     "0x379c",
-     "0x38d0",
-     308
-    ],
-    [
-     "0x38d4",
-     "0x3908",
-     52
-    ],
-    [
-     "0x390c",
-     "0x3a68",
-     348
-    ]
-   ],
-   "hole_bytes": 2932,
-   "total_holes": 20,
-   "vptr_slot_exempt": true
-  },
-  {
    "cls": "StateUI",
    "size": 162000,
    "members": 66,
@@ -2655,6 +2544,37 @@
    ],
    "hole_bytes": 1208,
    "total_holes": 2
+  },
+  {
+   "cls": "UICoverFrm",
+   "size": 12956,
+   "members": 12,
+   "bases": 1,
+   "holes": [
+    [
+     "0x48",
+     "0x46c",
+     1060
+    ],
+    [
+     "0x484",
+     "0x488",
+     4
+    ],
+    [
+     "0x5d4",
+     "0x5d8",
+     4
+    ],
+    [
+     "0x27dc",
+     "0x27e0",
+     4
+    ]
+   ],
+   "hole_bytes": 1072,
+   "total_holes": 4,
+   "vptr_slot_exempt": true
   },
   {
    "cls": "tagCombatTimerState",

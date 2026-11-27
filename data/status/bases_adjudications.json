@@ -236,5 +236,14 @@
   "ctor_evidence": "ctor sub_44AB90 首调 sub_445AA0(UIWnd ctor)@asm:116307，体写表 off_56AEC8@asm:110231；UIFrameWnd 的 ctor sub_43BB70 在本类 0 调用、[esi+44h] 0 写",
   "dtor_evidence": "dtor 经 UIFrameWnd/UIWnd 链（#143 §6.2，#144/#148 独立复核一致）",
   "verdict_by": "青岚(#145 落位) + 知微#148 独立取证一致"
+ },
+ "UICoverFrm": {
+  "bases": [
+   "UIListBox"
+  ],
+  "date": "2026-11-27",
+  "ctor_evidence": "ctor sub_52BA10 首调 sub_43DCD0(UIListBox ctor，体内写 off_56AD20)@asm:450731；从未调用 sub_43BB70(UIFrameWnd ctor，写 off_56ACB8+[44]=0)。基构造直调地址链：sub_52BA10→sub_43DCD0→sub_445AA0。",
+  "dtor_evidence": "vtable 第一表 0x570830 登记于注解；dtor 待另卡裁（本卡只改 bases）",
+  "verdict_by": "青岚 R8-T6 #156；依 #155 oracle §8-2（docs/audit/2026-11-27-r8-batch1-oracle-6.md）+ 本卡 asm 复核"
  }
 }

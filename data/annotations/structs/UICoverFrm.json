@@ -1,339 +1,78 @@
 {
  "name": "UICoverFrm",
- "binary_size": 14952,
+ "binary_size": 12956,
  "known_members": {
-  "0x48": {
-   "name": "rc",
-   "type": "tagRECT",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
+  "0x46c": {
+   "name": "m_layoutParams",
+   "type": "int[6]",
+   "source": "ctor sub_52BA10 asm:450740 一簇写 46Ch/470h/474h/478h/47Ch/480h/484h/485h/487h",
+   "evidence_level": "A"
   },
-  "0x58": {
-   "name": "buf",
-   "type": "char[256]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x488": {
+   "name": "m_frameA",
+   "type": "UIFrameContainer",
+   "source": "ctor L450751 call sub_4422E0（表 0x56ADD0，152B）；跨度 0x488–0x520",
+   "evidence_level": "A-"
   },
-  "0x158": {
-   "name": "m_background",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x520": {
+   "name": "m_unk_0x520",
+   "type": "unsigned char[180]",
+   "source": "ctor L450754 call sub_442E10（写表 0x56AE10）；类未注册，按不透明控件 180B",
+   "evidence_level": "B"
   },
-  "0x1f8": {
-   "name": "m_Star",
-   "type": "UIPar_Star[13]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x5d8": {
+   "name": "m_frames",
+   "type": "UIFrameContainer[4]",
+   "source": "ctor L450758 ??_L(0x5D8,0x98,4)",
+   "evidence_level": "A-"
   },
-  "0x844": {
-   "name": "m_Meteor",
-   "type": "UIPar_Meteor",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x838": {
+   "name": "m_invalidIdx",
+   "type": "int[4]",
+   "source": "ctor L450789 写 [838h..847h]=-1",
+   "evidence_level": "A"
   },
-  "0x958": {
-   "name": "m_cloud",
-   "type": "_CLOUD[10]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x848": {
+   "name": "m_frameB",
+   "type": "UIFrameContainer",
+   "source": "ctor L450751 call sub_4422E0；跨度 0x848–0x8E0",
+   "evidence_level": "A-"
   },
-  "0x11c8": {
-   "name": "m_midCloud",
-   "type": "_CLOUD[5]",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
+  "0x8e0": {
+   "name": "m_frameC",
+   "type": "UIFrameContainer",
+   "source": "ctor L450751 call sub_4422E0；跨度 0x8E0–0x978",
+   "evidence_level": "A-"
   },
-  "0x1600": {
-   "name": "m_smlCloud",
-   "type": "_CLOUD[5]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x978": {
+   "name": "m_cloudElements",
+   "type": "unsigned char[7760]",
+   "source": "ctor L450772 ??_L(0x978,0x610,5)；元素 ctor sub_52BBD0（7×152B + 2×244B = 1552B），元素类未注册",
+   "evidence_level": "B"
   },
-  "0x1a38": {
-   "name": "m_testCloud",
-   "type": "_CLOUD[9]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x27c8": {
+   "name": "m_stateBlock",
+   "type": "int[5]",
+   "source": "ctor L450797 写 27C8h/27CCh/27D0h/27D4h/27D8h/27DEh",
+   "evidence_level": "A"
   },
-  "0x21d0": {
-   "name": "m_mountainA",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
+  "0x27e0": {
+   "name": "m_dialogA",
+   "type": "UIRoleDialog",
+   "source": "ctor L450777 call sub_4A12F0（1,368B）",
+   "evidence_level": "A-"
   },
-  "0x2270": {
-   "name": "m_mountainB",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2310": {
-   "name": "m_frame",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x23b0": {
-   "name": "m_Logo",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2450": {
-   "name": "m_isAlpha",
-   "type": "unsigned char",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2454": {
-   "name": "m_alpha",
-   "type": "float",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2458": {
-   "name": "m_tjA",
-   "type": "UIStaticEXA",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2520": {
-   "name": "m_tjB",
-   "type": "UIStaticEXA",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x25e8": {
-   "name": "m_XDGS",
-   "type": "UIButtonEX",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2770": {
-   "name": "m_QCYM",
-   "type": "UIButtonEX",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x28f8": {
-   "name": "m_XJTM",
-   "type": "UIButtonEX",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2a80": {
-   "name": "m_LKYX",
-   "type": "UIButtonEX",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2c08": {
-   "name": "m_YXXX",
-   "type": "UIButtonEX",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x2d90": {
-   "name": "m_JDHY",
-   "type": "UIButtonEX",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2f18": {
-   "name": "m_CtrlBtn",
-   "type": "UIButtonEX *[6]",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2f30": {
-   "name": "m_SelBtn",
-   "type": "int",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2f34": {
-   "name": "m_ExitGame",
-   "type": "unsigned char",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2f38": {
-   "name": "pQCYM",
-   "type": "UITitle_QCYM *",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2f3c": {
-   "name": "pJDHY",
-   "type": "UITitle_JDHY *",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2f40": {
-   "name": "pYXXX",
-   "type": "UITitle_YXXX *",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2f44": {
-   "name": "pXJTM",
-   "type": "UITitle_XJTM *",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2f48": {
-   "name": "pArcSave",
-   "type": "UITitle_ArcSave *",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2f4c": {
-   "name": "pLoadingFrm",
-   "type": "UILoadingFrm *",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2f50": {
-   "name": "m_MenuType",
-   "type": "MENU_TYPE",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2f54": {
-   "name": "m_timeAverage",
-   "type": "Average",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2f6c": {
-   "name": "m_gotogame",
-   "type": "unsigned char",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2f70": {
-   "name": "m_flag",
-   "type": "unsigned int",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
-  },
-  "0x2f74": {
-   "name": "m_test",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: UICoverFrm 子对象基座锚/写入通道候选(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access"
+  "0x2d38": {
+   "name": "m_dialogB",
+   "type": "UIRoleDialog",
+   "source": "ctor L450786 call sub_4A12F0（1,368B）",
+   "evidence_level": "A-"
   },
   "0x3290": {
-   "name": "m_bLogoDone",
-   "type": "unsigned char",
-   "source": "正名20261120(R5第四批): Update: LOBYTE 门控+置1——Logo 阶段完成标志 | 原 m_nTodo_3290",
-   "evidence_level": "unverified"
-  },
-  "0x3294": {
-   "name": "m_hCoverEffect",
-   "type": "int",
-   "source": "正名20261120(R5第四批): Render/OnMessage: ScreenEffectMgr::ProcessEffect(2) 返回句柄 | 原 m_nTodo_3294",
-   "evidence_level": "unverified"
-  },
-  "0x3299": {
-   "name": "m_bAnimFlags",
-   "type": "unsigned char[8]",
-   "source": "正名20261120(R5第四批): ctor [0]=1 + AnimateElements LOBYTE 读——元素动画标志组 | 原 m_nTodo_3299",
-   "evidence_level": "unverified"
-  },
-  "0x3648": {
-   "name": "m_bCoverTexSet",
-   "type": "unsigned char",
-   "source": "正名20261120(R5第四批): SetCoverTexture 置 1 | 原 m_nTodo_3648",
-   "evidence_level": "unverified"
-  },
-  "0x364c": {
-   "name": "m_pCoverTex",
-   "type": "int",
-   "source": "正名20261120(R5第四批): SetCoverTexture: nTexPtr 直存 | 原 m_nTodo_364C",
-   "evidence_level": "unverified"
-  },
-  "0x36e8": {
-   "name": "m_nCoverRectArg",
-   "type": "int",
-   "source": "正名20261120(R5第四批): UpdateAnimation/SetDefaultValues: UIWnd::SetRect(&m_nTodo_3700, &this->m_nTodo_36E8) 源 rect | 原 m_nTodo_36E8 | type回退int 20261120: tagRECT 16B>窗口4B(0x36ec=m_nCoverInitX 紧邻)——SetRect 传参基座陷阱, 0x36e8-0x36eb 实为 4B 参数槽",
-   "evidence_level": "unverified"
-  },
-  "0x36ec": {
-   "name": "m_nCoverInitX",
-   "type": "int",
-   "source": "正名20261120(R5第四批): SetDefaultValues 518 初始 X | 原 m_nTodo_36EC",
-   "evidence_level": "unverified"
-  },
-  "0x36f4": {
-   "name": "m_nCoverTargetX",
-   "type": "int",
-   "source": "正名20261120(R5第四批): SetDefaultValues 1542 + UpdateAnimation +1024 步进到 >36 终判——目标 X | 原 m_nTodo_36F4",
-   "evidence_level": "unverified"
-  },
-  "0x36f8": {
-   "name": "m_fCoverStep",
-   "type": "float",
-   "source": "正名20261120(R5第四批): SetDefaultValues 1102409892=1.6f; Update: cur - fVal*step | 原 m_nTodo_36F8",
-   "evidence_level": "unverified"
-  },
-  "0x36fc": {
-   "name": "m_fCoverCurX",
-   "type": "float",
-   "source": "正名20261120(R5第四批): Update: 自减主变量 | 原 m_nTodo_36FC",
-   "evidence_level": "unverified"
-  },
-  "0x3700": {
-   "name": "m_CoverWnd",
-   "type": "UIWnd",
-   "source": "正名20261120(R5第四批): UpdateAnimation: vtable 调用(&m_nTodo_3700)+SetRect(this)——内嵌 UIWnd 子对象(A级: vtable 直调) | 原 m_nTodo_3700",
-   "evidence_level": "unverified"
-  },
-  "0x3798": {
-   "name": "m_bCoverAnimDone",
-   "type": "unsigned char",
-   "source": "正名20261120(R5第四批): SetDefaultValues 1/UpdateAnimation 0 | 原 m_nTodo_3798",
-   "evidence_level": "unverified"
-  },
-  "0x38d0": {
-   "name": "m_ActiveSlotBase",
-   "type": "int",
-   "source": "正名20261120(R5第四批): FindActiveSlot: &m_nTodo_38D0 + 568*v1——槽阵列基址 | 原 m_nTodo_38D0",
-   "evidence_level": "unverified"
-  },
-  "0x3908": {
-   "name": "m_ActiveSlotFlags",
-   "type": "int",
-   "source": "正名20261120(R5第四批): FindActiveSlot: for(*i; i+=568)——槽标志首元素(同 stride 互证) | 原 m_nTodo_3908",
-   "evidence_level": "unverified"
+   "name": "m_logoState",
+   "type": "unsigned char[12]",
+   "source": "ctor L450801 [3299h]=1；12B 状态块，跨度 0x3290–0x329C",
+   "evidence_level": "A"
   }
  },
  "methods": {
@@ -757,10 +496,10 @@
    "source": "[4 表裁决落地 2026-10-16] ✅ UICoverFrm **域子对象表**（A 级：deleting ?_scalar_dtor_79d0@UICoverFrm@@ 修饰名 + ctor 嵌 UIRoleDialog 子对象）——自 UIListBox 误挂迁入；⚠️ 派生 UIListBox 注记**待考**（不预设）"
   }
  ],
- "base_size": 72,
+ "base_size": 68,
  "bases": [
   {
-   "name": "UIFrameWnd",
+   "name": "UIListBox",
    "offset": 0
   }
  ],
@@ -772,5 +511,7 @@
    "address": "0x0052ba10",
    "source": "manual:N13b 消解 20261122——语料限定引用 UICoverFrm, 注解 methods 直通依赖显式化为 known_methods 记录"
   }
- }
+ },
+ "size_evidence": "[R8-T6 2026-11-27] 真尺寸 12,956B(0x329C)：asm:450474 push 329Ch 全库唯一 → 450477 call ??2 → 450482 call sub_52BA10(ctor)；ctor 17 构造段 Σ=12,952 + 尾隙 4B = 12,956；写界 asm:450801 [esi+3299h]=1。旧注解 14,952 多出 1,996B 全部越界，已裁。",
+ "bases_note": "[R8-T6 2026-11-27] 基类实测 UIListBox@0：ctor 首调 sub_43DCD0（写 off_56AD20），从未调用 sub_43BB70(UIFrameWnd ctor)；按 UIListBox 已用 68B + 0x44–0x48 4B 尾隙取 base_size=68。"
 }
