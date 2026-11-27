@@ -1,6 +1,6 @@
 {
  "name": "SwordUI",
- "binary_size": 388952,
+ "binary_size": 402824,
  "known_members": {
   "0x48": {
    "name": "m_PurgeNum",
@@ -54,9 +54,15 @@
   },
   "0x16c": {
    "name": "m_ljsNumber",
-   "type": "UIStatic",
-   "source": "annotation",
+   "type": "UIFrameContainer",
+   "source": "annotation | [R7-T3 2026-11-27] ctor sub_4A6F10 #2 段：lea + call sub_4422E0（写表 0x56ADD0）⇒ 152B UIFrameContainer（原 UIStatic 同名改型） | [R7-T3 2026-11-27] ctor sub_4A6F10 #2 段：lea + call sub_4422E0（写表 0x56ADD0）⇒ 152B UIFrameContainer（原 UIStatic 同名改型） | [R7-T3 2026-11-27] ctor sub_4A6F10 #2 段：lea + call sub_4422E0（写表 0x56ADD0）⇒ 152B UIFrameContainer（原 UIStatic 同名改型） | [R7-T3 2026-11-27] ctor sub_4A6F10 #2 段：lea + call sub_4422E0（写表 0x56ADD0）⇒ 152B UIFrameContainer（原 UIStatic 同名改型） | [R7-T3 2026-11-27] ctor sub_4A6F10 #2 段：lea + call sub_4422E0（写表 0x56ADD0）⇒ 152B UIFrameContainer（原 UIStatic 同名改型） | [R7-T3 2026-11-27] ctor sub_4A6F10 #2 段：lea + call sub_4422E0（写表 0x56ADD0）⇒ 152B UIFrameContainer（原 UIStatic 同名改型）",
    "evidence_level": "unverified"
+  },
+  "0x204": {
+   "name": "m_unk_0x204",
+   "type": "int[2]",
+   "evidence_level": "A-",
+   "source": "ctor sub_4A6F10 @asm245123/245124 清 0；RenderSword 读 [esi+204h]/[esi+208h]（@asm249735/249681/249734）⇒ 有读写但语义未证，按 int[2] 落位（#69 §4.1）"
   },
   "0x20c": {
    "name": "m_purgeEquipNum",
@@ -95,54 +101,34 @@
    "evidence_level": "unverified"
   },
   "0x224": {
-   "name": "m_adornNum",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x228": {
-   "name": "m_defNum",
-   "type": "int",
-   "source": "annotation | 零访问分型20261120: head_template 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "head_template"
-  },
-  "0x22c": {
    "name": "m_WSkill",
    "type": "FightSkill[28]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "A",
+   "source": "ctor 循环 base=0x224 count=0x1C(28) stride=0x2F8（asm244772-244790）；Render 按 id@0x224+760i/name@0x240+760i 取（asm249656-249663）；FightSkill: id@0/type@4/att@8/name@0x1c"
   },
-  "0x554c": {
+  "0x5544": {
    "name": "m_wskillNum",
    "type": "int",
-   "source": "annotation | 零访问分型20261120: head_template 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "head_template"
+   "evidence_level": "A",
+   "source": "Render 读 0x5544 计数（asm249608）；28*760=0x5320 ⇒ 0x224+0x5320=0x5544"
+  },
+  "0x5548": {
+   "name": "m_unk_0x5548",
+   "type": "unsigned char[8]",
+   "evidence_level": "C",
+   "source": "0x5548-0x5550 无写点（洞面诚实保留）"
   },
   "0x5550": {
    "name": "m_IsMsg",
    "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "A",
+   "source": "ctor asm244803 写 0x5550"
   },
-  "0x5554": {
-   "name": "m_CtrlRole",
-   "type": "int",
-   "source": "annotation | 零访问分型20261120: head_template 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "head_template"
-  },
-  "0x5558": {
-   "name": "m_IsActive",
-   "type": "unsigned char",
-   "source": "annotation | 零访问分型20261120: head_template 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "head_template"
+  "0x5551": {
+   "name": "m_unk_0x5551",
+   "type": "unsigned char[3]",
+   "evidence_level": "A",
+   "source": "ctor asm244806-244808 写 0x5551/2/3；Render 读 0x5553（asm0x4AB1CE）"
   },
   "0x5559": {
    "name": "m_IsCreateable",
@@ -168,28 +154,6 @@
    "access_spectrum": "zero_access",
    "belongs_to": "head_template"
   },
-  "0x555c": {
-   "name": "m_SelNum",
-   "type": "int",
-   "source": "annotation | 零访问分型20261120: head_template 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "head_template"
-  },
-  "0x5560": {
-   "name": "m_CurPage",
-   "type": "int",
-   "source": "annotation | 零访问分型20261120: head_template 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "head_template"
-  },
-  "0x5564": {
-   "name": "m_angle",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
   "0x5568": {
    "name": "rot",
    "type": "float",
@@ -209,796 +173,484 @@
    "evidence_level": "unverified"
   },
   "0x5ba0": {
-   "name": "GuVal",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x5ba4": {
-   "name": "pStateUI",
-   "type": "StateUI *",
-   "source": "annotation | 零访问分型20261120: stp_panels 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "stp_panels"
-  },
-  "0x5ba8": {
    "name": "m_FrameLine",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: stp_panels 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "stp_panels"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 1/5 元素；元素名沿用 PDB 顺序（UIStatic→容器类型按 ctor 改正）"
   },
-  "0x5c48": {
+  "0x5c38": {
    "name": "m_TimeMoney",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: stp_panels 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "stp_panels"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 2/5 元素；元素名沿用 PDB 顺序（UIStatic→容器类型按 ctor 改正）"
   },
-  "0x5ce8": {
+  "0x5cd0": {
    "name": "stp_BarL",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: stp_panels 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "stp_panels"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 3/5 元素；元素名沿用 PDB 顺序（UIStatic→容器类型按 ctor 改正）"
   },
-  "0x5d88": {
+  "0x5d68": {
    "name": "stp_BarM",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: stp_panels 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "stp_panels"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 4/5 元素；元素名沿用 PDB 顺序（UIStatic→容器类型按 ctor 改正）"
   },
-  "0x5e28": {
+  "0x5e00": {
    "name": "stp_BarR",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: stp_panels 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "stp_panels"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 5/5 元素；元素名沿用 PDB 顺序（UIStatic→容器类型按 ctor 改正）"
   },
-  "0x5ec8": {
+  "0x5e98": {
    "name": "stp_State",
-   "type": "UIButton",
-   "source": "annotation | 零访问分型20261120: stp_panels 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "stp_panels"
+   "type": "unsigned char[344]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 344B 元素（元素 ctor sub_43A770，写表 0x56AC70 @asm91334 + rep stosd @91336）；该表族类名未登记（#69 §8.4 挂账），按 344B 几何忠实落位，不发明类名；第 1/9 元素；元素名沿用 PDB 顺序"
   },
-  "0x6020": {
+  "0x5ff0": {
    "name": "stp_Magic",
-   "type": "UIButton",
-   "source": "annotation | 零访问分型20261120: stp_panels 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "stp_panels"
+   "type": "unsigned char[344]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 344B 元素（元素 ctor sub_43A770，写表 0x56AC70 @asm91334 + rep stosd @91336）；该表族类名未登记（#69 §8.4 挂账），按 344B 几何忠实落位，不发明类名；第 2/9 元素；元素名沿用 PDB 顺序"
   },
-  "0x6178": {
+  "0x6148": {
    "name": "stp_Equip",
-   "type": "UIButton",
-   "source": "annotation | 零访问分型20261120: stp_panels 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "stp_panels"
+   "type": "unsigned char[344]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 344B 元素（元素 ctor sub_43A770，写表 0x56AC70 @asm91334 + rep stosd @91336）；该表族类名未登记（#69 §8.4 挂账），按 344B 几何忠实落位，不发明类名；第 3/9 元素；元素名沿用 PDB 顺序"
   },
-  "0x62d0": {
+  "0x62a0": {
    "name": "stp_Prop",
-   "type": "UIButton",
-   "source": "annotation | 零访问分型20261120: stp_panels 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "stp_panels"
+   "type": "unsigned char[344]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 344B 元素（元素 ctor sub_43A770，写表 0x56AC70 @asm91334 + rep stosd @91336）；该表族类名未登记（#69 §8.4 挂账），按 344B 几何忠实落位，不发明类名；第 4/9 元素；元素名沿用 PDB 顺序"
   },
-  "0x6428": {
+  "0x63f8": {
    "name": "stp_BattleArray",
-   "type": "UIButton",
-   "source": "annotation | 零访问分型20261120: stp_panels 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "stp_panels"
+   "type": "unsigned char[344]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 344B 元素（元素 ctor sub_43A770，写表 0x56AC70 @asm91334 + rep stosd @91336）；该表族类名未登记（#69 §8.4 挂账），按 344B 几何忠实落位，不发明类名；第 5/9 元素；元素名沿用 PDB 顺序"
   },
-  "0x6580": {
+  "0x6550": {
    "name": "stp_System",
-   "type": "UIButton",
-   "source": "annotation | 零访问分型20261120: stp_panels 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "stp_panels"
+   "type": "unsigned char[344]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 344B 元素（元素 ctor sub_43A770，写表 0x56AC70 @asm91334 + rep stosd @91336）；该表族类名未登记（#69 §8.4 挂账），按 344B 几何忠实落位，不发明类名；第 6/9 元素；元素名沿用 PDB 顺序"
   },
-  "0x66d8": {
+  "0x66a8": {
    "name": "stp_Exit",
-   "type": "UIButton",
-   "source": "annotation | 零访问分型20261120: stp_panels 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "stp_panels"
+   "type": "unsigned char[344]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 344B 元素（元素 ctor sub_43A770，写表 0x56AC70 @asm91334 + rep stosd @91336）；该表族类名未登记（#69 §8.4 挂账），按 344B 几何忠实落位，不发明类名；第 7/9 元素；元素名沿用 PDB 顺序"
   },
-  "0x6830": {
+  "0x6800": {
+   "name": "m_unk_0x6800",
+   "type": "unsigned char[344]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 344B 元素（元素 ctor sub_43A770，写表 0x56AC70 @asm91334 + rep stosd @91336）；该表族类名未登记（#69 §8.4 挂账），按 344B 几何忠实落位，不发明类名；第 8/9 元素"
+  },
+  "0x6958": {
+   "name": "m_unk_0x6958",
+   "type": "unsigned char[344]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 344B 元素（元素 ctor sub_43A770，写表 0x56AC70 @asm91334 + rep stosd @91336）；该表族类名未登记（#69 §8.4 挂账），按 344B 几何忠实落位，不发明类名；第 9/9 元素"
+  },
+  "0x6ab0": {
    "name": "stp_Effect",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: stp_panels 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "stp_panels"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；ctor @asm244851；PDB 名 stp_Effect"
   },
-  "0x68d0": {
-   "name": "stp_Rect",
+  "0x6b48": {
+   "name": "m_EffectRc",
    "type": "tagRECT",
-   "source": "annotation | 零访问分型20261120: stp_panels 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "stp_panels"
+   "evidence_level": "B",
+   "source": "sub_4A7C40 写 [esi+6B48h] 四字段 0x26/0x222/0x94/0x254（asm245246-245253）；两个容器在 0x6B58/0x6BF0 ⇒ 0x6B48 是 16B rect；PDB 名按 m_EffectRc 取（Render 读点同区）"
   },
-  "0x68e0": {
+  "0x6b58": {
    "name": "m_GameTime",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: stp_panels 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "stp_panels"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 1/2 元素；PDB 名；ctor lea [esi+6B58h]/[esi+6BF0h]（asm244858/244861）"
   },
-  "0x6980": {
+  "0x6bf0": {
    "name": "m_GameMoney",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: stp_panels 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "stp_panels"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 2/2 元素；PDB 名；ctor lea [esi+6B58h]/[esi+6BF0h]（asm244858/244861）"
   },
-  "0x6a20": {
+  "0x6c88": {
    "name": "m_btnPar",
-   "type": "UIParticle[16][7]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "type": "UIParticle[128]",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 调 ??_L 构造 UIParticle（元素 ctor sub_4B4690，写 +0x10..+0x4C）；#69 §2；ctor @asm244871；PDB 名 m_btnPar（旧注解按 [16][7]=112 记，实际构造 128 个，按 ctor 改正）"
   },
-  "0x16d20": {
+  "0x19088": {
    "name": "m_btnPar2",
-   "type": "UIParticle[16][7]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "type": "UIParticle[128]",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 调 ??_L 构造 UIParticle（元素 ctor sub_4B4690，写 +0x10..+0x4C）；#69 §2；ctor @asm244879；PDB 名 m_btnPar2（旧注解 [16][7]=112，实际 128）"
   },
-  "0x27020": {
-   "name": "m_btnParRc",
-   "type": "tagRECT[7]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x2b488": {
+   "name": "m_aSlotRects",
+   "type": "tagRECT[8]",
+   "evidence_level": "B",
+   "source": "sub_4A7C40 asm245266-245509 写 8×16B rect（值由 0x6B48 rect 计算）；8*16=128 ⇒ 止 0x2B508"
   },
-  "0x27090": {
-   "name": "_isParBtn",
-   "type": "unsigned char[7]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x2b508": {
+   "name": "m_aSlotFlags",
+   "type": "unsigned char[8]",
+   "evidence_level": "B",
+   "source": "OnMessage 以 index 0..6 下标写（asm251922-251934/252651）⇒ 8B 标志区"
   },
-  "0x27098": {
-   "name": "_curParEffect",
+  "0x2b510": {
+   "name": "m_nSlotIndex",
    "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "B",
+   "source": "OnMessage/Render 读写 0x2B510（类内槽位索引）"
   },
-  "0x2709c": {
+  "0x2b514": {
    "name": "Sword_Name",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 1/4 元素；元素名沿用 PDB 顺序"
   },
-  "0x2713c": {
+  "0x2b5ac": {
    "name": "Sword_Att",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 2/4 元素；元素名沿用 PDB 顺序"
   },
-  "0x271dc": {
+  "0x2b644": {
    "name": "m_Ljs",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 3/4 元素；元素名沿用 PDB 顺序"
   },
-  "0x2727c": {
+  "0x2b6dc": {
    "name": "m_WulingCtrl",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 4/4 元素；元素名沿用 PDB 顺序"
   },
-  "0x2731c": {
+  "0x2b774": {
    "name": "m_Sword",
    "type": "UI3DCtrl",
-   "source": "annotation | 零访问分型20261120: sword_display 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "sword_display"
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 调 UI3DCtrl(308) 元素 ctor；#69 §2 #9；第 1/2 元素"
   },
-  "0x27450": {
+  "0x2b8a8": {
    "name": "m_ljs3D",
    "type": "UI3DCtrl",
-   "source": "annotation | 零访问分型20261120: sword_display 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "sword_display"
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 调 UI3DCtrl(308) 元素 ctor；#69 §2 #9；第 2/2 元素"
   },
-  "0x27584": {
+  "0x2b9dc": {
    "name": "m_SwordFrame",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: sword_display 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "sword_display"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 1/3 元素；元素名沿用 PDB 顺序"
   },
-  "0x27624": {
+  "0x2ba74": {
    "name": "m_SwordRemarkBk",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 2/3 元素；元素名沿用 PDB 顺序"
   },
-  "0x276c4": {
+  "0x2bb0c": {
    "name": "m_SwordRemark",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 3/3 元素；元素名沿用 PDB 顺序"
   },
-  "0x27764": {
+  "0x2bba4": {
    "name": "m_Yjfx",
-   "type": "UIButton",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+   "type": "unsigned char[344]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 344B 元素（元素 ctor sub_43A770，写表 0x56AC70 @asm91334 + rep stosd @91336）；该表族类名未登记（#69 §8.4 挂账），按 344B 几何忠实落位，不发明类名；PDB 名 m_Yjfx"
   },
-  "0x278bc": {
-   "name": "m_RemarkRc",
-   "type": "tagRECT",
-   "source": "annotation | 零访问分型20261120: rect_layout 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "rect_layout"
-  },
-  "0x278cc": {
-   "name": "m_SwordRemarkRc",
-   "type": "tagRECT",
-   "source": "annotation | 零访问分型20261120: rect_layout 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "rect_layout"
-  },
-  "0x278dc": {
-   "name": "m_NoteSwordRemarkRc",
-   "type": "tagRECT",
-   "source": "annotation | 零访问分型20261120: rect_layout 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "rect_layout"
-  },
-  "0x278ec": {
-   "name": "m_SwordDstX",
-   "type": "unsigned short",
-   "source": "annotation | 零访问分型20261120: rect_layout 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "rect_layout"
-  },
-  "0x278ee": {
-   "name": "m_SwordNoteX",
-   "type": "unsigned short",
-   "source": "annotation | 零访问分型20261120: rect_layout 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "rect_layout"
-  },
-  "0x278f0": {
-   "name": "m_bSwordRemarkOut",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x278f4": {
+  "0x2bd34": {
    "name": "mb_Positive",
-   "type": "UIButton[5]",
-   "source": "annotation | 零访问分型20261120: positive_lunar 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "positive_lunar"
+   "type": "unsigned char[5][344]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 344B 元素（元素 ctor sub_43A770，写表 0x56AC70 @asm91334 + rep stosd @91336）；该表族类名未登记（#69 §8.4 挂账），按 344B 几何忠实落位，不发明类名；PDB 名 mb_Positive（原 UIButton[5]；元素表未登记，按几何落位）"
   },
-  "0x27fac": {
+  "0x2c3ec": {
    "name": "ms_Positive",
-   "type": "UIStatic[5]",
-   "source": "annotation | 零访问分型20261120: positive_lunar 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "positive_lunar"
+   "type": "UIFrameContainer[5]",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；ctor @asm244925；PDB 名 ms_Positive[5]"
   },
-  "0x282cc": {
+  "0x2c6e4": {
    "name": "mb_Lunar",
-   "type": "UIButton[5]",
-   "source": "annotation | 零访问分型20261120: positive_lunar 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "positive_lunar"
+   "type": "unsigned char[5][344]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 344B 元素（元素 ctor sub_43A770，写表 0x56AC70 @asm91334 + rep stosd @91336）；该表族类名未登记（#69 §8.4 挂账），按 344B 几何忠实落位，不发明类名；PDB 名 mb_Lunar[5]"
   },
-  "0x28984": {
+  "0x2cd9c": {
    "name": "ms_Lunar",
-   "type": "UIStatic[5]",
-   "source": "annotation | 零访问分型20261120: positive_lunar 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "positive_lunar"
+   "type": "UIFrameContainer[5]",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；ctor @asm244941；PDB 名 ms_Lunar[5]"
   },
-  "0x28ca4": {
+  "0x2d094": {
    "name": "ms_Perfect",
-   "type": "UIStatic[5]",
-   "source": "annotation | 零访问分型20261120: positive_lunar 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "positive_lunar"
+   "type": "UIFrameContainer[5]",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；ctor @asm244949；PDB 名 ms_Perfect[5]"
   },
-  "0x28fc4": {
-   "name": "m_CanCtrlBtn",
+  "0x2d38c": {
+   "name": "m_bPerfectMode",
    "type": "unsigned char",
-   "source": "annotation | 零访问分型20261120: positive_lunar 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "positive_lunar"
+   "evidence_level": "A",
+   "source": "ctor asm244952 mov byte [esi+2D38Ch],1；Render/OnMessage 读（asm252410/253350/253537）"
   },
-  "0x28fc8": {
+  "0x2d390": {
    "name": "mb_Test",
-   "type": "UIButton",
-   "source": "annotation | 零访问分型20261120: positive_lunar 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "positive_lunar"
+   "type": "unsigned char[344]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 344B 元素（元素 ctor sub_43A770，写表 0x56AC70 @asm91334 + rep stosd @91336）；该表族类名未登记（#69 §8.4 挂账），按 344B 几何忠实落位，不发明类名；PDB 名 mb_Test"
   },
-  "0x29120": {
+  "0x2d4e8": {
    "name": "m_parSword",
    "type": "UIParticle[168]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 调 ??_L 构造 UIParticle（元素 ctor sub_4B4690，写 +0x10..+0x4C）；#69 §2；ctor @asm244961；PDB 名 m_parSword[168]"
   },
-  "0x415a0": {
-   "name": "m_parSwordRc",
-   "type": "tagRECT",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x415b0": {
+  "0x45438": {
    "name": "m_parPurge",
    "type": "UIParticle[168]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 调 ??_L 构造 UIParticle（元素 ctor sub_4B4690，写 +0x10..+0x4C）；#69 §2；ctor @asm244969；PDB 名 m_parPurge[168]"
   },
-  "0x59a30": {
+  "0x5d378": {
    "name": "m_PositiveBtn",
-   "type": "UIButton",
-   "source": "annotation | 零访问分型20261120: positive_lunar 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "positive_lunar"
+   "type": "unsigned char[344]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 344B 元素（元素 ctor sub_43A770，写表 0x56AC70 @asm91334 + rep stosd @91336）；该表族类名未登记（#69 §8.4 挂账），按 344B 几何忠实落位，不发明类名；PDB 名 m_PositiveBtn"
   },
-  "0x59b88": {
+  "0x5d4d0": {
    "name": "m_LunarBtn",
-   "type": "UIButton",
-   "source": "annotation | 零访问分型20261120: positive_lunar 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "positive_lunar"
+   "type": "unsigned char[344]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 344B 元素（元素 ctor sub_43A770，写表 0x56AC70 @asm91334 + rep stosd @91336）；该表族类名未登记（#69 §8.4 挂账），按 344B 几何忠实落位，不发明类名；PDB 名 m_LunarBtn"
   },
-  "0x59ce0": {
-   "name": "Purge_rectA",
-   "type": "tagRECT[5]",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
-  },
-  "0x59d30": {
-   "name": "Purge_rectB",
-   "type": "tagRECT[5]",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
-  },
-  "0x59d80": {
-   "name": "dstRect",
-   "type": "tagRECT[5]",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
-  },
-  "0x59dd0": {
+  "0x5d718": {
    "name": "m_PurgeEffect",
-   "type": "PurgeEffect",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
+   "type": "unsigned char[556]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor @asm244978 调 sub_4A6730；体含 +4/+0xCC 两个 gbImage2D(200B each)、余 152B 未建模 ⇒ 类名与余量待证（#69 §8.3），按 556B 几何落位；PDB 名 m_PurgeEffect（旧注解 PurgeEffect 428B 与 ctor 不符）"
   },
-  "0x59f7c": {
-   "name": "m_effTime",
-   "type": "TimeCtl",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
-  },
-  "0x59f88": {
-   "name": "m_bSwordMotion",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x59f89": {
-   "name": "m_bSwordEff",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x59f8a": {
-   "name": "m_bSwordRot",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x59f8b": {
-   "name": "m_bEff",
-   "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x59f8c": {
-   "name": "m_curpar",
-   "type": "int",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
-  },
-  "0x59f90": {
-   "name": "m_swdTime",
-   "type": "TimeCtl",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
-  },
-  "0x59f9c": {
-   "name": "m_Orthosize",
-   "type": "int",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
-  },
-  "0x59fa0": {
-   "name": "m_FinalOrthosize",
-   "type": "int",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
-  },
-  "0x59fa4": {
-   "name": "m_PURGEINFO",
-   "type": "_PURGE_INFO[11]",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
-  },
-  "0x59ffc": {
+  "0x5d944": {
    "name": "m_SmallBar",
    "type": "UIFlexBar",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
+   "evidence_level": "B-",
+   "source": "SwordUI ctor sub_4A6F10 调 UIFlexBar(84) 元素 ctor sub_43D830（写表 0x56ACFC @asm96066）；类名按 84B 尺寸取已有 UIFlexBar，表归属仍有 UI3DCtrl 交叉线（#69 §8.5）；PDB 名 m_SmallBar（84B）"
   },
-  "0x5a050": {
+  "0x5d998": {
    "name": "m_BigBar",
    "type": "UIFlexBar",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
+   "evidence_level": "B-",
+   "source": "SwordUI ctor sub_4A6F10 调 UIFlexBar(84) 元素 ctor sub_43D830（写表 0x56ACFC @asm96066）；类名按 84B 尺寸取已有 UIFlexBar，表归属仍有 UI3DCtrl 交叉线（#69 §8.5）；PDB 名 m_BigBar（84B）"
   },
-  "0x5a0a4": {
+  "0x5d9ec": {
    "name": "m_Pushbtn",
-   "type": "UIButton[5]",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
+   "type": "unsigned char[5][344]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 344B 元素（元素 ctor sub_43A770，写表 0x56AC70 @asm91334 + rep stosd @91336）；该表族类名未登记（#69 §8.4 挂账），按 344B 几何忠实落位，不发明类名；PDB 名 m_Pushbtn[5]"
   },
-  "0x5a75c": {
+  "0x5e0a4": {
    "name": "m_equipFlag",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 1/2 元素；PDB 名"
   },
-  "0x5a7fc": {
+  "0x5e13c": {
    "name": "m_purgeFlag",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 2/2 元素；PDB 名"
   },
-  "0x5a89c": {
+  "0x5e1d4": {
    "name": "m_ListTitle",
    "type": "UIFlexBar",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+   "evidence_level": "B-",
+   "source": "SwordUI ctor sub_4A6F10 调 UIFlexBar(84) 元素 ctor sub_43D830（写表 0x56ACFC @asm96066）；类名按 84B 尺寸取已有 UIFlexBar，表归属仍有 UI3DCtrl 交叉线（#69 §8.5）；PDB 名 m_ListTitle（84B）"
   },
-  "0x5a8f0": {
+  "0x5e228": {
    "name": "m_EquipTitle",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 1/5 元素；PDB 名"
   },
-  "0x5a990": {
+  "0x5e2c0": {
    "name": "m_PurgeTitle",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 2/5 元素；PDB 名"
   },
-  "0x5aa30": {
+  "0x5e358": {
    "name": "m_ListTitlePurge",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 3/5 元素；PDB 名"
   },
-  "0x5aad0": {
+  "0x5e3f0": {
    "name": "m_ListFrame",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 4/5 元素；PDB 名"
   },
-  "0x5ab70": {
+  "0x5e488": {
    "name": "m_ListFramePurge",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 5/5 元素；PDB 名"
   },
-  "0x5ac10": {
+  "0x5e520": {
    "name": "m_ListGrid",
-   "type": "UIStatic[12]",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+   "type": "UIFrameContainer[12]",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；ctor @asm245030；PDB 名 m_ListGrid[12]（原 UIStatic[12]）"
   },
-  "0x5b390": {
+  "0x5ec40": {
    "name": "m_ListGridPurge",
-   "type": "UIStatic[12]",
-   "source": "annotation | 零访问分型20261120: purge_system 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "purge_system"
+   "type": "UIFrameContainer[12]",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；ctor @asm245038；PDB 名 m_ListGridPurge[12]"
   },
-  "0x5bb10": {
+  "0x5f360": {
    "name": "m_WeaponList",
-   "type": "UIListBox",
-   "source": "annotation | 零访问分型20261120: equip_lists 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "equip_lists"
+   "type": "unsigned char[1208]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 调 1208B 元素 ctor sub_43DFC0（写表 0x56AD40 @asm97036）；类名仍挂账 cls_43dfc0（#69 §8.6），按 1208B 几何忠实落位；ctor @asm245041；1208B 元素 1/6（注解旧 UIListBox 72B 与步长不符，按几何落位）"
   },
-  "0x5c018": {
+  "0x5f818": {
    "name": "m_ClothList",
-   "type": "UIListBox",
-   "source": "annotation | 零访问分型20261120: equip_lists 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "equip_lists"
+   "type": "unsigned char[1208]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 调 1208B 元素 ctor sub_43DFC0（写表 0x56AD40 @asm97036）；类名仍挂账 cls_43dfc0（#69 §8.6），按 1208B 几何忠实落位；ctor @asm245044；1208B 元素 2/6（注解旧 UIListBox 72B 与步长不符，按几何落位）"
   },
-  "0x5c520": {
+  "0x5fcd0": {
    "name": "m_HatList",
-   "type": "UIListBox",
-   "source": "annotation | 零访问分型20261120: equip_lists 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "equip_lists"
+   "type": "unsigned char[1208]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 调 1208B 元素 ctor sub_43DFC0（写表 0x56AD40 @asm97036）；类名仍挂账 cls_43dfc0（#69 §8.6），按 1208B 几何忠实落位；ctor @asm245047；1208B 元素 3/6（注解旧 UIListBox 72B 与步长不符，按几何落位）"
   },
-  "0x5ca28": {
+  "0x60188": {
    "name": "m_ShoesList",
-   "type": "UIListBox",
-   "source": "annotation | 零访问分型20261120: equip_lists 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "equip_lists"
+   "type": "unsigned char[1208]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 调 1208B 元素 ctor sub_43DFC0（写表 0x56AD40 @asm97036）；类名仍挂账 cls_43dfc0（#69 §8.6），按 1208B 几何忠实落位；ctor @asm245050；1208B 元素 4/6（注解旧 UIListBox 72B 与步长不符，按几何落位）"
   },
-  "0x5cf30": {
+  "0x60640": {
    "name": "m_AdornList",
-   "type": "UIListBox",
-   "source": "annotation | 零访问分型20261120: equip_lists 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "equip_lists"
+   "type": "unsigned char[1208]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 调 1208B 元素 ctor sub_43DFC0（写表 0x56AD40 @asm97036）；类名仍挂账 cls_43dfc0（#69 §8.6），按 1208B 几何忠实落位；ctor @asm245053；1208B 元素 5/6（注解旧 UIListBox 72B 与步长不符，按几何落位）"
   },
-  "0x5d438": {
+  "0x60af8": {
    "name": "m_StuffList",
-   "type": "UIListBox",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "type": "unsigned char[1208]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 调 1208B 元素 ctor sub_43DFC0（写表 0x56AD40 @asm97036）；类名仍挂账 cls_43dfc0（#69 §8.6），按 1208B 几何忠实落位；ctor @asm245056；1208B 元素 6/6（注解旧 UIListBox 72B 与步长不符，按几何落位）"
   },
-  "0x5d940": {
+  "0x60fb0": {
    "name": "m_StrRc",
    "type": "tagRECT",
-   "source": "annotation | 零访问分型20261120: rect_layout 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "rect_layout"
+   "evidence_level": "B",
+   "source": "ctor 段 32/33 之间 16B 对齐区；PDB 名 m_StrRc（tagRECT 16B）；无自身写点（#69 §4.2）"
   },
-  "0x5d950": {
+  "0x60fc0": {
    "name": "m_EquipStr",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 1/3 元素；PDB 名（原 UIStatic）"
   },
-  "0x5d9f0": {
+  "0x61058": {
    "name": "m_StuffStr",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 2/3 元素；PDB 名（原 UIStatic）"
   },
-  "0x5da90": {
+  "0x610f0": {
    "name": "m_GuVal",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；第 3/3 元素；PDB 名（原 UIStatic）"
   },
-  "0x5db30": {
+  "0x61188": {
    "name": "m_MsgRc",
    "type": "tagRECT",
-   "source": "annotation | 零访问分型20261120: rect_layout 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "rect_layout"
+   "evidence_level": "B",
+   "source": "ctor 段 33/34 之间 16B 对齐区；PDB 名 m_MsgRc（tagRECT）"
   },
-  "0x5db40": {
+  "0x61198": {
    "name": "m_PurgeMsg",
-   "type": "UIStatic",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+   "type": "UIFrameContainer",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 UIFrameContainer（元素 ctor sub_4422E0，写表 0x56ADD0 @asm104053）；#69 §2；PDB 名 m_PurgeMsg（原 UIStatic）"
   },
-  "0x5dbe0": {
+  "0x61230": {
    "name": "m_PurgeBottom",
    "type": "UIFlexBar",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "B-",
+   "source": "SwordUI ctor sub_4A6F10 调 UIFlexBar(84) 元素 ctor sub_43D830（写表 0x56ACFC @asm96066）；类名按 84B 尺寸取已有 UIFlexBar，表归属仍有 UI3DCtrl 交叉线（#69 §8.5）；PDB 名 m_PurgeBottom（84B）"
   },
-  "0x5dc34": {
+  "0x61284": {
    "name": "m_BtnRc",
    "type": "tagRECT",
-   "source": "annotation | 零访问分型20261120: rect_layout 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "rect_layout"
+   "evidence_level": "B",
+   "source": "ctor 段 35/36 之间 16B 对齐区；PDB 名 m_BtnRc（tagRECT）"
   },
-  "0x5dc44": {
-   "name": "m_OK",
-   "type": "UIButton",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+  "0x61294": {
+   "name": "m_aDlgButtons",
+   "type": "unsigned char[6][344]",
+   "evidence_level": "B",
+   "source": "SwordUI ctor sub_4A6F10 就地构造 344B 元素（元素 ctor sub_43A770，写表 0x56AC70 @asm91334 + rep stosd @91336）；该表族类名未登记（#69 §8.4 挂账），按 344B 几何忠实落位，不发明类名；ctor @asm245074..245089；按 PDB 顺序对应 m_OK/m_Cancel/m_SortEquipbyPrice/m_SortEquipbyGu/m_SortStuffbyPrice/m_SortStuffbyGu"
   },
-  "0x5dd9c": {
-   "name": "m_Cancel",
-   "type": "UIButton",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
-  },
-  "0x5def4": {
-   "name": "m_SortEquipbyPrice",
-   "type": "UIButton",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
-  },
-  "0x5e04c": {
-   "name": "m_SortEquipbyGu",
-   "type": "UIButton",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
-  },
-  "0x5e1a4": {
-   "name": "m_SortStuffbyPrice",
-   "type": "UIButton",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
-  },
-  "0x5e2fc": {
-   "name": "m_SortStuffbyGu",
-   "type": "UIButton",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
-  },
-  "0x5e454": {
-   "name": "m_SortState",
+  "0x61aa4": {
+   "name": "m_bDlgState",
    "type": "int",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+   "evidence_level": "A",
+   "source": "ctor asm245092；Render 六读（asm247436..248406）；OnMessage 写 0/1（asm254381/254391）"
   },
-  "0x5e458": {
-   "name": "m_ItemArray",
-   "type": "Inventory",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+  "0x61aa8": {
+   "name": "m_unk_0x61AA8",
+   "type": "unsigned char[40]",
+   "evidence_level": "C",
+   "source": "SwordUI ctor @asm245093 调 sub_40CC60（体内无写表）；40B 类候选多、无表可判 ⇒ 类名待证（#69 §8.2），按 40B 几何落位"
   },
-  "0x5e480": {
+  "0x61ad0": {
    "name": "m_Dlg",
-   "type": "MUIDialog",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+   "type": "UIRoleDialog",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 调 UIRoleDialog 元素 ctor sub_4A12F0（写表 0x56E190 @asm236336）；#69 §2 #38/#39；PDB 名 m_Dlg"
   },
-  "0x5e9e8": {
+  "0x62028": {
    "name": "m_Msg",
-   "type": "MUIDialog",
-   "source": "annotation | 零访问分型20261120: remark_list_frame 子对象基座锚(弱名访问-子对象判别定律)",
-   "evidence_level": "unverified",
-   "access_spectrum": "zero_access",
-   "belongs_to": "remark_list_frame"
+   "type": "UIRoleDialog",
+   "evidence_level": "A",
+   "source": "SwordUI ctor sub_4A6F10 调 UIRoleDialog 元素 ctor sub_4A12F0（写表 0x56E190 @asm236336）；#69 §2 #38/#39；PDB 名 m_Msg；Update 用 [+62028h+530h] 守卫（@asm252808–252813）"
   },
-  "0x5ef50": {
-   "name": "note_purgenum",
-   "type": "WuLing",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x62580": {
+   "name": "m_nTailState",
+   "type": "int",
+   "evidence_level": "A",
+   "source": "OnMessage 三写（asm253364/253649/253794）；属 m_Msg(0x62028+0x558) 之后的 4B；配合 0x62584 一字节 + 3B 对齐闭合到 0x62588"
   },
-  "0x5ef54": {
+  "0x62584": {
    "name": "m_bHasWeapon",
    "type": "unsigned char",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "evidence_level": "A",
+   "source": "OnMessage 写 [esi+62584h]（@asm253370/253375）；Render 读同址（@asm252407）⇒ 末 4B 有效（#69 §7.9）；PDB 名 m_bHasWeapon"
+  },
+  "0x62585": {
+   "name": "m_unk_0x62585",
+   "type": "unsigned char[3]",
+   "evidence_level": "C",
+   "source": "对象尾 3B 对齐；无写点（ctor 末段 0x62580+8 pad，仅 0x62584 有效）"
   }
  },
  "methods": {
@@ -1013,14 +665,190 @@
     "pending": false
    },
    "sig_note": "2026-11-18 cc=null补thiscall(成员方法默认约定; cc=null致SetType跳过→__userpurge渲染族)。2026-11-18 sig_model.return粘cc剥离(cc应在cc字段, return只"
+  },
+  "0x004ad140": {
+   "name": "Render",
+   "ordinal": 1,
+   "evidence_level": "chain_unified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "name_note": "C9级联正名batch4-20261116: slot1位+归属CONFIRMED+ABI一致, C8签名感知(与既有同名条目签名异=合法重载) → 链律名Render; 原名ProcessFrame | C9sig链统一20261117→void __thiscall(): 家族投票获胜签名(真体票body证据加权) | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染)",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445cd0",
+   "flags_evidence": "sig_model同名+同参数结构()+基槽0x00445cd0(UIWnd) 2026-11-17 机械推导(sig退役后纯结构化判定)",
+   "source": "[R7-T3 迁移 2026-11-27] Scene.methods → SwordUI.methods：表 0x56F29C 唯一写者=ctor sub_4A6F10 @asm245101，槽位/体形与该方法一致（#69 §3/#5）"
+  },
+  "0x004ad540": {
+   "name": "Update",
+   "ordinal": 2,
+   "evidence_level": "chain_unified",
+   "sig_model": {
+    "return": "BOOL",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "name_note": " | C9sig基锚定20261117→BOOL __thiscall(CCBUI **deltatime)(基=UIFrameWnd) | C9name定谳20261117→Update: 体尾return UIWnd::Update(this,nVal,nVal2)铁证; 原名UpdateSwordDisplay留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census | 标签基锚二遍20261117→BOOL __thiscall(CCBUI **deltatime, int) | param0真值化20261121: CCBUI**=基链编造类型复制(0x445c60基体从不解引用param0), 改int",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x0043bbc0",
+   "flags_evidence": "同名+同归一签名(CCBUI,int)+基槽0x0043bbc0(UIFrameWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, ",
+   "source": "[R7-T3 迁移 2026-11-27] Scene.methods → SwordUI.methods：表 0x56F29C 唯一写者=ctor sub_4A6F10 @asm245101，槽位/体形与该方法一致（#69 §3/#5）"
+  },
+  "0x004adc30": {
+   "name": "OnMessage",
+   "ordinal": 6,
+   "evidence_level": "chain_unified",
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "int",
+      "name": null
+     },
+     {
+      "type": "unsigned int",
+      "name": null
+     },
+     {
+      "type": "int",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "name_note": " | C9sig基锚定20261117→int __thiscall(int, unsigned int, int)(基=UIWnd) | C9name定谳20261117→OnMessage: 体switch消息处理+result=1 dispatch模式; 原名InitScreenUI留档 | P0修复20261117: 参数重建=本址decomp体(防族投票参数串污染) | 标签基锚20261117→int __thiscall(int, int, int) | 三源重建20261117: 参数=9a06bc4e8编译态+返回=族投票+个数=census",
+   "flags": [
+    "override"
+   ],
+   "override_of": "0x00445d10",
+   "flags_evidence": "同名+同归一签名(int,unsignedint,int)+基槽0x00445d10(UIWnd)注解签名匹配 2026-11-17 机械推导",
+   "sig_note": "2026-11-18 mangle硬真值全量定谳(OnMessage): int(int,int,unsigned int,int); 原注解2026-11-18 mangle硬真值定谳(HHIH): int(int,un",
+   "source": "[R7-T3 迁移 2026-11-27] Scene.methods → SwordUI.methods：表 0x56F29C 唯一写者=ctor sub_4A6F10 @asm245101，槽位/体形与该方法一致（#69 §3/#5）"
+  },
+  "0x004a7670": {
+   "name": "~SwordUI",
+   "source": "vtable_migrated | [删析构 133 正名 2026-10-17 analyzer 证据账目制] 五面卡正名：①调用者面=vtable 槽虚分派（槽归属）②被调用者面=deleting 三段式体形证 ③成员访问面=析构清理语义 ④类归属面=SystemUI（表主归属已闭合）⑤交互模式面=虚析构删除路径；evidence=vtable 槽成员（表 0x56F29C） | [R7-T3 迁移 2026-11-27] Scene.methods → SwordUI.methods：表 0x56F29C 唯一写者=ctor sub_4A6F10 @asm245101，槽位/体形与该方法一致（#69 §3/#5）",
+   "ordinal": 5,
+   "evidence_level": "A",
+   "declaration_only": true,
+   "sig_model": {
+    "return": "int",
+    "cc": "thiscall",
+    "params": [
+     {
+      "type": "char",
+      "name": null
+     }
+    ],
+    "varargs": false,
+    "pending": false
+   },
+   "flags": [
+    "dtor",
+    "deleting"
+   ],
+   "flags_evidence": "IDA名字形态=_scalar_dtor_7670(??1/??_G析构族); decomp文件=SystemUI_`scalar_deleting_destructoruint_004a7670 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注) | [补标v3b 2026-11-19·复核P0-1] 体证据(删尾+flags位测, 裸真形宽容); 伴生条目同标(deleting=形态 与 declaration_only=角色 正交)。"
+  },
+  "0x004a7690": {
+   "name": "~SwordUI",
+   "evidence_level": "unverified",
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "flags": [
+    "dtor"
+   ],
+   "flags_evidence": "完整析构：体首 0x4A76AE movl $0x56F29C,(%esi) 写己表，随后逐个析构成员（0x4A76B4 取 [esi+0x2B774]、lea edi,[esi+0x2B774]）⇒ 定义源（非产物）",
+   "source": "vtable_migrated | [R7-T3 迁移 2026-11-27] Scene.methods → SwordUI.methods：0x4A7690 是 ~SwordUI 完整形（写表 0x56F29C + 成员析构链），0x4A7670 是其 deleting 伴生；两者同属 402,824B SwordUI 对象（#69 §3/§5）"
+  },
+  "0x004a6f10": {
+   "name": "SwordUI",
+   "evidence_level": "A",
+   "flags": [
+    "ctor"
+   ],
+   "sig_model": {
+    "return": "void",
+    "cc": "thiscall",
+    "params": [],
+    "varargs": false,
+    "pending": false
+   },
+   "name_note": "ctor 形态：name==类名；体 @0x4A6F32 call 0x43DCD0(UIListBox ctor) 首调、@0x4A76AE/0x4A7676 写己表 0x56F29C；尾 `ret` 无栈参 ⇒ thiscall 0 参",
+   "source": "[#89 2026-11-27] 从 CCCTData.methods 迁回：分配点 push 0x62588 @0x4A4651 + call 0x4A6F10 @0x4A467A + store [esi+0x2AFC8] @0x4A468C（#69 尺寸三证、ev_0029）"
   }
  },
  "base_size": 72,
  "bases": [
   {
-   "name": "UIFrameWnd",
+   "name": "UIListBox",
    "offset": 0
   }
  ],
- "_dual_view_verdict": "双视图定谳20261120: SystemUI::Update 中 SwordUI::RenderSword((SwordUI*)this) this 复用直证——SwordUI(388952B)与 SystemUI(516636B)同实例双视图(剑UI视图⊂系统UI视图), 非 CGameData 式误名。known_members 134 中 119 弱名多带语义暗示(ljs/avg/purge/wskill = 剑UI域词汇), 保留原名单独审计。"
+ "_dual_view_verdict": "双视图定谳20261120: SystemUI::Update 中 SwordUI::RenderSword((SwordUI*)this) this 复用直证——SwordUI(388952B)与 SystemUI(516636B)同实例双视图(剑UI视图⊂系统UI视图), 非 CGameData 式误名。known_members 134 中 119 弱名多带语义暗示(ljs/avg/purge/wskill = 剑UI域词汇), 保留原名单独审计。",
+ "bases_note": "原 bases=[UIFrameWnd@0]、vtables=null 均被二进制否定：ctor sub_4A6F10 首调 0x43DCD0=UIListBox ctor（表 0x56AD20，size72），且自有表 0x56F29C slot3=0x43DE40 与 UIListBox 的 HideAll 相同（UIFrameWnd 是 0x445C10）⇒ 直接基类 UIListBox@0（#69 §2.2/§3/§5）。",
+ "vtables": [
+  {
+   "addr": "0x0056f29c",
+   "base": "UIListBox",
+   "slots": [
+    {
+     "addr": "0x00445e70",
+     "name": "ShowClipped"
+    },
+    {
+     "addr": "0x004ad140",
+     "name": "Render"
+    },
+    {
+     "addr": "0x004ad540",
+     "name": "Update"
+    },
+    {
+     "addr": "0x0043de40",
+     "name": "HideAll"
+    },
+    {
+     "addr": "0x00445b90",
+     "name": "Create"
+    },
+    {
+     "addr": "0x004a7670",
+     "name": "_scalar_dtor"
+    },
+    {
+     "addr": "0x004adc30",
+     "name": "OnMessage"
+    }
+   ]
+  }
+ ],
+ "name_note": "谁 new：RoleStatePanel::Init 内 `push 62588h` → operator new → call sub_4A6F10（asm:240548/240558），store 到 RoleStatePanel+0x2AFC8（asm:240568）；谁写表：ctor @asm245101 写 0x56F29C（7 槽，slot1 Render/slot2 Update/slot3 HideAll(继承)/slot5 scalar dtor/slot6 OnMessage）；持有者：RoleStatePanel（0x2AFC8）；调用者：RoleStatePanel 的消息/刷新路径经该指针；尺寸：402,824=0x62588（三证见 #69 §2）。",
+ "note": "[R7-T3 2026-11-27] ctor 归属阻塞：0x004A6F10 仍被 data/annotations/structs/CCCTData.json:228 登记为 CCCTData_6F10（CCCTData 自己的 ctor 在 0x5058F0，该登记为错标）；本类 methods 暂不重复认领（唯一所有者律/多认领会触发 CLAIM_GATE+N17），待档外删除该条后由后续卡补 ctor 条目。"
 }
