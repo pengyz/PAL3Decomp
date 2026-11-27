@@ -21,6 +21,24 @@ class TestBareExprForm(unittest.TestCase):
         out = rewrite_base_suffix_bare_form(s, base_names={'UIWnd'}, base_sizes={'UIWnd': 4})
         self.assertIn(';', out)
 
+    # ---- #63 回归：箭头形 + 内嵌接收者 ----
+    def test_arrow_embedded_receiver_value(self):
+        # `h->m.Base` 里 h->m 是内嵌对象 ⇒ 取址形 `*(T*)&h->m`（与真指针接收者相反）
+        from ast_transform import rewrite_base_suffix_bare_form
+        s = 'v = p_holder->m_fadeIn.PalScriptWaitObj;'
+        out = rewrite_base_suffix_bare_form(
+            s, base_names={'PalScriptWaitObj'}, base_sizes={'PalScriptWaitObj': 4})
+        self.assertEqual(out.strip(), 'v = *(_DWORD *)&p_holder->m_fadeIn;')
+        self.assertIn('&p_holder->m_fadeIn', out)
+
+    def test_qualified_base_name_untouched(self):
+        # `x.Base::m` 是限定名，不是基类子对象访问 ⇒ 一个字都不改
+        from ast_transform import rewrite_base_suffix_bare_form
+        s = 'x.PalScriptWaitObj::m_age = 1;'
+        out = rewrite_base_suffix_bare_form(
+            s, base_names={'PalScriptWaitObj'}, base_sizes={'PalScriptWaitObj': 4})
+        self.assertEqual(out, s)
+
 
 if __name__ == '__main__':
     unittest.main()

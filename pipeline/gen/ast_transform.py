@@ -1174,6 +1174,120 @@ def rewrite_base_suffix_bare_form(code, base_names=None, base_sizes=None,
     out = code
     for s, e, rep in reversed(edits):
         out = out[:s] + rep + out[e:]
+    return _base_subobject_forms(out, bn, nz, _mask_strings_comments)
+
+
+
+import re
+
+_IDENT = r'[A-Za-z_]\w*'
+
+
+def _names_re(base_names):
+    return '|'.join(sorted((re.escape(b) for b in base_names), key=len, reverse=True))
+
+
+def _is_nonzero(nonzero_offsets, base):
+    for (_t, nb) in (nonzero_offsets or ()):
+        if nb == base:
+            return True
+    return False
+
+
+def _mask(mask_fn, code):
+    try:
+        return mask_fn(code)
+    except Exception:
+        return code
+
+
+def _apply_edits(code, edits):
+    if not edits:
+        return code
+    edits.sort()
+    out, pos = [], 0
+    for s, e, rep in edits:
+        if s < pos:
+            continue
+        out.append(code[pos:s]); out.append(rep); pos = e
+    out.append(code[pos:])
+    return ''.join(out)
+
+
+def _base_addr_cast_pass(code, base_names, nonzero_offsets=None, mask_fn=None):
+    if not base_names:
+        return code
+    names = _names_re(base_names)
+    masked = _mask(mask_fn, code)
+    edits = []
+    pat_arrow = re.compile(
+        r'\*\s*\(\s*([A-Za-z_][\w \*]*?)\s*\*\s*\)\s*&\s*(' + _IDENT +
+        r'(?:\s*(?:->|\.)\s*[A-Za-z_]\w*)*)\s*->\s*(?P<base>' + names + r')(?!\s*::)(?![\w])')
+    pat_dot = re.compile(
+        r'\*\s*\(\s*([A-Za-z_][\w \*]*?)\s*\*\s*\)\s*&\s*(' + _IDENT +
+        r'(?:\s*(?:->|\.)\s*[A-Za-z_]\w*)*)\s*\.\s*(?P<base>' + names + r')(?!\s*::)(?![\w])')
+    for m in pat_arrow.finditer(masked):
+        if _is_nonzero(nonzero_offsets, m.group('base')):
+            continue
+        edits.append((m.start(), m.end(), '*(%s *)%s' % (m.group(1).strip(), m.group(2).strip())))
+    for m in pat_dot.finditer(masked):
+        if _is_nonzero(nonzero_offsets, m.group('base')):
+            continue
+        edits.append((m.start(), m.end(), '*(%s *)&%s' % (m.group(1).strip(), m.group(2).strip())))
+    return _apply_edits(code, edits)
+
+
+def _base_ptr_value_pass(code, base_names, nonzero_offsets=None, mask_fn=None):
+    if not base_names:
+        return code
+    names = _names_re(base_names)
+    masked = _mask(mask_fn, code)
+    edits = []
+    pat = re.compile(
+        r'(' + _IDENT + r'(?:\s*(?:->|\.)\s*[A-Za-z_]\w*)*)\s*->\s*(?P<base>' + names + r')(?!\s*::)(?![\w])')
+    for m in pat.finditer(masked):
+        if _is_nonzero(nonzero_offsets, m.group('base')):
+            continue
+        edits.append((m.start(), m.end(), '*(_DWORD *)%s' % m.group(1).strip()))
+    return _apply_edits(code, edits)
+
+
+def _base_value_dot_pass(code, base_names, nonzero_offsets=None, mask_fn=None):
+    if not base_names:
+        return code
+    names = _names_re(base_names)
+    masked = _mask(mask_fn, code)
+    edits = []
+    pat = re.compile(
+        r'\(\s*([A-Za-z_][\w ]*?\*)\s*\)\s*(' + _IDENT + r'(?:\s*(?:->|\.)\s*[A-Za-z_]\w*)*)\s*\.\s*(?P<base>' + names + r')(?!\s*::)(?![\w])')
+    for m in pat.finditer(masked):
+        if _is_nonzero(nonzero_offsets, m.group('base')):
+            continue
+        edits.append((m.start(), m.end(), '(%s)(*(_DWORD *)&%s)' % (m.group(1).strip(), m.group(2).strip())))
+    return _apply_edits(code, edits)
+
+
+def _double_addr_collapse_pass(code, mask_fn=None):
+    """`*(T *)&*(_DWORD *)&recv` → `*(T *)&recv`（F1 与取址形叠加产生的双重取址）。"""
+    masked = _mask(mask_fn, code)
+    pat = re.compile(
+        r'\*\s*\(\s*([A-Za-z_][\w \*]*?)\s*\*\s*\)\s*&\s*\*\s*\(\s*_DWORD\s*\*\s*\)\s*&\s*'
+        r'(' + _IDENT + r'(?:\s*(?:->|\.)\s*[A-Za-z_]\w*)*)')
+    edits = [(m.start(), m.end(), '*(%s *)&%s' % (m.group(1).strip(), m.group(2).strip()))
+             for m in pat.finditer(masked)]
+    return _apply_edits(code, edits)
+
+
+def _base_subobject_forms(code, base_names, nonzero_offsets, mask_fn):
+    """三形一次过（顺序固定：取址 cast → 指针值 → 点值 cast）。"""
+    bn = base_names or set()
+    if not bn:
+        return code
+    out = _double_addr_collapse_pass(code, mask_fn)
+    out = _base_addr_cast_pass(out, bn, nonzero_offsets, mask_fn)
+    out = _base_ptr_value_pass(out, bn, nonzero_offsets, mask_fn)
+    out = _base_value_dot_pass(out, bn, nonzero_offsets, mask_fn)
+    out = _double_addr_collapse_pass(out, mask_fn)
     return out
 
 

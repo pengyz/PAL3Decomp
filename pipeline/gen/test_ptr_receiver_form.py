@@ -22,6 +22,24 @@ class TestPtrReceiverValueForm(unittest.TestCase):
         out = rewrite_base_suffix_bare_form(s, base_names={'UIWnd'}, base_sizes={'UIWnd': 4})
         self.assertTrue(out.rstrip().endswith(';'))
 
+    # ---- #63 回归：箭头形 + 真指针接收者 ----
+    def test_arrow_ptr_receiver_value_write(self):
+        # `p->Base = 0;` 里 p 是真指针 ⇒ 取 `*(T*)p`，绝不能出 `&p`（那是指针变量自身的地址）
+        from ast_transform import rewrite_base_suffix_bare_form
+        s = 'p_m_fadeIn->PalScriptWaitObj = 0;'
+        out = rewrite_base_suffix_bare_form(
+            s, base_names={'PalScriptWaitObj'}, base_sizes={'PalScriptWaitObj': 4})
+        self.assertEqual(out.strip(), '*(_DWORD *)p_m_fadeIn = 0;')
+        self.assertNotIn('&p_m_fadeIn', out)
+
+    def test_arrow_ptr_receiver_value_read(self):
+        from ast_transform import rewrite_base_suffix_bare_form
+        s = 'v = p_m_fadeIn->PalScriptWaitObj;'
+        out = rewrite_base_suffix_bare_form(
+            s, base_names={'PalScriptWaitObj'}, base_sizes={'PalScriptWaitObj': 4})
+        self.assertEqual(out.strip(), 'v = *(_DWORD *)p_m_fadeIn;')
+        self.assertNotIn('&p_m_fadeIn', out)
+
 
 if __name__ == '__main__':
     unittest.main()
