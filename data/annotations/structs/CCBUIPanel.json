@@ -1,353 +1,73 @@
 {
  "name": "CCBUIPanel",
  "binary_size": 22112,
- "base_size": 1208,
+ "base_size": 72,
  "known_members": {
-  "0x5434": {
-   "name": "m_Data",
-   "type": "char[512]",
-   "size": 512,
-   "source": "ctor: sub_431870(this+5394), memset 0x200",
-   "evidence_level": "unverified"
+  "0x48": {
+   "offset": "0x48",
+   "name": "m_rcPanel",
+   "type": "int[4]",
+   "source": "A:ctor sub_4460D0 asm:111124-111127 写 [48h]=0/[4Ch]=0/[50h]=320h/[54h]=258h（0,0,800,600）"
   },
-  "0x540": {
-   "name": "m_nPanelOffsetX",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref | fix:rename",
-   "evidence_level": "unverified"
-  },
-  "0x544": {
-   "name": "m_nPanelOffsetY",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref | fix:rename",
-   "evidence_level": "unverified"
-  },
-  "0x5bc": {
-   "name": "m_nPanelX",
-   "type": "int",
-   "source": "A:InitPanel: mov [esi+5BCh], 354h (852)",
-   "evidence_level": "unverified"
-  },
-  "0x5c0": {
-   "name": "m_nPanelY",
-   "type": "int",
-   "source": "A:InitPanel: mov [esi+5C0h], 239h (569)",
-   "evidence_level": "unverified"
-  },
-  "0x5c4": {
-   "name": "m_nChildX",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref",
-   "evidence_level": "unverified"
-  },
-  "0x5c8": {
-   "name": "m_nChildY",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref",
-   "evidence_level": "unverified"
-  },
-  "0x5cc": {
-   "name": "m_nChildW",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref",
-   "evidence_level": "unverified"
-  },
-  "0x5d0": {
-   "name": "m_nChildH",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref",
-   "evidence_level": "unverified"
-  },
-  "0x5d4": {
-   "name": "m_nBorderL",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref",
-   "evidence_level": "unverified"
-  },
-  "0x5d8": {
-   "name": "m_nBorderR",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref",
-   "evidence_level": "unverified"
-  },
-  "0x5dc": {
-   "name": "m_fPanelW",
-   "type": "float",
-   "source": "A:InitPanel: mov [esi+5DCh], 44550000h (852.0f)",
-   "evidence_level": "unverified"
-  },
-  "0x5e0": {
-   "name": "m_fPanelH",
-   "type": "float",
-   "source": "A:InitPanel: mov [esi+5E0h], 440E4000h (568.5f)",
-   "evidence_level": "unverified"
-  },
-  "0x5e4": {
-   "name": "m_nGridX",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref",
-   "evidence_level": "unverified"
-  },
-  "0x5e8": {
-   "name": "m_nGridY",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref",
-   "evidence_level": "unverified"
-  },
-  "0x5ec": {
-   "name": "m_nGridW",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref",
-   "evidence_level": "unverified"
-  },
-  "0x5f0": {
-   "name": "m_nGridH",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref",
-   "evidence_level": "unverified"
-  },
-  "0x5f4": {
-   "name": "m_nItemW",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref",
-   "evidence_level": "unverified"
-  },
-  "0x5f8": {
-   "name": "m_nItemH",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref",
-   "evidence_level": "unverified"
-  },
-  "0x5fc": {
-   "name": "m_nSpacingX",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref",
-   "evidence_level": "unverified"
-  },
-  "0x600": {
-   "name": "m_nSpacingY",
-   "type": "int",
-   "source": "binary_discovery:1refs | ida_xref",
-   "evidence_level": "unverified"
-  },
-  "0x604": {
-   "name": "m_nItemNum",
-   "type": "int",
-   "evidence_level": "unverified"
-  },
-  "0x608": {
-   "name": "m_nMaxItemNum",
-   "type": "int",
-   "evidence_level": "unverified"
-  },
-  "0x618": {
-   "name": "m_pVfTable",
-   "type": "char *",
-   "note": "replaced void* with char* (IDB struct compat)",
-   "evidence_level": "unverified"
-  },
-  "0x700": {
-   "name": "m_SubPanel1",
-   "type": "void *",
-   "source": "正名20261120(R5第二批): dtor UICaption::Destroy2 cast + InitPanel m_nNotifyRender/m_bOverlayRender 内部写——窗口 0x450(1088B) stride 组首 | 原 m_nTodo_1792 | type暂void*(子对象类名待判, 布局重划战役收口后改真型)",
-   "evidence_level": "unverified"
-  },
-  "0x858": {
-   "name": "m_Static_2136",
+  "0x168": {
+   "offset": "0x168",
+   "name": "m_unk_0x168",
    "type": "UIStatic",
-   "source": "dtor:ctor_3E70",
-   "evidence_level": "unverified"
+   "source": "B:ctor asm:111092 lea [esi+168h]+call sub_4434C0（152B，表 0x56AE64 未登记，按既有 UIStatic 类落位）；dtor asm:111192 同址析构"
   },
-  "0x8f0": {
-   "name": "m_Static_2288",
-   "type": "UIStatic",
-   "source": "dtor:ctor_3E70",
-   "evidence_level": "unverified"
+  "0x200": {
+   "offset": "0x200",
+   "name": "m_aSlots",
+   "type": "CCBPanelSlot[38]",
+   "source": "A:ctor asm:111096-111101 ??_L(0x1DC,0x26)=38×476@0x200；dtor asm:111185-111191 ??_M 同参数；0x200+38*476=0x48A8；元素 ctor sub_4461B0/dtor sub_4461F0（元素名待另卡）"
   },
-  "0x988": {
-   "name": "m_Static_2440",
-   "type": "UIStatic",
-   "source": "dtor:ctor_3E70",
-   "evidence_level": "unverified"
-  },
-  "0xa20": {
-   "name": "m_Static_2592",
-   "type": "UIStatic",
-   "source": "dtor:ctor_3E70",
-   "evidence_level": "unverified"
-  },
-  "0xab8": {
-   "name": "m_Static_2744",
-   "type": "UIStatic",
-   "source": "dtor:ctor_3E70",
-   "evidence_level": "unverified"
-  },
-  "0xb50": {
-   "name": "m_SubPanel2",
-   "type": "void *",
-   "source": "正名20261120(R5第二批): dtor cast + fScaleX/Y(103,110) + stride 0x158 组(0xb50/0xca8/0xe00 同构) | 原 m_nTodo_2896 | type暂void*(子对象类名待判, 布局重划战役收口后改真型)",
-   "evidence_level": "unverified"
-  },
-  "0xca8": {
-   "name": "m_SubPanel3",
-   "type": "void *",
-   "source": "正名20261120(R5第二批): dtor cast + m_nRectW/m_hFont 内部写 | 原 m_nTodo_3240 | type暂void*(子对象类名待判, 布局重划战役收口后改真型)",
-   "evidence_level": "unverified"
-  },
-  "0xe00": {
-   "name": "m_SubPanel4",
-   "type": "void *",
-   "source": "正名20261120(R5第二批): dtor cast + m_hTexture+48 写 | 原 m_nTodo_3584 | type暂void*(子对象类名待判, 布局重划战役收口后改真型)",
-   "evidence_level": "unverified"
-  },
-  "0xf58": {
-   "name": "m_SubRoleDialog",
-   "type": "void *",
-   "source": "正名20261120(R5第二批): UIRoleDialog ctor+dtor 双 cast 直证(A级) | 原 m_nTodo_3928 | type回退void* 20261120: UIRoleDialog注解1368B>窗口388B(基座调用陷阱L4判别)——0xf58段真身份待布局专项",
-   "evidence_level": "unverified"
-  },
-  "0x10dc": {
-   "name": "m_bActive",
-   "type": "unsigned char",
-   "evidence_level": "unverified"
-  },
-  "0x5050": {
-   "name": "m_nReserved5050",
+  "0x48a8": {
+   "offset": "0x48a8",
+   "name": "m_unk_0x48a8",
    "type": "int",
-   "source": "正名20261120(R5第二批): 零访问语义阻塞 | 原 m_nTodo_5050",
-   "evidence_level": "unverified"
-  },
-  "0x5054": {
-   "name": "m_nReserved5054",
-   "type": "int",
-   "source": "正名20261120(R5第二批): 零访问语义阻塞 | 原 m_nTodo_5054",
-   "evidence_level": "unverified"
-  },
-  "0x50b8": {
-   "name": "m_EmbedCaption",
-   "type": "void *",
-   "source": "binary_discovery:1refs;batch_fix:int_to_v*_LEA_embed;A:decomp_batch_rename_usage_pattern | inline-union治理批次2 2026-10-16（idapro A 级·overlap 标注优先于 union 包裹）：**overlap**：内嵌 UICaption 子对象——`SetEnable((UICaption *)&this->m_EmbedCaption)`（OnMessage_a540@0x44A540）&field 即对象地址",
-   "evidence_level": "A"
-  },
-  "0x10e4": {
-   "name": "m_Slots",
-   "type": "CCBPanelSlot[30]",
-   "source": "InitPanel:stride476_vtable+92_30pure_slots",
-   "evidence_level": "unverified"
+   "source": "A:InitPanel asm:114306 lea ebp,[esi+48A8h]；114310 mov [ebp+0]=0（写）；114326 fild dword [ebp+0]→fstp [esi+495Ch]（读，转 float 供槽位计算）"
   },
   "0x48ac": {
+   "offset": "0x48ac",
    "name": "m_nSlotBaseX",
    "type": "int",
-   "source": "正名20261120(R5第二批): InitPanel: m_nSlotBaseX+64=0x48B4 链头——槽位 X 基准 | 原 m_nTodo_48AC",
-   "evidence_level": "unverified"
+   "source": "A:InitPanel 写点（沿用 R5 正名证据；位于 0x48A8–0x48B8 无构造空隙，语义待复核）"
   },
   "0x48b0": {
+   "offset": "0x48b0",
    "name": "m_nSlotStepX",
    "type": "int",
-   "source": "正名20261120(R5第二批): =64 步进(InitPanel 64/UpdateSlotPositions v7+64/CenterSlot 同) | 原 m_nTodo_48B0",
-   "evidence_level": "unverified"
+   "source": "A:InitPanel =64 步进（沿用 R5 正名证据）"
   },
   "0x48b4": {
+   "offset": "0x48b4",
    "name": "m_nSlotBaseY",
    "type": "int",
-   "source": "正名20261120(R5第二批): m_nSlotBaseX+64?(__int64 联动)——槽位 Y/对偶基准 | 原 m_nTodo_48B4",
-   "evidence_level": "unverified"
+   "source": "A:InitPanel（沿用 R5 正名证据）"
   },
   "0x48b8": {
-   "name": "m_EmbedPalScript",
-   "type": "int",
-   "source": "ida_gap_8refs;A:decomp_batch_rename_usage_pattern",
-   "evidence_level": "unverified"
-  },
-  "0x495c": {
-   "name": "m_fSlotRefX",
-   "type": "float",
-   "source": "正名20261120(R5第二批): UpdateSlotPositions: UIWnd+121(float) 加算——槽位参考 X | 原 m_nTodo_495C",
-   "evidence_level": "unverified"
-  },
-  "0x4960": {
-   "name": "m_fSlotRefY",
-   "type": "float",
-   "source": "正名20261120(R5第二批): UIWnd+122(float) 加算——槽位参考 Y | 原 m_nTodo_4960",
-   "evidence_level": "unverified"
-  },
-  "0x4964": {
-   "name": "m_nSlotCalcA",
-   "type": "int",
-   "source": "正名20261120(R5第二批): float→int 转换链(m_fSlotRefX 接收) | 原 m_nTodo_4964",
-   "evidence_level": "unverified"
-  },
-  "0x4968": {
-   "name": "m_nSlotCalcB",
-   "type": "int",
-   "source": "正名20261120(R5第二批): float→int 转换链(m_fSlotRefY 接收) | 原 m_nTodo_4968",
-   "evidence_level": "unverified"
-  },
-  "0x496c": {
-   "name": "m_nSlotCalcC",
-   "type": "int",
-   "source": "正名20261120(R5第二批): m_fSlotRefX 族接收 | 原 m_nTodo_496C",
-   "evidence_level": "unverified"
-  },
-  "0x4970": {
-   "name": "m_nSlotCalcD",
-   "type": "int",
-   "source": "正名20261120(R5第二批): CenterSlot v9 接收 | 原 m_nTodo_4970",
-   "evidence_level": "unverified"
-  },
-  "0x4974": {
-   "name": "m_fSlotCalcX2",
-   "type": "float",
-   "source": "正名20261120(R5第二批): UIWnd+121 加算(第二组) | 原 m_nTodo_4974",
-   "evidence_level": "unverified"
-  },
-  "0x4978": {
-   "name": "m_fSlotCalcY2",
-   "type": "float",
-   "source": "正名20261120(R5第二批): UIWnd+122 加算(第二组) | 原 m_nTodo_4978",
-   "evidence_level": "unverified"
-  },
-  "0x4988": {
-   "name": "m_bSlotFlags",
-   "type": "int",
-   "source": "正名20261120(R5第二批): Update: LOBYTE/BYTE1 双字节门控 | 原 m_nTodo_4988",
-   "evidence_level": "unverified"
-  },
-  "0x498c": {
-   "name": "m_fSlotParam",
-   "type": "float",
-   "source": "正名20261120(R5第二批): InitPanel 1123024896=100.0f(浮点常量直证) | 原 m_nTodo_498C",
-   "evidence_level": "unverified"
-  },
-  "0x4990": {
-   "name": "m_bEnsureSize",
-   "type": "int",
-   "source": "正名20261120(R5第二批): EnsureSize 置 1/0——方法同名直证 | 原 m_nTodo_4990",
-   "evidence_level": "unverified"
-  },
-  "0x4994": {
-   "name": "m_nActiveSlot",
-   "type": "int",
-   "source": "正名20261120(R5第二批): ActivateSlot -1 初始化+ctor 38+ValidateInput 实参 | 原 m_nTodo_4994",
-   "evidence_level": "unverified"
+   "offset": "0x48b8",
+   "name": "m_unk_0x48b8",
+   "type": "unsigned char[224]",
+   "source": "B:ctor asm:111102 lea [esi+48B8h]+call sub_43A160（224B，表 0x56AC4C 未登记类名）；dtor asm:111182 sub_43A1F0；内部字段未证，按不透明块保留"
   },
   "0x4998": {
-   "name": "m_EmbedPlayerAtt",
-   "type": "int",
-   "source": "ida_gap_5refs;A:decomp_batch_rename_usage_pattern",
-   "evidence_level": "unverified"
-  },
-  "0x4b60": {
-   "name": "m_SubCaptionGroup",
-   "type": "void *",
-   "source": "正名20261120(R5第二批): UICaption::SetEnable cast + +885 偏移门控——子对象组(至 0x5054, 1268B) | 原 m_nTodo_4B60 | type暂void*(子对象组类名待判)",
-   "evidence_level": "unverified"
+   "offset": "0x4998",
+   "name": "m_SubRoleDialog",
+   "type": "UIRoleDialog",
+   "source": "A:ctor asm:111104-111106 lea [esi+4998h]+call sub_4A12F0（UIRoleDialog 1368B）；dtor asm:111178 sub_4A1410"
   },
   "0x4ef0": {
-   "name": "m_nPlayerAttOverlay",
-   "type": "int",
-   "source": "A:decomp_ARC_PlayerAtt_refresh_create_cast_embed_subobj",
-   "evidence_level": "unverified"
+   "offset": "0x4ef0",
+   "name": "m_SubRoleDialog2",
+   "type": "UIRoleDialog",
+   "source": "A:ctor asm:111107-111109 lea [esi+4EF0h]+call sub_4A12F0；dtor asm:111174 sub_4A1410"
+  },
+  "0x5448": {
+   "offset": "0x5448",
+   "name": "m_unk_0x5448",
+   "type": "unsigned char[524]",
+   "source": "B:ctor asm:111110-111112 lea [esi+5448h]+call sub_431870（清 512B + 3 dword@+0x200=524B，无 vtable，类未登记）；dtor asm:111171 sub_4318A0；原 m_Data@0x5434 差 20B"
   }
  },
  "methods": {
@@ -781,7 +501,7 @@
  "vtables": [
   {
    "addr": "0x0056af80",
-   "base": "UIWnd",
+   "base": "UIListBox",
    "slots": [
     {
      "addr": "0x00445e70"
@@ -815,8 +535,8 @@
  "_base_fix": "2026-09-25: base_class UIListBox→UIWnd。证据：CCBUIPanel vtable@0x56AF80 仅 7 槽，slot[7]=0x41400000(12.0f 数据非函数) ⇒ 非 UIListBox(8槽) 派生；槽[0]/[4] from=UIWnd ✓",
  "bases": [
   {
-   "name": "UIWnd",
-   "offset": 0
+   "offset": 0,
+   "name": "UIListBox"
   }
  ],
  "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(1条)——编译器自唯一virtual ~CCBUIPanel()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形2留"
