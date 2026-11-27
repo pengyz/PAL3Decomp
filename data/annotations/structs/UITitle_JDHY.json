@@ -1,174 +1,274 @@
 {
  "name": "UITitle_JDHY",
- "binary_size": 377700,
+ "binary_size": 290488,
  "known_members": {
   "0x48": {
    "name": "rc",
    "type": "tagRECT",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "source": "语料对 rc 引用 14 次（N13a 契约）；旧注解同偏移同型；0x48-0x58 恰为 ctor 之后的 16B 空档，尺寸自洽（边界证据 B，语义沿用语料名）",
+   "evidence_level": "B"
   },
-  "0x58": {
+  "0x60": {
    "name": "buf",
    "type": "char[256]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "source": "语料对 buf 引用 33 次（N13a 契约）；真实布局里 0x60-0x168 为 264B 无访问块，256B 可落于此（0x60+0x100=0x160）；旧注解在 0x58 与 ctor 写 width/height 冲突故迁移、尺寸沿用旧声明（边界证据 C，偏移按空档推定，待逐案复核）",
+   "evidence_level": "C"
   },
-  "0x158": {
+  "0x58": {
+   "name": "m_nWidth",
+   "type": "int",
+   "source": "ctor 0x4B0200 movl $0x320(800),0x58(%esi)；全库 17 个 UI ctor 同形（0x4593F5/0x4795D1/0x47E5EF/0x482F03 等），800x600 面板尺寸",
+   "evidence_level": "A"
+  },
+  "0x5c": {
+   "name": "m_nHeight",
+   "type": "int",
+   "source": "ctor 0x4B0207 movl $0x258(600),0x5c(%esi)；与 0x58 成对",
+   "evidence_level": "A"
+  },
+  "0x168": {
+   "name": "m_nLayoutRowOffset",
+   "type": "int",
+   "source": "ctor 0x4B020E mov %bl(0),0x168(%esi)；语义未取，按字节占位",
+   "evidence_level": "A",
+   "name_note": "LayoutCalcRects 内以 dword 读写：`*(_DWORD *)&this->m_unk_0x168 = 0`，随后 `(val + 6 * *(int*)&buf[260]) << 7` 作为行基址索引；宽度 4B 与 `unsigned char` 声明不符（类型修正）。证据：asm/pal3/decomp/UITitle_JDHY_LayoutCalcRectsvoid_0045e9f0.json"
+  },
+  "0x16c": {
+   "name": "m_pMainEquipUI",
+   "type": "MainEquipUI *",
+   "source": "ctor 0x4B0214 mov %ebx(0),0x16c(%esi)；dword 访问，语义未取",
+   "evidence_level": "A",
+   "name_note": "OnMessage 9 处 `MainEquipUI::HandleMessage((MainEquipUI *)this->m_unk_0x16C, 9/0/3/2/1)`；成员是 4B 指针而非 int（类型修正）。证据：asm/pal3/decomp/UITitle_JDHY_OnMessageint_uint_int_004b3470.json"
+  },
+  "0x170": {
    "name": "m_OutFrameT",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "type": "UIFrameContainer",
+   "source": "ctor 0x4B01F6 lea 0x170(%esi),%ecx; call 0x4422E0（=UIFrameContainer ctor，写 vtable 0x56ADD0）；152B 步进；偏移由 ctor lea 直证（A 级）；命名：0x170/0x208/0x2A0/0x338/0x3D0 沿用旧注解/语料名（T/R/L/B/background 顺序，0x338 与旧值重合为锚点，名字-偏移对应为 B 级推定）；0x468 无语料名，m_unk 占位",
+   "evidence_level": "B"
   },
-  "0x1f8": {
+  "0x208": {
    "name": "m_OutFrameR",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "type": "UIFrameContainer",
+   "source": "ctor 0x4B021F lea 0x208(%esi),%ecx; call 0x4422E0（=UIFrameContainer ctor，写 vtable 0x56ADD0）；152B 步进；偏移由 ctor lea 直证（A 级）；命名：0x170/0x208/0x2A0/0x338/0x3D0 沿用旧注解/语料名（T/R/L/B/background 顺序，0x338 与旧值重合为锚点，名字-偏移对应为 B 级推定）；0x468 无语料名，m_unk 占位",
+   "evidence_level": "B"
   },
-  "0x298": {
+  "0x2a0": {
    "name": "m_OutFrameL",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "type": "UIFrameContainer",
+   "source": "ctor 0x4B022F lea 0x2a0(%esi),%ecx; call 0x4422E0（=UIFrameContainer ctor，写 vtable 0x56ADD0）；152B 步进；偏移由 ctor lea 直证（A 级）；命名：0x170/0x208/0x2A0/0x338/0x3D0 沿用旧注解/语料名（T/R/L/B/background 顺序，0x338 与旧值重合为锚点，名字-偏移对应为 B 级推定）；0x468 无语料名，m_unk 占位",
+   "evidence_level": "B"
   },
   "0x338": {
    "name": "m_OutFrameB",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "type": "UIFrameContainer",
+   "source": "ctor 0x4B023F lea 0x338(%esi),%ecx; call 0x4422E0（=UIFrameContainer ctor，写 vtable 0x56ADD0）；152B 步进；偏移由 ctor lea 直证（A 级）；命名：0x170/0x208/0x2A0/0x338/0x3D0 沿用旧注解/语料名（T/R/L/B/background 顺序，0x338 与旧值重合为锚点，名字-偏移对应为 B 级推定）；0x468 无语料名，m_unk 占位",
+   "evidence_level": "B"
   },
-  "0x3d8": {
+  "0x3d0": {
    "name": "m_background",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "type": "UIFrameContainer",
+   "source": "ctor 0x4B024F lea 0x3d0(%esi),%ecx; call 0x4422E0（=UIFrameContainer ctor，写 vtable 0x56ADD0）；152B 步进；偏移由 ctor lea 直证（A 级）；命名：0x170/0x208/0x2A0/0x338/0x3D0 沿用旧注解/语料名（T/R/L/B/background 顺序，0x338 与旧值重合为锚点，名字-偏移对应为 B 级推定）；0x468 无语料名，m_unk 占位",
+   "evidence_level": "B"
   },
-  "0x478": {
+  "0x468": {
+   "name": "m_unk_0x468",
+   "type": "UIFrameContainer",
+   "source": "ctor 0x4B025F lea 0x468(%esi),%ecx; call 0x4422E0（=UIFrameContainer ctor，写 vtable 0x56ADD0）；152B 步进；偏移由 ctor lea 直证（A 级）；命名：0x170/0x208/0x2A0/0x338/0x3D0 沿用旧注解/语料名（T/R/L/B/background 顺序，0x338 与旧值重合为锚点，名字-偏移对应为 B 级推定）；0x468 无语料名，m_unk 占位",
+   "evidence_level": "A"
+  },
+  "0x500": {
    "name": "m_exit",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "type": "unsigned char[344]",
+   "source": "语料 m_exit 引用 1 次（N13a 契约）；旧注解 UIButton@0x478 与 ctor 布局不符（该处无 ctor 调用），迁移到 0x500 首个 344B 对象（ctor 0x4B026F lea 0x500; call 0x43A770，vtable 0x56AC70 未登记）；类型未取证，不宣称 UIButton（D 级迁移，待逐案复核）",
+   "evidence_level": "D"
   },
-  "0x5d0": {
+  "0x658": {
+   "name": "m_PageCaptions",
+   "type": "unsigned char[8][344]",
+   "source": "ctor 0x4B0276..0x4B02EF 余八次 lea 0x658+0x158*k; call 0x43A770（vtable 0x56AC70 未登记）；8*344=0xAC0 -> 0x1118",
+   "evidence_level": "B",
+   "name_note": "按元素逐个销毁：~UITitle_JDHY 里 `UICaption::Destroy2((UICaption *)this->m_unk_0x658[7..0])`，步长 344B、共 8 个 ⇒ 每页字幕对象容器（体语义推导；344B 与 UICaption 注解 binary_size=96 不一致，类型暂留，另案裁）。证据：UITitle_JDHY_~UITitle_JDHYvoid_004b0540.json"
+  },
+  "0x11b0": {
+   "name": "m_unk_0x11B0",
+   "type": "int[4]",
+   "source": "本类方法 0x4B3E7A lea 0x11b0(%esi),%edi；0x4B3E80 mov %ebx,0x11b4 / 0x4B3E8C movl $0x94,0x11b8 / 0x4B3E8F 起读写 0x11b4/0x11b8/0x11bc；四 dword 全用，语义未取（A 级）",
+   "evidence_level": "A"
+  },
+  "0x1118": {
+   "name": "m_unk_0x1118",
+   "type": "UIFrameContainer",
+   "source": "ctor 0x4B02FF lea 0x1118(%esi),%ecx; call 0x4422E0（UIFrameContainer, vtable 0x56ADD0）；语义未取",
+   "evidence_level": "A"
+  },
+  "0x11c0": {
+   "name": "m_unk_0x11C0",
+   "type": "UIFrameContainer",
+   "source": "ctor 0x4B030F lea 0x11c0(%esi),%ecx; call 0x4422E0（UIFrameContainer, vtable 0x56ADD0）；语义未取",
+   "evidence_level": "A"
+  },
+  "0x1258": {
+   "name": "m_unk_0x1258",
+   "type": "UIFrameContainer",
+   "source": "ctor 0x4B031F lea 0x1258(%esi),%ecx; call 0x4422E0（UIFrameContainer, vtable 0x56ADD0）；语义未取",
+   "evidence_level": "A"
+  },
+  "0x12f0": {
+   "name": "m_ParticlesBack",
+   "type": "UIParticle[128]",
+   "source": "ctor 0x4B032F-0x4B034F 压 ??_L 向量构造：push $0x4B47E0(dtor)/$0x4B4690(ctor)/$0x80(count)/$0x248(584B)/ptr @0x4B033E；128*584=0x12400；元素 ctor 非多态且无同类注解，按字节数组占位",
+   "evidence_level": "A",
+   "name_note": "步长 584 = sizeof(UIParticle)（data/annotations/structs/UIParticle.json 二进制实测）：Render 里 `UIParticle::Apply((UIParticle *)&this->m_unk_0x12F0[16*nPage][584*i], 11)`；[128][584] 即 128 个 UIParticle，按 16/页 × 8 页索引（类型修正为 UIParticle[128]）。证据：UITitle_JDHY_Rendervoid_004b2c70.json / InitPageStateint_004b43e0.json"
+  },
+  "0x136f0": {
+   "name": "m_ParticlesFront",
+   "type": "UIParticle[128]",
+   "source": "ctor 0x4B0354-0x4B0374 压 ??_L 向量构造：push $0x4B47E0(dtor)/$0x4B4690(ctor)/$0x80(count)/$0x248(584B)/ptr @0x4B0363；128*584=0x12400；元素 ctor 非多态且无同类注解，按字节数组占位",
+   "evidence_level": "A",
+   "name_note": "同 584 步长与 UIParticle::Apply，但层号为 10：`UIParticle::Apply((UIParticle *)&this->m_unk_0x136F0[16*nPage][584*i], 10)`，且另有 `UIWnd::SetRect` 12 处按同数组取窗口 ⇒ 与 0x12F0 成对的另一粒子层（类型修正为 UIParticle[128]）。证据：UITitle_JDHY_Rendervoid_004b2c70.json / LayoutCalcRectsvoid_0045e9f0.json"
+  },
+  "0x25af0": {
+   "name": "m_unk_0x25AF0",
+   "type": "int[8]",
+   "source": "ctor 之后即由本类方法成组写入：0x4B3ED2 mov 0x25AF4 / 0x4B3EDD mov 0x25AF0 / 0x4B3EEC mov 0x25AF8 / 0x4B3EFB mov 0x25AFC；0x25B00/B04/B08/B0C 由 0x4B4025 起的同组写点覆盖；全部为 dword 访问，语义未取（span 证据 A；此区此前被误记为「无访问」，对抗复核 0x4B3ED2-0x4B3EFB 已证伪）",
+   "evidence_level": "A"
+  },
+  "0x25b10": {
+   "name": "m_unk_0x25B10",
+   "type": "int[6][4]",
+   "source": "0x25B10 起六组、步进 0x10、每组 4 dword 的写点（0x4B4100-0x4B4249 对 +0/+4/+8/+0xC 成组写，最高 0x25B6C）；组内布局一致故按 int[6][4] 落位，组语义未取（A 级 span）",
+   "evidence_level": "A"
+  },
+  "0x25b70": {
+   "name": "m_PageSelected",
+   "type": "int[3]",
+   "source": "ctor 0x4B04D7 lea 0x25B70; 0x4B04E7/ED 写零 0/4、0x4B04F5 写零 0x25B78；消费点按字节索引：0x4B2C7E/0x4B3A89/0x4B3BF5/0x4B4406；语义未取，整体 12B 占位",
+   "evidence_level": "A",
+   "name_note": "初始化与选择写：`*(_DWORD *)this->m_unk_0x25B70 = 0`、`*(_DWORD *)&...[4] = 0`、`m_unk_0x25B70[nPage] = 1`，Render 里以 `*(_DWORD *)&...[8]` 取 dword ⇒ 3 个 int 的页选中标志（原 unsigned char[12] 类型错）。证据：InitPageStateint_004b43e0.json / Rendervoid_004b2c70.json"
+  },
+  "0x25b7c": {
+   "name": "m_unk_0x25B7C",
+   "type": "UIFrameContainer",
+   "source": "ctor 0x4B0379 lea 0x25b7c(%esi),%ecx; call 0x4422E0（UIFrameContainer, vtable 0x56ADD0）；语义未取",
+   "evidence_level": "A"
+  },
+  "0x25c14": {
+   "name": "m_unk_0x25C14",
+   "type": "UIFrameContainer",
+   "source": "ctor 0x4B0389 lea 0x25c14(%esi),%ecx; call 0x4422E0（UIFrameContainer, vtable 0x56ADD0）；语义未取",
+   "evidence_level": "A"
+  },
+  "0x25cac": {
+   "name": "m_unk_0x25CAC",
+   "type": "UIPushButton",
+   "source": "ctor 0x4B0399 lea 0x25cac(%esi),%ecx; call 0x440740（写 vtable 0x56AD88=UIPushButton，248B）；语义未取",
+   "evidence_level": "A"
+  },
+  "0x25da4": {
+   "name": "m_unk_0x25DA4",
+   "type": "UIPushButton",
+   "source": "ctor 0x4B03A9 lea 0x25da4(%esi),%ecx; call 0x440740（写 vtable 0x56AD88=UIPushButton，248B）；语义未取",
+   "evidence_level": "A"
+  },
+  "0x25e9c": {
+   "name": "m_ButtonCaptions",
+   "type": "unsigned char[3][344]",
+   "source": "ctor 0x4B03B9..0x4B03E4 三次 lea 0x25E9C+0x158*k; call 0x43A770（vtable 0x56AC70 未登记）；3*344=0x408 -> 0x262A4",
+   "evidence_level": "B",
+   "name_note": "同 344B 步长，逐个 `UICaption::Destroy2((UICaption *)this->m_unk_0x25E9C[2..0])`，另有 `m_unk_0x25E9C[2][v1+343] = 0` 的逐字节状态写 ⇒ 3 个按钮字幕对象（体语义推导）。证据：~UITitle_JDHYvoid_004b0540.json / UpdateButtonStatesvoid_004b1c*.json"
+  },
+  "0x262a4": {
    "name": "m_isItemShow",
-   "type": "unsigned char[99]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "type": "unsigned char[36]",
+   "source": "ctor 0x4B04E5 lea 0x262A4,%edi + 0x4B0501 rep stos 9 dwords = 36B 清零；方法按项写 0/1（0x4B18F9 写0、0x4B1E6E 写1）并按索引读（0x4B2110/0x4B2163）；36 项与紧邻 Note_Item[36] 一一对应",
+   "evidence_level": "B"
   },
-  "0x634": {
+  "0x262c8": {
    "name": "m_NoteItem",
-   "type": "Note_Item[99]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+   "type": "Note_Item[36]",
+   "source": "ctor 0x4B03E9-0x4B0406 向量构造：push $0x454AA0(dtor)/$0x4549A0(ctor)/$0x24(36)/$0xDE8(3560B)/ptr 0x262C8；0x262C8+36*0xDE8=0x45768（下一对象起点）；元素 ctor=Note_Item 构造体，尺寸与 Note_Item.json 3560B 一致",
+   "evidence_level": "A"
   },
-  "0x5a7e4": {
-   "name": "m_Title_JDHY",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x45768": {
+   "name": "m_ItemCaptions",
+   "type": "unsigned char[2][344]",
+   "source": "ctor 0x4B040B/0x4B041B lea 0x45768/0x458C0; call 0x43A770（vtable 0x56AC70 未登记）；2*344=0x2B0 -> 0x45A18",
+   "evidence_level": "B",
+   "name_note": "两个 344B 元素，逐个 `UICaption::Destroy2((UICaption *)this->m_unk_0x45768[1])`，PopulateContent 里按 `[0][0]`/`[1][0]` 取 vtable 调用 → 2 个条目字幕对象（体语义推导）。证据：~UITitle_JDHYvoid_004b0540.json / PopulateContentvoid_004b0820.json"
   },
-  "0x5a884": {
-   "name": "m_TopBar",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x45a18": {
+   "name": "m_unk_0x45A18",
+   "type": "int[4]",
+   "source": "方法 0x4B0C6A lea 0x45A18(%esi),%eax；0x4B0C76 movl $0x42,0x45A1C / 0x4B0C80 movl $0x28E,0x45A20 / 0x4B0C90 movl $0x1F7,0x45A24；按 4 dword 访问，语义未取",
+   "evidence_level": "A"
   },
-  "0x5a924": {
-   "name": "m_BottomBar",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x45a28": {
+   "name": "m_unk_0x45A28",
+   "type": "unsigned char[272]",
+   "source": "ctor 0x4B042B lea 0x45A28; call 0x43BCE0（vtable 0x56ACD8=UIScene）；0x43BCE0 本体最高写 0x10C ⇒ 尺寸下限 0x110=272B；其后 0x45B38 起为独立 8B 成员（见 m_unk_0x45B38），故本对象收在 0x45B38；UIScene.json 344B 与实测冲突，不引用该类型尺寸",
+   "evidence_level": "A"
   },
-  "0x5a9c4": {
-   "name": "m_BackBar",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x45b40": {
+   "name": "m_unk_0x45B40",
+   "type": "unsigned char[272]",
+   "source": "ctor 0x4B043B lea 0x45b40(%esi),%ecx; call 0x43BCE0（vtable 0x56ACD8=UIScene）；步进 0x110=272B 与下一对象衔接；UIScene.json 344B 与实测冲突故不引用类型尺寸",
+   "evidence_level": "A"
   },
-  "0x5aa64": {
-   "name": "m_BackBar2",
-   "type": "UIStatic",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x45c50": {
+   "name": "m_unk_0x45C50",
+   "type": "unsigned char[272]",
+   "source": "ctor 0x4B044B lea 0x45c50(%esi),%ecx; call 0x43BCE0（vtable 0x56ACD8=UIScene）；步进 0x110=272B 与下一对象衔接；UIScene.json 344B 与实测冲突故不引用类型尺寸",
+   "evidence_level": "A"
   },
-  "0x5ab04": {
-   "name": "m_pbPage",
-   "type": "UIPushButton[10]",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x45d60": {
+   "name": "m_unk_0x45D60",
+   "type": "UIFrameContainer",
+   "source": "ctor 0x4B045B lea 0x45d60(%esi),%ecx; call 0x4422E0（UIFrameContainer, vtable 0x56ADD0）；语义未取",
+   "evidence_level": "A"
   },
-  "0x5b4dc": {
-   "name": "m_Scroll",
-   "type": "UIScrollBar",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x45df8": {
+   "name": "m_unk_0x45DF8",
+   "type": "UIFrameContainer",
+   "source": "ctor 0x4B046B lea 0x45df8(%esi),%ecx; call 0x4422E0（UIFrameContainer, vtable 0x56ADD0）；语义未取",
+   "evidence_level": "A"
   },
-  "0x5b64c": {
-   "name": "m_CurScrollPos",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x45e90": {
+   "name": "m_ScrollParams",
+   "type": "int[7]",
+   "source": "ctor 0x4B0486 movl $0x5C,0x45E90 / 0x4B0490 movl $0x262,0x45E94 / 0x4B049A-0x4B04AC 写零 0x45E98/9C/A0/A4 / 0x4B04FB 写零 0x45EA8；读点 0x4B0ED8、0x4B1607、0x4B1934 等；语义未取",
+   "evidence_level": "B",
+   "name_note": "仅出现于滚动相关函数：ScrollUp/ScrollDown 里 `--m_unk_0x45E90[2]`、`m_unk_0x45E90[0] + *p_top`，以及 `m_unk_0x45B38[1] * m_unk_0x45E90[0] - 28` 的行高运算；LoadData/ResetAndRefresh 复位 ⇒ 滚动位置与行高参数组（体语义推导）。证据：ScrollUpint_004b1fb0.json / ScrollDownint_004b1ea0.json / LoadDatadouble_int_004b2750.json"
   },
-  "0x5b650": {
-   "name": "m_ItemH",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x45b38": {
+   "name": "m_ScrollPage",
+   "type": "int[2]",
+   "source": "0x4B1593 mov %edi,0x45b38 / 0x4B1599 movl $1,0x45b3c；后续 0x4B1EBA/1ECE/1EF3、0x4B1FCC-1FFF、0x4B32D7-32F4 反复读写，0x4B2005 fildl 0x45b38；两 dword 全用，语义未取（A 级）",
+   "evidence_level": "B",
+   "name_note": "与 0x45E90 成对用于滚动：`v4 = m_unk_0x45B38[1] - 1`、`m_unk_0x45B38[1] = v4`/`= 0`，并参与 `m_unk_0x45B38[1] * m_unk_0x45E90[0] - 28` ⇒ 当前页/行索引（体语义推导）。证据：ScrollUpint_004b1fb0.json"
   },
-  "0x5b654": {
-   "name": "m_ItemW",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x45eac": {
+   "name": "m_unk_0x45EAC",
+   "type": "unsigned char",
+   "source": "0x4B38CF movb $1,0x45eac(%esi)（OnMessage 0x4B3470 内）；0x45EAD-0x45EAF 无访问，作为到 0x45EB0(UIRoleDialog 对齐 4) 的填充（A 级 span）",
+   "evidence_level": "A"
   },
-  "0x5b658": {
-   "name": "m_firstItem",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x45eb0": {
+   "name": "m_unk_0x45EB0",
+   "type": "UIRoleDialog",
+   "source": "ctor 0x4B047B lea 0x45eb0(%esi),%ecx; call 0x4A12F0（UIRoleDialog ctor，写 vtable 0x56E190，1368B）；末对象 0x46960+0x558=0x46EB8=分配尺寸",
+   "evidence_level": "A"
   },
-  "0x5b65c": {
-   "name": "m_selItem",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x46408": {
+   "name": "m_unk_0x46408",
+   "type": "UIRoleDialog",
+   "source": "ctor 0x4B04B7 lea 0x46408(%esi),%ecx; call 0x4A12F0（UIRoleDialog ctor，写 vtable 0x56E190，1368B）；末对象 0x46960+0x558=0x46EB8=分配尺寸",
+   "evidence_level": "A"
   },
-  "0x5b660": {
-   "name": "m_getNote",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x5b664": {
-   "name": "m_loading",
-   "type": "int",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x5b668": {
-   "name": "m_passtime",
-   "type": "float",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x5b66c": {
-   "name": "m_LoadBtn",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x5b7c4": {
-   "name": "m_DeleteBtn",
-   "type": "UIButton",
-   "source": "annotation",
-   "evidence_level": "unverified"
-  },
-  "0x5b91c": {
-   "name": "m_noteState",
-   "type": "NOTE_STATE",
-   "source": "annotation",
-   "evidence_level": "unverified"
+  "0x46960": {
+   "name": "m_unk_0x46960",
+   "type": "UIRoleDialog",
+   "source": "ctor 0x4B04C7 lea 0x46960(%esi),%ecx; call 0x4A12F0（UIRoleDialog ctor，写 vtable 0x56E190，1368B）；末对象 0x46960+0x558=0x46EB8=分配尺寸",
+   "evidence_level": "A"
   }
  },
  "methods": {
