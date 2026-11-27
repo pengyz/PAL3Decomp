@@ -1,6 +1,6 @@
 {
  "name": "UIScenePanel",
- "base_size": 344,
+ "base_size": 72,
  "known_members": {
   "0x3608": {
    "name": "m_nTodo_3608",
@@ -499,9 +499,154 @@
    "type": "int",
    "source": "ida_gap_1refs | [成员用法语义 2026-10-17 analyzer·UIScenePanel 批] 正名（原 m_nTodo_36FC）：UpdateAnimation 减数基值（float 位面 0x44038000=526.0）；动画基线；confidence=74",
    "evidence_level": "unverified"
+  },
+  "0x48": {
+   "name": "m_unk_0x48",
+   "type": "int",
+   "source": "ctor asm:117812 mov [esi+48h],ebx（写 0）；CreateSettingsUI asm:118209 lea ebp,[esi+48h] 作基址；UIScene 同偏移名为 m_fScaleY，本类无浮点访问证据故留白形"
+  },
+  "0x4c": {
+   "name": "m_unk_0x4c",
+   "type": "int",
+   "source": "ctor asm:117811 mov [esi+4Ch],ebx（写 0）；UIScene 同偏移 m_fScaleX，本类证据仅清零"
+  },
+  "0x50": {
+   "name": "m_nWndWidth",
+   "type": "int",
+   "source": "ctor asm:117813 mov dword [esi+50h],320h（窗口宽 800）"
+  },
+  "0x54": {
+   "name": "m_nWndHeight",
+   "type": "int",
+   "source": "ctor asm:117814 mov dword [esi+54h],258h（窗口高 600）"
+  },
+  "0x3798": {
+   "name": "m_unk_0x3798",
+   "type": "unsigned char",
+   "source": "Init sub_44C120 asm:118316 mov [esi+3798h],bl；StopAllSounds asm:120644 读/120705 写；OnMessage asm:120879 读；分配 379Ch 收口"
+  },
+  "0x3799": {
+   "name": "m_gap_0x3799",
+   "type": "unsigned char[3]",
+   "source": "#117 六列行31：尾部对齐 3B（分配 0x379C 收口）"
+  },
+  "0x208": {
+   "name": "m_unk_0x208",
+   "type": "unsigned char[638]",
+   "source": "0x200 起 22×208B 匿名元素构造区（??_L push 16h/0D0h，asm:117673-117677）；元素类未注解，#117 C 级禁给类名，按不透明区留白；段内洞 0x208+638B"
+  },
+  "0x488": {
+   "name": "m_unk_0x488",
+   "type": "unsigned char[1264]",
+   "source": "0x200 起 22×208B 匿名元素构造区（??_L push 16h/0D0h，asm:117673-117677）；元素类未注解，#117 C 级禁给类名，按不透明区留白；段内洞 0x488+1264B"
+  },
+  "0x97c": {
+   "name": "m_unk_0x97c",
+   "type": "unsigned char[148]",
+   "source": "0x200 起 22×208B 匿名元素构造区（??_L push 16h/0D0h，asm:117673-117677）；元素类未注解，#117 C 级禁给类名，按不透明区留白；段内洞 0x97C+148B"
+  },
+  "0xa14": {
+   "name": "m_unk_0xa14",
+   "type": "unsigned char[148]",
+   "source": "0x200 起 22×208B 匿名元素构造区（??_L push 16h/0D0h，asm:117673-117677）；元素类未注解，#117 C 级禁给类名，按不透明区留白；段内洞 0xA14+148B"
+  },
+  "0xaac": {
+   "name": "m_unk_0xaac",
+   "type": "unsigned char[148]",
+   "source": "0x200 起 22×208B 匿名元素构造区（??_L push 16h/0D0h，asm:117673-117677）；元素类未注解，#117 C 级禁给类名，按不透明区留白；段内洞 0xAAC+148B"
+  },
+  "0xb44": {
+   "name": "m_unk_0xb44",
+   "type": "unsigned char[148]",
+   "source": "0x200 起 22×208B 匿名元素构造区（??_L push 16h/0D0h，asm:117673-117677）；元素类未注解，#117 C 级禁给类名，按不透明区留白；段内洞 0xB44+148B"
+  },
+  "0xbdc": {
+   "name": "m_unk_0xbdc",
+   "type": "unsigned char[240]",
+   "source": "0x200 起 22×208B 匿名元素构造区（??_L push 16h/0D0h，asm:117673-117677）；元素类未注解，#117 C 级禁给类名，按不透明区留白；段内洞 0xBDC+240B"
+  },
+  "0xcd0": {
+   "name": "m_unk_0xcd0",
+   "type": "unsigned char[148]",
+   "source": "0x200 起 22×208B 匿名元素构造区（??_L push 16h/0D0h，asm:117673-117677）；元素类未注解，#117 C 级禁给类名，按不透明区留白；段内洞 0xCD0+148B"
+  },
+  "0xd68": {
+   "name": "m_unk_0xd68",
+   "type": "unsigned char[148]",
+   "source": "0x200 起 22×208B 匿名元素构造区（??_L push 16h/0D0h，asm:117673-117677）；元素类未注解，#117 C 级禁给类名，按不透明区留白；段内洞 0xD68+148B"
+  },
+  "0xe00": {
+   "name": "m_unk_0xe00",
+   "type": "unsigned char[240]",
+   "source": "0x200 起 22×208B 匿名元素构造区（??_L push 16h/0D0h，asm:117673-117677）；元素类未注解，#117 C 级禁给类名，按不透明区留白；段内洞 0xE00+240B"
+  },
+  "0xef4": {
+   "name": "m_unk_0xef4",
+   "type": "unsigned char[1260]",
+   "source": "0x200 起 22×208B 匿名元素构造区（??_L push 16h/0D0h，asm:117673-117677）；元素类未注解，#117 C 级禁给类名，按不透明区留白；段内洞 0xEF4+1260B"
+  },
+  "0x13e4": {
+   "name": "m_unk_0x13e4",
+   "type": "unsigned char[3324]",
+   "source": "0x13E0 起 16×208B 匿名元素构造区（??_L push 10h，asm:117681-117685）；同上；段内洞 0x13E4+3324B"
+  },
+  "0x20e4": {
+   "name": "m_unk_0x20e4",
+   "type": "unsigned char[2076]",
+   "source": "0x20E0 起 10×208B 匿名元素构造区（??_L push 0Ah，asm:117689-117693）；同上；段内洞 0x20E4+2076B"
+  },
+  "0x2bb0": {
+   "name": "m_unk_0x2bb0",
+   "type": "unsigned char[88]",
+   "source": "192B 匿名块（sub_443190，表 0x56AE48 未注解，asm:117708）；不写成 UITextArea；块内洞 0x2BB0+88B"
+  },
+  "0x2c24": {
+   "name": "m_unk_0x2c24",
+   "type": "unsigned char[8]",
+   "source": "192B 匿名块（sub_443190，表 0x56AE48 未注解，asm:117708）；不写成 UITextArea；块内洞 0x2C24+8B"
+  },
+  "0x2c70": {
+   "name": "m_unk_0x2c70",
+   "type": "unsigned char[88]",
+   "source": "192B 匿名块（sub_443190，asm:117711）；同上；块内洞 0x2C70+88B"
+  },
+  "0x2ce4": {
+   "name": "m_unk_0x2ce4",
+   "type": "unsigned char[8]",
+   "source": "192B 匿名块（sub_443190，asm:117711）；同上；块内洞 0x2CE4+8B"
+  },
+  "0x2e44": {
+   "name": "m_unk_0x2e44",
+   "type": "unsigned char[48]",
+   "source": "192B 匿名块（sub_443190，asm:117711）；同上；块内洞 0x2E44+48B"
+  },
+  "0x2fcc": {
+   "name": "m_unk_0x2fcc",
+   "type": "unsigned char[48]",
+   "source": "192B 匿名块（sub_443190，asm:117711）；同上；块内洞 0x2FCC+48B"
+  },
+  "0x3154": {
+   "name": "m_unk_0x3154",
+   "type": "unsigned char[48]",
+   "source": "192B 匿名块（sub_443190，asm:117711）；同上；块内洞 0x3154+48B"
+  },
+  "0x32dc": {
+   "name": "m_unk_0x32dc",
+   "type": "unsigned char[48]",
+   "source": "192B 匿名块（sub_443190，asm:117711）；同上；块内洞 0x32DC+48B"
+  },
+  "0x3464": {
+   "name": "m_unk_0x3464",
+   "type": "unsigned char[48]",
+   "source": "192B 匿名块（sub_443190，asm:117711）；同上；块内洞 0x3464+48B"
+  },
+  "0x35ec": {
+   "name": "m_unk_0x35ec",
+   "type": "unsigned char[28]",
+   "source": "192B 匿名块（sub_443190，asm:117711）；同上；块内洞 0x35EC+28B"
   }
  },
- "binary_size": 14232,
+ "binary_size": 14236,
  "methods": {
   "0x0044be80": {
    "name": "~UIScenePanel",
@@ -520,18 +665,6 @@
     "dtor"
    ],
    "flags_evidence": "IDA名字形态=_scalar_dtor_BE80(??1/??_G析构族); decomp文件=UIScenePanel_scalar_dtor_BE80void_0044be80 2026-11-17 机械迁移(P0-1-B, 用户裁定: 身份需明确标注)"
-  },
-  "0x0043b3e0": {
-   "name": "_UIScenePanel",
-   "_misattrib_evidence": "max_offset=372>class_size=96",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
   },
   "0x0044ba60": {
    "name": "UIScenePanel",
@@ -882,8 +1015,9 @@
  ],
  "bases": [
   {
-   "name": "UIScene",
-   "offset": 0
+   "name": "UIListBox",
+   "offset": 0,
+   "source": "ctor sub_44BA60 首调 asm:117665 call sub_43DCD0（UIListBox ctor，写表 0x56AD20 @asm:96584）；#117 §2 bases 行"
   }
  ],
  "note": " | C8伴生治理20261121: 非vtable绑定~X伴生删除(2条)——编译器自唯一virtual ~UIScenePanel()再生(deleting/adjustor/ICF形态均再生); 槽绑定1+完整形2留"
