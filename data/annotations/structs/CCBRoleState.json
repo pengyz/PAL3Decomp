@@ -1,390 +1,104 @@
 {
  "name": "CCBRoleState",
- "binary_size": 22224,
+ "binary_size": 20568,
  "known_members": {
+  "0x48": {
+   "name": "m_unk_0x48",
+   "type": "int",
+   "evidence_level": "B",
+   "source": "#115 §4 行2 / #76 §1.2：ctor asm:134655 写 [48h]=0；与既有 0x4C m_nState_04C 并列而非成组，故按单 int 落位（清单 int[4] 需拆开）"
+  },
+  "0x4c": {
+   "name": "m_nState_04C",
+   "type": "int",
+   "source": "ida_gap_1refs",
+   "evidence_level": "unverified"
+  },
+  "0x50": {
+   "name": "m_unk_0x50",
+   "type": "int",
+   "evidence_level": "B",
+   "source": "#115 §4 行2 / #76 §1.2：ctor asm:134658 写 [50h]=320h(800)"
+  },
+  "0x54": {
+   "name": "m_unk_0x54",
+   "type": "int",
+   "evidence_level": "B",
+   "source": "#115 §4 行2 / #76 §1.2：ctor asm:134659 写 [54h]=258h(600)"
+  },
+  "0x60": {
+   "name": "m_nState_060",
+   "type": "int",
+   "source": "ida_gap_1refs",
+   "evidence_level": "unverified"
+  },
+  "0x64": {
+   "name": "m_nCombatResult",
+   "type": "int",
+   "source": "ida_gap_10refs",
+   "_rename_evidence": "decomp:CalcCombatDamage 返回值存储",
+   "evidence_level": "unverified"
+  },
+  "0x84": {
+   "name": "m_nState",
+   "type": "int[4]",
+   "source": "[伪语义批 3 折叠 2026-10-16·T56 修正] 原 int[35]@132 **越界**（132..272 内含他名员 m_nTargetRoleIdx@148 等 4 员——前缀聚类漏交错面，check overlap 抓获）⇒ 拆双数组避开：本件 132..148 int[4]（m_nState_084.._090 4 散名）。证据等级：命名来历推断+布局等价（常量下标折叠）；无索引访问证据",
+   "repro_pointer": "ptr:offset@132..148|fold-20261016 m_nState 簇3 拆分件 int[4]（T56 越界修正证）",
+   "evidence_level": "unverified"
+  },
+  "0x94": {
+   "name": "m_nTargetRoleIdx",
+   "type": "int",
+   "source": "ida_gap_10refs",
+   "_rename_evidence": "decomp:AISelectTarget 返回目标角色索引",
+   "evidence_level": "unverified"
+  },
+  "0x9c": {
+   "name": "m_nSelectedAction",
+   "type": "int",
+   "source": "ida_gap_16refs",
+   "_rename_evidence": "decomp:DispatchCombatAction 按此分发命令类型",
+   "evidence_level": "unverified"
+  },
+  "0xa0": {
+   "name": "m_nSelectedTarget",
+   "type": "int",
+   "source": "ida_gap_10refs",
+   "_rename_evidence": "decomp:PopulateTargetList 填充目标列表索引",
+   "evidence_level": "unverified"
+  },
+  "0xa4": {
+   "name": "m_nSelectedItem",
+   "type": "int",
+   "source": "ida_gap_11refs",
+   "_rename_evidence": "decomp:AISelectItem 选择物品索引",
+   "evidence_level": "unverified"
+  },
+  "0xa8": {
+   "name": "m_nState2",
+   "type": "int[26]",
+   "source": "[伪语义批 3 折叠 2026-10-16·T56 修正] 168..272 int[26]（m_nState_0A8.._10C 15 散名 → 1；含空槽）。证据等级同 m_nState",
+   "repro_pointer": "ptr:offset@168..272|fold-20261016 int[26]（m_nState2）",
+   "evidence_level": "unverified"
+  },
+  "0x118": {
+   "name": "m_nDamageThisRound",
+   "type": "int",
+   "source": "ida_gap_9refs",
+   "_rename_evidence": "decomp:ApplyDamage/CalcDamage 累计伤害",
+   "evidence_level": "unverified"
+  },
+  "0x120": {
+   "name": "m_nState3",
+   "type": "int[18]",
+   "source": "[伪语义批 3 折叠 2026-10-16] 簇4 288..356 ×13 纯 int（步距 4/8/16 连跑） → int[18]@288（13 散名 → 1 声明）。证据等级：数组语义=命名来历推断（m_nState_ 偏移编码族同前缀+纯 int 连跑）+布局等价（常量下标折叠）；**无索引访问证据**（批 1/2 全图 disp 谱制式）。名=族基名+组序（去地址后缀伪语义形 ✓ 禁伪语义命名条款）；组语义仅布局连续性推断。 | [T56 修正] 名 m_nState2→m_nState3（与拆分件 @168 撞名消歧；组序=偏移序 132/168/288）",
+   "evidence_level": "unverified"
+  },
   "0x168": {
-   "name": "m_nTodo_168",
-   "type": "UIFrameWnd",
-   "source": "A+:decomp_ctor_at_this+360,span=152=binary_size | [批4 诚实化 2026-10-16] A偏移形：_embed_UIFrameWnd_168⇒m_nTodo_168（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
-   "evidence_level": "unverified"
-  },
-  "0x55c8": {
-   "name": "m_bScrollEnableA",
-   "type": "unsigned char",
-   "source": "ida_decomp:_method_44a2e0 if(this) proceed, 4 refs",
-   "evidence_level": "unverified"
-  },
-  "0x55c9": {
-   "name": "m_bScrollEnableB",
-   "type": "unsigned char",
-   "source": "ida_decomp:_method_44a2e0 if(this) proceed, 4 refs",
-   "evidence_level": "unverified"
-  },
-  "0x55cc": {
-   "name": "m_nScrollOffset",
-   "type": "int",
-   "source": "ida_decomp:_method_44a2e0 += 10, 10 refs",
-   "evidence_level": "unverified"
-  },
-  "0x55d0": {
-   "name": "m_nScrollTarget",
-   "type": "int",
-   "source": "ida_decomp:_method_44a2e0 compared/assigned, 4 refs",
-   "evidence_level": "unverified"
-  },
-  "0x490c": {
-   "name": "m_fLerpCurX",
-   "type": "float",
-   "source": "ida_decomp:_method_449fe0 lerp +=/-= speed*dt, 7 refs",
-   "evidence_level": "unverified"
-  },
-  "0x4910": {
-   "name": "m_fLerpCurY",
-   "type": "float",
-   "source": "ida_decomp:_method_449fe0 lerp +=/-= speed*dt, 7 refs",
-   "evidence_level": "unverified"
-  },
-  "0x4914": {
-   "name": "m_nLerpTargetX",
-   "type": "int",
-   "source": "ida_decomp:_method_449fe0 compared with cur to lerp, 3 refs",
-   "evidence_level": "unverified"
-  },
-  "0x4918": {
-   "name": "m_nLerpTargetY",
-   "type": "int",
-   "source": "ida_decomp:_method_449fe0 compared with cur to lerp, 3 refs",
-   "evidence_level": "unverified"
-  },
-  "0x491c": {
-   "name": "m_nLerpDestX",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib",
-   "evidence_level": "unverified"
-  },
-  "0x4920": {
-   "name": "m_nLerpDestY",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib",
-   "evidence_level": "unverified"
-  },
-  "0x492c": {
-   "name": "m_nLerpDir",
-   "type": "int",
-   "source": "B:naming_m_n+FPU_misattrib",
-   "evidence_level": "unverified"
-  },
-  "0x4939": {
-   "name": "m_bLerpDone",
-   "type": "unsigned char",
-   "source": "ida_decomp:_method_449fe0 set 0 start, 1 finish, 3 refs",
-   "evidence_level": "unverified"
-  },
-  "0x493c": {
-   "name": "m_fLerpSpeed",
-   "type": "float",
-   "source": "ida_decomp:_method_449fe0 a2*this*dir = delta, 4 refs",
-   "evidence_level": "unverified"
-  },
-  "0x1dfc": {
-   "name": "m_byteFlags",
-   "type": "unsigned char",
-   "source": "A:byte_array_+1821_stride",
-   "evidence_level": "unverified"
-  },
-  "0x2870": {
-   "name": "m_nTodo_2870",
-   "type": "unsigned char",
-   "source": "A:LOBYTE_access | [批4 诚实化 2026-10-16] A偏移形：m_bFlag2870⇒m_nTodo_2870（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
-   "evidence_level": "unverified"
-  },
-  "0x287c": {
-   "name": "m_BufferData",
-   "type": "char[1628]",
-   "source": "A:memset_0x2654_bytes",
-   "note": "2026-09-13: was char[0x2654] (9812B gap-absorbing blob from an early pass) — swallowed m_RoleXor(tagRoleState[11]@11992) and the spring-physics member family (18780-18800) via the emitter overlap-drop. Export truth _BYTE[1628] ends exactly at m_RoleXor@11992.",
-   "evidence_level": "unverified"
-  },
-  "0x48b8": {
-   "name": "m_SlotUIWnd",
-   "type": "UIWnd",
-   "source": "A:UIWnd_GetRect_call_this+48B8",
-   "evidence_level": "unverified"
-  },
-  "0x495c": {
-   "name": "m_fSpringPosX",
-   "type": "float",
-   "source": "decomp:spring_animation_position_X(+=dt*speed*dir)",
-   "evidence_level": "unverified"
-  },
-  "0x4960": {
-   "name": "m_fSpringPosY",
-   "type": "float",
-   "source": "decomp:spring_animation_position_Y",
-   "evidence_level": "unverified"
-  },
-  "0x4964": {
-   "name": "m_fSpringTargX",
-   "type": "float",
-   "source": "decomp:copied_from_PosX_at_frame_end",
-   "evidence_level": "unverified"
-  },
-  "0x4968": {
-   "name": "m_fSpringTargY",
-   "type": "float",
-   "source": "decomp:spring_target_Y",
-   "evidence_level": "unverified"
-  },
-  "0x496c": {
-   "name": "m_fSpringPrevX",
-   "type": "float",
-   "source": "decomp:spring_previous_X",
-   "evidence_level": "unverified"
-  },
-  "0x4970": {
-   "name": "m_fSpringPrevY",
-   "type": "float",
-   "source": "decomp:spring_previous_Y",
-   "evidence_level": "unverified"
-  },
-  "0x497c": {
-   "name": "m_nSpringDir",
-   "type": "int",
-   "source": "decomp:spring_direction(multiplied_by_speed)",
-   "evidence_level": "unverified"
-  },
-  "0x498c": {
-   "name": "m_fSpringSpeed",
-   "type": "float",
-   "source": "decomp:spring_speed(multiplied_by_deltaTime)",
-   "evidence_level": "unverified"
-  },
-  "0x4a70": {
-   "name": "m_SlotWidgets",
-   "type": "UIWnd",
-   "source": "decomp:_method_46d770_UIWnd_array_stride38(=152bytes=UIStatic)[5]",
-   "evidence_level": "unverified"
-  },
-  "0x4cd0": {
-   "name": "m_SlotRects",
-   "type": "int",
-   "source": "decomp:_method_46d770_RECT_array_for_5_slots(4*idx+38/39/40)",
-   "evidence_level": "unverified"
-  },
-  "0x4d74": {
-   "name": "m_SlotRightEdge",
-   "type": "int",
-   "source": "decomp:_method_46d770_right_edge_array[5]",
-   "evidence_level": "unverified"
-  },
-  "0x4db8": {
-   "name": "m_nSlotStartY",
-   "type": "int",
-   "source": "decomp:_method_46d770_Y_start_position",
-   "evidence_level": "unverified"
-  },
-  "0x4dbc": {
-   "name": "m_nSlotSpacing",
-   "type": "int",
-   "source": "decomp:_method_46d770_X_spacing_between_slots",
-   "evidence_level": "unverified"
-  },
-  "0x4dc0": {
-   "name": "m_nSlotHeight",
-   "type": "int",
-   "source": "decomp:_method_46d770_height_offset_per_slot",
-   "evidence_level": "unverified"
-  },
-  "0x4dc4": {
-   "name": "m_nSlotWidth",
-   "type": "int",
-   "source": "decomp:_method_46d770_width_per_slot",
-   "evidence_level": "unverified"
-  },
-  "0x4dc8": {
-   "name": "m_bySlotVisible",
-   "type": "unsigned char",
-   "source": "decomp:_method_46d770_BYTE_array_5slots_visibility",
-   "evidence_level": "unverified"
-  },
-  "0x4e60": {
-   "name": "m_pScene",
-   "type": "UIScene *",
-   "source": "ctor:UIScene::_UIScene | 主攻点2续 2026-10-17（verifier·A 级逐条）：型 UIScene ⇒ UIScene * | evidence: A 级：0x4FF452 `&this->m_pScene->m_vecInitFiveLineup[v9]`——**`->` 指针解引用实证** ⇒ 值型错挂 | confidence: high",
-   "evidence_level": "A"
-  },
-  "0x4fb8": {
-   "name": "m_Static_20408",
-   "type": "UIStatic",
-   "source": "ctor:UIStatic::_UIStatic",
-   "evidence_level": "unverified"
-  },
-  "0x5050": {
-   "name": "m_bVideoPlayed",
-   "type": "unsigned char",
-   "source": "A:decomp LOBYTE(this+5050) checked before CScreenMode::PlayVideo",
-   "evidence_level": "unverified"
-  },
-  "0x5054": {
-   "name": "m_nVideoState",
-   "type": "int",
-   "evidence_level": "unverified"
-  },
-  "0x5060": {
-   "name": "m_nCurrentTaskID",
-   "type": "int",
-   "source": "decomp:CCBStage::EndTask_result+FindThreadByID_param",
-   "evidence_level": "unverified"
-  },
-  "0x5064": {
-   "name": "m_nEffCurA",
-   "type": "int",
-   "source": "decomp:effect_param_pair_A_current(swapped_with_507C)",
-   "evidence_level": "unverified"
-  },
-  "0x5068": {
-   "name": "m_nEffCurB",
-   "type": "int",
-   "source": "decomp:effect_param_pair_B(swapped_with_5080)",
-   "evidence_level": "unverified"
-  },
-  "0x5070": {
-   "name": "m_nEffTarget1",
-   "type": "int",
-   "source": "decomp:loaded_from_g_EffMgr",
-   "evidence_level": "unverified"
-  },
-  "0x5074": {
-   "name": "m_nEffTarget2",
-   "type": "int",
-   "source": "decomp:loaded_from_g_EffMgr",
-   "evidence_level": "unverified"
-  },
-  "0x5078": {
-   "name": "m_nEffTransFrames",
-   "type": "int",
-   "source": "decomp:set_6(transition_frame_count)",
-   "evidence_level": "unverified"
-  },
-  "0x507c": {
-   "name": "m_nEffSwapA",
-   "type": "int",
-   "source": "decomp:effect_swap_target_A(swapped_with_5064)",
-   "evidence_level": "unverified"
-  },
-  "0x5080": {
-   "name": "m_nEffSwapB",
-   "type": "int",
-   "source": "decomp:effect_swap_target_B(swapped_with_5068)",
-   "evidence_level": "unverified"
-  },
-  "0x5088": {
-   "name": "m_nEffCurC",
-   "type": "int",
-   "source": "decomp:effect_param_C(swapped_with_508C)",
-   "evidence_level": "unverified"
-  },
-  "0x508c": {
-   "name": "m_nEffSwapC",
-   "type": "int",
-   "source": "decomp:swap_target_C",
-   "evidence_level": "unverified"
-  },
-  "0x5090": {
-   "name": "m_nEffCurD",
-   "type": "int",
-   "source": "decomp:effect_param_D(swapped_with_5094)",
-   "evidence_level": "unverified"
-  },
-  "0x5094": {
-   "name": "m_nEffTransFrames2",
-   "type": "int",
-   "source": "decomp:set_6(transition_frames_2nd_group)",
-   "evidence_level": "unverified"
-  },
-  "0x5098": {
-   "name": "m_nEffCurE",
-   "type": "int",
-   "source": "decomp:effect_param_E(swapped_with_509C)",
-   "evidence_level": "unverified"
-  },
-  "0x509c": {
-   "name": "m_nEffSwapE",
-   "type": "int",
-   "source": "decomp:swap_target_E",
-   "evidence_level": "unverified"
-  },
-  "0x50a0": {
-   "name": "m_fTimeFund",
-   "type": "float",
-   "source": "A:decomp this->_todo_50A0 = v6->m_fTimeFund",
-   "evidence_level": "unverified"
-  },
-  "0x5654": {
-   "name": "m_nFadeFlags",
-   "type": "int",
-   "source": "decomp:_method_44a2e0_LOBYTE+BYTE1_fade_direction_bools",
-   "evidence_level": "unverified"
-  },
-  "0x5658": {
-   "name": "m_nFadeAlpha",
-   "type": "int",
-   "source": "decomp:_method_44a2e0_+=10/-=10_range_0-255_gbColorQuad_alpha",
-   "evidence_level": "unverified"
-  },
-  "0x565c": {
-   "name": "m_nFadeTimer",
-   "type": "int",
-   "source": "decomp:_method_44a2e0_countdown_<=0_check",
-   "evidence_level": "unverified"
-  },
-  "0x56cc": {
-   "name": "m_BattleFlags",
-   "type": "int",
-   "source": "decomp:24x_BYTE+20_check(battle_state_flags)",
-   "evidence_level": "unverified"
-  },
-  "0x4980": {
-   "name": "m_fSpringAccelX",
-   "type": "float",
-   "source": "decomp:_method_44a3d0_set_3.0f(0x40400000_IEEE754)",
-   "evidence_level": "unverified"
-  },
-  "0x4984": {
-   "name": "m_fSpringAccelY",
-   "type": "float",
-   "source": "decomp:_method_44a3d0_set_3.0f(0x40400000_IEEE754)",
-   "evidence_level": "unverified"
-  },
-  "0x4988": {
-   "name": "m_bSpringDoneX",
-   "type": "unsigned char",
-   "source": "decomp:_method_44a3d0_BYTE_set_0",
-   "evidence_level": "unverified",
-   "audit": {
-    "level": "audited",
-    "method": "use_site_enumeration",
-    "sites_checked": 2,
-    "sites_consistent": 2,
-    "sites_contradicted": 0,
-    "contradictions": [],
-    "timestamp": "2026-11-12"
-   }
-  },
-  "0x4989": {
-   "name": "m_bSpringDoneY",
-   "type": "unsigned char",
-   "source": "decomp:_method_44a3d0_BYTE_set_1",
-   "evidence_level": "unverified",
-   "audit": {
-    "level": "audited",
-    "method": "use_site_enumeration",
-    "sites_checked": 3,
-    "sites_consistent": 3,
-    "sites_contradicted": 0,
-    "contradictions": [],
-    "timestamp": "2026-11-12"
-   }
+   "name": "m_unk_0x168",
+   "type": "UIFrameContainer",
+   "source": "#116 按 #115 §2/§4 行18：ctor asm:134636 lea ecx,[esi+168h] → 134638 call sub_4422E0(UIFrameContainer ctor，152B)，下一构造 0x200；旧名 m_nTodo_168 作废（#115 §2 表）",
+   "evidence_level": "A-"
   },
   "0x200": {
    "name": "m_fLastDialogTime",
@@ -470,64 +184,125 @@
    "offset": 552,
    "evidence_level": "unverified"
   },
+  "0x1dfc": {
+   "name": "m_byteFlags",
+   "type": "unsigned char",
+   "source": "A:byte_array_+1821_stride",
+   "evidence_level": "unverified"
+  },
+  "0x2870": {
+   "name": "m_nTodo_2870",
+   "type": "unsigned char",
+   "source": "A:LOBYTE_access | [批4 诚实化 2026-10-16] A偏移形：m_bFlag2870⇒m_nTodo_2870（地址后缀伪语义→诚实标记，后缀保留；零表达式/零布局改动）",
+   "evidence_level": "unverified"
+  },
+  "0x287c": {
+   "name": "m_BufferData",
+   "type": "char[1628]",
+   "source": "A:memset_0x2654_bytes",
+   "note": "2026-09-13: was char[0x2654] (9812B gap-absorbing blob from an early pass) — swallowed m_RoleXor(tagRoleState[11]@11992) and the spring-physics member family (18780-18800) via the emitter overlap-drop. Export truth _BYTE[1628] ends exactly at m_RoleXor@11992.",
+   "evidence_level": "unverified"
+  },
   "0x2ed8": {
    "name": "m_RoleXor",
    "type": "tagRoleState[11]",
    "offset": 11992,
    "evidence_level": "unverified"
   },
-  "0x4c": {
-   "name": "m_nState_04C",
-   "type": "int",
-   "source": "ida_gap_1refs",
+  "0x48b8": {
+   "name": "m_SlotUIWnd",
+   "type": "UIWnd",
+   "source": "A:UIWnd_GetRect_call_this+48B8",
    "evidence_level": "unverified"
   },
-  "0x60": {
-   "name": "m_nState_060",
-   "type": "int",
-   "source": "ida_gap_1refs",
+  "0x490c": {
+   "name": "m_fLerpCurX",
+   "type": "float",
+   "source": "ida_decomp:_method_449fe0 lerp +=/-= speed*dt, 7 refs",
    "evidence_level": "unverified"
   },
-  "0x64": {
-   "name": "m_nCombatResult",
-   "type": "int",
-   "source": "ida_gap_10refs",
-   "_rename_evidence": "decomp:CalcCombatDamage 返回值存储",
+  "0x4910": {
+   "name": "m_fLerpCurY",
+   "type": "float",
+   "source": "ida_decomp:_method_449fe0 lerp +=/-= speed*dt, 7 refs",
    "evidence_level": "unverified"
   },
-  "0x94": {
-   "name": "m_nTargetRoleIdx",
+  "0x4914": {
+   "name": "m_nLerpTargetX",
    "type": "int",
-   "source": "ida_gap_10refs",
-   "_rename_evidence": "decomp:AISelectTarget 返回目标角色索引",
+   "source": "ida_decomp:_method_449fe0 compared with cur to lerp, 3 refs",
    "evidence_level": "unverified"
   },
-  "0x9c": {
-   "name": "m_nSelectedAction",
+  "0x4918": {
+   "name": "m_nLerpTargetY",
    "type": "int",
-   "source": "ida_gap_16refs",
-   "_rename_evidence": "decomp:DispatchCombatAction 按此分发命令类型",
+   "source": "ida_decomp:_method_449fe0 compared with cur to lerp, 3 refs",
    "evidence_level": "unverified"
   },
-  "0xa0": {
-   "name": "m_nSelectedTarget",
+  "0x491c": {
+   "name": "m_nLerpDestX",
    "type": "int",
-   "source": "ida_gap_10refs",
-   "_rename_evidence": "decomp:PopulateTargetList 填充目标列表索引",
+   "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "0xa4": {
-   "name": "m_nSelectedItem",
+  "0x4920": {
+   "name": "m_nLerpDestY",
    "type": "int",
-   "source": "ida_gap_11refs",
-   "_rename_evidence": "decomp:AISelectItem 选择物品索引",
+   "source": "B:naming_m_n+FPU_misattrib",
    "evidence_level": "unverified"
   },
-  "0x118": {
-   "name": "m_nDamageThisRound",
+  "0x492c": {
+   "name": "m_nLerpDir",
    "type": "int",
-   "source": "ida_gap_9refs",
-   "_rename_evidence": "decomp:ApplyDamage/CalcDamage 累计伤害",
+   "source": "B:naming_m_n+FPU_misattrib",
+   "evidence_level": "unverified"
+  },
+  "0x4939": {
+   "name": "m_bLerpDone",
+   "type": "unsigned char",
+   "source": "ida_decomp:_method_449fe0 set 0 start, 1 finish, 3 refs",
+   "evidence_level": "unverified"
+  },
+  "0x493c": {
+   "name": "m_fLerpSpeed",
+   "type": "float",
+   "source": "ida_decomp:_method_449fe0 a2*this*dir = delta, 4 refs",
+   "evidence_level": "unverified"
+  },
+  "0x495c": {
+   "name": "m_fSpringPosX",
+   "type": "float",
+   "source": "decomp:spring_animation_position_X(+=dt*speed*dir)",
+   "evidence_level": "unverified"
+  },
+  "0x4960": {
+   "name": "m_fSpringPosY",
+   "type": "float",
+   "source": "decomp:spring_animation_position_Y",
+   "evidence_level": "unverified"
+  },
+  "0x4964": {
+   "name": "m_fSpringTargX",
+   "type": "float",
+   "source": "decomp:copied_from_PosX_at_frame_end",
+   "evidence_level": "unverified"
+  },
+  "0x4968": {
+   "name": "m_fSpringTargY",
+   "type": "float",
+   "source": "decomp:spring_target_Y",
+   "evidence_level": "unverified"
+  },
+  "0x496c": {
+   "name": "m_fSpringPrevX",
+   "type": "float",
+   "source": "decomp:spring_previous_X",
+   "evidence_level": "unverified"
+  },
+  "0x4970": {
+   "name": "m_fSpringPrevY",
+   "type": "float",
+   "source": "decomp:spring_previous_Y",
    "evidence_level": "unverified"
   },
   "0x4974": {
@@ -542,24 +317,129 @@
    "source": "2026-09-14: UpdateEffects writes 600 to this+0x4978",
    "evidence_level": "unverified"
   },
-  "0x120": {
-   "name": "m_nState3",
-   "type": "int[18]",
-   "source": "[伪语义批 3 折叠 2026-10-16] 簇4 288..356 ×13 纯 int（步距 4/8/16 连跑） → int[18]@288（13 散名 → 1 声明）。证据等级：数组语义=命名来历推断（m_nState_ 偏移编码族同前缀+纯 int 连跑）+布局等价（常量下标折叠）；**无索引访问证据**（批 1/2 全图 disp 谱制式）。名=族基名+组序（去地址后缀伪语义形 ✓ 禁伪语义命名条款）；组语义仅布局连续性推断。 | [T56 修正] 名 m_nState2→m_nState3（与拆分件 @168 撞名消歧；组序=偏移序 132/168/288）",
+  "0x497c": {
+   "name": "m_nSpringDir",
+   "type": "int",
+   "source": "decomp:spring_direction(multiplied_by_speed)",
    "evidence_level": "unverified"
   },
-  "0x84": {
-   "name": "m_nState",
-   "type": "int[4]",
-   "source": "[伪语义批 3 折叠 2026-10-16·T56 修正] 原 int[35]@132 **越界**（132..272 内含他名员 m_nTargetRoleIdx@148 等 4 员——前缀聚类漏交错面，check overlap 抓获）⇒ 拆双数组避开：本件 132..148 int[4]（m_nState_084.._090 4 散名）。证据等级：命名来历推断+布局等价（常量下标折叠）；无索引访问证据",
-   "repro_pointer": "ptr:offset@132..148|fold-20261016 m_nState 簇3 拆分件 int[4]（T56 越界修正证）",
+  "0x4980": {
+   "name": "m_fSpringAccelX",
+   "type": "float",
+   "source": "decomp:_method_44a3d0_set_3.0f(0x40400000_IEEE754)",
    "evidence_level": "unverified"
   },
-  "0xa8": {
-   "name": "m_nState2",
-   "type": "int[26]",
-   "source": "[伪语义批 3 折叠 2026-10-16·T56 修正] 168..272 int[26]（m_nState_0A8.._10C 15 散名 → 1；含空槽）。证据等级同 m_nState",
-   "repro_pointer": "ptr:offset@168..272|fold-20261016 int[26]（m_nState2）",
+  "0x4984": {
+   "name": "m_fSpringAccelY",
+   "type": "float",
+   "source": "decomp:_method_44a3d0_set_3.0f(0x40400000_IEEE754)",
+   "evidence_level": "unverified"
+  },
+  "0x4988": {
+   "name": "m_bSpringDoneX",
+   "type": "unsigned char",
+   "source": "decomp:_method_44a3d0_BYTE_set_0",
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "audited",
+    "method": "use_site_enumeration",
+    "sites_checked": 2,
+    "sites_consistent": 2,
+    "sites_contradicted": 0,
+    "contradictions": [],
+    "timestamp": "2026-11-12"
+   }
+  },
+  "0x4989": {
+   "name": "m_bSpringDoneY",
+   "type": "unsigned char",
+   "source": "decomp:_method_44a3d0_BYTE_set_1",
+   "evidence_level": "unverified",
+   "audit": {
+    "level": "audited",
+    "method": "use_site_enumeration",
+    "sites_checked": 3,
+    "sites_consistent": 3,
+    "sites_contradicted": 0,
+    "contradictions": [],
+    "timestamp": "2026-11-12"
+   }
+  },
+  "0x498c": {
+   "name": "m_fSpringSpeed",
+   "type": "float",
+   "source": "decomp:spring_speed(multiplied_by_deltaTime)",
+   "evidence_level": "unverified"
+  },
+  "0x4a70": {
+   "name": "m_SlotWidgets",
+   "type": "UIWnd",
+   "source": "decomp:_method_46d770_UIWnd_array_stride38(=152bytes=UIStatic)[5]",
+   "evidence_level": "unverified"
+  },
+  "0x4cd0": {
+   "name": "m_SlotRects",
+   "type": "int",
+   "source": "decomp:_method_46d770_RECT_array_for_5_slots(4*idx+38/39/40)",
+   "evidence_level": "unverified"
+  },
+  "0x4d74": {
+   "name": "m_SlotRightEdge",
+   "type": "int",
+   "source": "decomp:_method_46d770_right_edge_array[5]",
+   "evidence_level": "unverified"
+  },
+  "0x4db8": {
+   "name": "m_nSlotStartY",
+   "type": "int",
+   "source": "decomp:_method_46d770_Y_start_position",
+   "evidence_level": "unverified"
+  },
+  "0x4dbc": {
+   "name": "m_nSlotSpacing",
+   "type": "int",
+   "source": "decomp:_method_46d770_X_spacing_between_slots",
+   "evidence_level": "unverified"
+  },
+  "0x4dc0": {
+   "name": "m_nSlotHeight",
+   "type": "int",
+   "source": "decomp:_method_46d770_height_offset_per_slot",
+   "evidence_level": "unverified"
+  },
+  "0x4dc4": {
+   "name": "m_nSlotWidth",
+   "type": "int",
+   "source": "decomp:_method_46d770_width_per_slot",
+   "evidence_level": "unverified"
+  },
+  "0x4dc8": {
+   "name": "m_bySlotVisible",
+   "type": "unsigned char",
+   "source": "decomp:_method_46d770_BYTE_array_5slots_visibility",
+   "evidence_level": "unverified"
+  },
+  "0x4e60": {
+   "name": "m_unk_0x4E60",
+   "type": "unsigned char[344]",
+   "source": "#116 按 #115 §4 行20：ctor asm:134647/134649 lea ecx,[esi+4E60h] → call sub_43A770（表 0x56AC70，未登记类），0x4E60+0x158=0x4FB8；按 #63 C7 / EquipUI:243 / LineupUI:91 既有口径不造类、留白 344B；旧名 m_pScene(UIScene*) 作废（#115 §2）",
+   "evidence_level": "A-"
+  },
+  "0x4fb8": {
+   "name": "m_unk_0x4FB8",
+   "type": "UIFrameContainer",
+   "source": "#116 按 #115 §4 行21：ctor asm:134650/134652 lea ecx,[esi+4FB8h] → call sub_4422E0(UIFrameContainer，152B)，+0x98=0x5050；旧名 m_Static_20408 作废",
+   "evidence_level": "A-"
+  },
+  "0x5050": {
+   "name": "m_bVideoPlayed",
+   "type": "unsigned char",
+   "source": "A:decomp LOBYTE(this+5050) checked before CScreenMode::PlayVideo",
+   "evidence_level": "unverified"
+  },
+  "0x5054": {
+   "name": "m_nVideoState",
+   "type": "int",
    "evidence_level": "unverified"
   }
  },
@@ -1007,48 +887,6 @@
     "pending": false
    },
    "sig_note": "2026-11-18 mangle X解码歧义修正: void参数→void*(mangle X在参数区=不透明4字节slot)。2026-11-18 mangle硬真值全量定谳(WriteBackRoleDa"
-  },
-  "0x004efd70": {
-   "name": "WriteBackConfig",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "bool",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "roleIdx"
-     },
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
-  },
-  "0x004efe90": {
-   "name": "ReviveAllFriendAtEnd",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "bool",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "roleIdx"
-     },
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 IDB类型+RET判据双证定谳(?X垃圾清除后重建)。2026-11-18 mangle解码器?X垃圾参数发现——sig_model标记pending, "
   },
   "0x004effc0": {
    "name": "IsRoleReady",
@@ -2053,28 +1891,6 @@
    "evidence_level": "unverified",
    "sig_model": {
     "return": "unsigned int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x004f7910": {
-   "name": "ProcessActions",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void *",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x004f8480": {
-   "name": "UpdateEffects",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
     "cc": "thiscall",
     "params": [],
     "varargs": false,
@@ -3181,28 +2997,6 @@
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(UpdateSpringAnim): int(int,float); 原注解无"
   },
-  "0x0044a2e0": {
-   "name": "UpdateFadeAlpha",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "void",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x0044a3d0": {
-   "name": "InitFadeAndSpring",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
   "0x00457020": {
    "name": "Update",
    "ordinal": 2,
@@ -3315,23 +3109,6 @@
     "pending": false
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(LayoutSlotPanelE): int(int,unsigned int); 原注解2026-11-18 mangle硬真值定谳(HE): int(unsigned"
-  },
-  "0x0046f390": {
-   "name": "NotifyStateChange",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "unsigned __int8",
-      "name": "nState"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(NotifyStateChange): int(int,int); 原注解2026-11-18 mangle硬真值定谳(HH): int(int); 原注"
   },
   "0x004dc760": {
    "name": "GetCombatDialogPos",
@@ -3529,17 +3306,6 @@
   },
   "0x004ec7d0": {
    "name": "IterateMagicSlots",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "char",
-    "cc": "thiscall",
-    "params": [],
-    "varargs": false,
-    "pending": false
-   }
-  },
-  "0x004ec830": {
-   "name": "DestroyAndReinit",
    "evidence_level": "unverified",
    "sig_model": {
     "return": "char",
@@ -4053,23 +3819,6 @@
    },
    "sig_note": "2026-11-18 mangle硬真值全量定谳(GetSlotType): int(int,int); 原注解无"
   },
-  "0x004fa760": {
-   "name": "SwapEffectParams",
-   "evidence_level": "unverified",
-   "sig_model": {
-    "return": "int",
-    "cc": "thiscall",
-    "params": [
-     {
-      "type": "int",
-      "name": "nVal"
-     }
-    ],
-    "varargs": false,
-    "pending": false
-   },
-   "sig_note": "2026-11-18 mangle硬真值全量定谳(SwapEffectParams): int(int,int); 原注解无"
-  },
   "0x004fb6b0": {
    "name": "RandomizeSpecialSkill",
    "evidence_level": "unverified",
@@ -4493,5 +4242,5 @@
  ],
  "table_adjudication_pending": "registry ctor名=bisect误名(写表0), 需alloc-wrapper扫描定谳真表 — 组②挂起",
  "bases_note": "真基链重建20261117(复核P0-2): bases=[UIListBox]。铁证=ctor 0x456AB0call 0x43DCD0(UIListBox ctor, 语料自证UIListBox::UIListBox(this))+dtor 0x456B80→0x43DD10(UIListBox dtor)→0x445B40(UIWnd dtor)链; 原bases=[SceneObj(1784)]与[UIWnd]均为census错挂(摘除正确)",
- "binary_size_source": "成员背书保守值(m_BattleFlags@0x56CC 末端22224); 构造字面量冲突案: ??0CCBRoleState new 0x5058=20568 与成员证据矛盾(ctor误名或成员越界, 待ctor写界取证裁定) [2026-11-26 金表对账]"
+ "binary_size_source": "#116 按 #115 §1 三证：分配立即数 push 5058h 唯一（asm:118489）、ctor sub_456AB0 建链求和 20,568、写界最高 [5054h]（asm:134654）；旧 22,224 无第二分配点、无运行期扩容（#76 §6）"
 }
